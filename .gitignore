@@ -1,0 +1,56 @@
+# .DS_Store
+# Thumbs.db
+# db.json
+# *.log
+# node_modules/
+# public/
+# .deploy*/
+# _multiconfig.yml
+
+
+# DoItYourself
+# .DS_Store
+# Thumbs.db
+# db.json
+# *.log
+# node_modules/
+# public/
+# .deploy*/
+
+
+
+# First, Denylist ignore everything
+*
+
+# Now, Allowlist allow anything that's a directory, but not a file.
+!*/
+
+# Allowlist the file or folder
+# !NotIgnoredFile
+# !NotIgnoredFolder/
+
+# Recursively allowlist its contents
+# !NotIgnoredFolder/**
+
+!.gitignore
+!CNAME
+!README.md
+
+
+!_config.yml
+!_overrideconfig.yml
+
+!.github/**
+!Makefile
+node_modules/
+
+!package-lock.json
+!package.json
+
+
+!scaffolds/**
+!source/**
+
+!yarn.lock
+
+.deploy_git/

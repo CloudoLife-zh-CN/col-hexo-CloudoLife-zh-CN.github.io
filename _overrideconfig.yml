@@ -1,0 +1,29 @@
+
+# Site
+title: Cloud-oriented Life (CloudoLife) 面向云生活
+subtitle: 使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活
+description: ''
+keywords: Cloud-oriented Life (COL), Google-oriented Programming (GoP), Infrastructure as Code (IaC), Cloud, Life
+author: blogbin
+language: zh-CN
+timezone: ''
+
+# URL
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+# url: http://example.com
+url: https://cloudolife.cn
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+# theme: landscape
+theme: next
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+# deploy:
+#   type: ''
+deploy:
+  type: git
+  repository: git@github.com:CloudoLife/col-hexo-CloudoLife-zh-CN.github.io.git
+  branch: master

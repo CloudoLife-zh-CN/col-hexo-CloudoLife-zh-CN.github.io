@@ -1,0 +1,61 @@
+
+name: CI - Deploy Hexo
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    name: Build on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node_version: [17.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Clean install dependencies
+        run: |
+          npm i
+          npm ci
+
+      - name: Setup
+        env:
+          DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${DEPLOY_KEY}" > ~/.ssh/id_rsa
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.email "benjamin@cloudolife.com"
+          git config --global user.name "Benjamin CloudoLife"
+
+      - name: Deploy
+        run: |
+          npm run clean
+          mkdir -p ./public
+          cp CNAME ./public/CNAME
+          npm run build
+          npm run deploy
+
+      # # Deploy hexo blog website.
+      # - name: Deploy
+      #   id: deploy
+      #   uses: sma11black/hexo-action@v1.0.3
+      #   with:
+      #     deploy_key: ${{ secrets.DEPLOY_KEY }}
+      #     user_name:  Benjamin CloudoLife # (or delete this input setting to use bot account)
+      #     user_email: benjamincloudolife@gmail.com # (or delete this input setting to use bot account)
+      #     commit_msg: ${{ github.event.head_commit.message }} # (or delete this input setting to use hexo default settings)
+      
+      # # Use the output from the `deploy` step(use for test action)
+      # - name: Get the output
+      #   run: |
+      #     echo "${{ steps.deploy.outputs.notify }}"
