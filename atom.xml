@@ -1,0 +1,1204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>CloudoLife</title>
+  
+  <subtitle>面向云生活 - 云技术改变生活</subtitle>
+  <link href="https://cloudolife.cn/atom.xml" rel="self"/>
+  
+  <link href="https://cloudolife.cn/"/>
+  <updated>2022-07-09T01:37:01.756Z</updated>
+  <id>https://cloudolife.cn/</id>
+  
+  <author>
+    <name>CloudoLife</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>asdf 入门</title>
+    <link href="https://cloudolife.cn/2022/07/09/Awosome-Software/asdf/asdf-Getting-Started/"/>
+    <id>https://cloudolife.cn/2022/07/09/Awosome-Software/asdf/asdf-Getting-Started/</id>
+    <published>2022-07-09T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>asdf 入门</h1><h2 id="推荐理由">推荐理由</h2><p>CloudoLife 推荐使用 <code>asdf</code> 统一管理不同工具/编程语言/运行环境多版本。推荐理由：</p><ul><li><p><strong>简单性</strong>，只需要安装 asdf 和对应工具/编程语言/运行环境的插件，无需为不同的工具/编程语言/运行环境安装其他多版本管理工具。</p></li><li><p><strong>一致性</strong>，使用相同的 asdf 基本命令和配置，可以统一管理不同工具/编程语言/运行环境多版本，按您所需，灵活无缝切换不同版本。</p></li><li><p><strong>多样性</strong>，官方和社区插件已经支持多达数百种工具/编程语言/运行环境，几乎涵盖到所有工具/编程语言/运行环境。</p></li><li><p><strong>及时性</strong>，插件支持的工具/编程语言/运行环境与上游保持同步，版本更新非常及时，非常容易尝试新版本。</p></li></ul><span id="more"></span><h2 id="项目简介">项目简介</h2><p><code>asdf</code> 是一个工具/运行环境（如 Dart, Elixir, Flutter, Golang (Go), Java, Node.js, Python, Ruby等）版本管理器。所有的工具版本定义都包含在一个文件（<code>.tool-versions</code>）中，你可以将配置文件 <code>.tool-versions</code> 放在项目的 Git 存储库中以便于和团队其他成员共享，从而确保每个人都使用<strong>完全</strong>相同的工具版本。</p><p>传统工作方式需要多个命令行版本管理器（如 <code>nvm</code>, <code>rvm</code> 等等），而且每个管理器都有其不同的 API、配置文件和实现方式（比如，<code>$PATH</code> 操作、垫片、环境变量等等）。<code>asdf</code> 提供单个交互方式和配置文件来简化开发工作流程，并可通过简单的插件接口扩展到所有工具和运行环境<br>。</p><h2 id="它是如何工作的">它是如何工作的</h2><p>一旦 <code>asdf</code> 核心在 Shell 配置中设置好之后，你可以安装插件来管理特定的工具。当通过插件安装工具时，安装的可执行程序会为每个可执行程序创建 <a href="https://zh.wikipedia.org/wiki/%E5%9E%AB%E7%89%87_(%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)">垫片open in new window</a>。当你尝试运行其中一个可执行程序时，将运行垫片，从而允许 <code>asdf</code> 识别 <code>.tool-versions</code> 文件中设置的工具版本并执行该版本。</p><h2 id="为什么使用-asdf？">为什么使用 asdf？</h2><p>asdf 确保团队可以使用完全相同的工具版本，通过插件系统支持很多工具，以及作为 Shell 配置中包含的单个 Shell 脚本的 简单性和熟悉性 。</p><h2 id="插件列表">插件列表</h2><p>查看 <a href="https://github.com/asdf-vm/asdf-plugins#plugin-list">Plugin List | asdf-vm/asdf-plugins: Central plugin repository for asdf - https://github.com/asdf-vm/asdf-plugins#plugin-list</a> 了解 asdf 支持的插件。</p><h2 id="快速入门">快速入门</h2><p>asdf 安装过程包括：</p><ul><li><p>安装依赖</p></li><li><p>下载 asdf 核心</p></li><li><p>安装 asdf</p></li><li><p>为每一个你想要管理的工具/运行环境安装插件</p></li><li><p>安装工具/运行环境的一个版本</p></li><li><p>通过 <code>.tool-versions</code> 配置文件设置全局和项目版本</p></li></ul><p>接下来以 macOS 操作系统、Homebrew 包管理器、Oh My Zsh Shell 命令行配置工具为例，介绍：</p><ul><li><p>如何安装 asdf 以及所需要的依赖</p></li><li><p>如何安装 Node.js 最新运行环境</p></li><li><p>如何安装 Node.js 其他版本运行环境</p></li></ul><h3 id="Hombrew-安装-asdf-以及所需要的依赖">Hombrew 安装 asdf 以及所需要的依赖</h3><p>Homebrew 是一款 macOS 操作系统平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令 <code>brew &lt;subcommand&gt;</code>，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。</p><p>访问<a href="https://brew.sh/">The Missing Package Manager for macOS (or Linux) — Homebrew - https://brew.sh/</a>了解更多信息。</p><p>得益于功能强大的 Homebrew 包管理器，Homebrew 安装 asdf 时将会自动安装所需要的依赖。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install asdf</span><br></pre></td></tr></table></figure><h3 id="包管理器-和-Oh-My-Zsh-Shell-命令行配置">包管理器 和 Oh My Zsh Shell 命令行配置</h3><p>Oh My Zsh 是基于 zsh 命令行的一个扩展工具集，提供了丰富的扩展功能。它是一种全新的工作方式。它基于 zsh 命令行，提供了主题配置，插件机制，已经内置的便捷操作。给我们一种全新的方式使用命令行。</p><p>访问<a href="https://ohmyz.sh/">Oh My Zsh - a delightful &amp; open source framework for Zsh - https://ohmyz.sh/</a>了解更多信息。</p><p>使用以下命令将 <code>asdf.sh</code> 加入到 <code>~/.zshrc</code> 文件中：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo -e &quot;\n. $(brew --prefix asdf)/libexec/asdf.sh&quot; &gt;&gt; $&#123;ZDOTDIR:-~&#125;/.zshrc</span><br></pre></td></tr></table></figure><p>或者 使用 ZSH 框架插件，比如 <a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/asdf">asdf for oh-my-zsh - https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/asdf</a> 将会使脚本生效并安装补全功能。</p><p>补全功能可以被 ZSH 框架 asdf 或者 <a href="https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh">按照 Homebrew 的指引 - https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh</a> 完成配置。如果你正在使用 ZSH 框架，有关的 asdf 插件或许需要更新才能通过 fpath 正确地使用最新的 ZSH 补全功能。Oh-My-ZSH asdf 插件还在更新中，请查看 <a href="https://asdf-vm.com/zh-hans/guide/getting-started.html#_3-%E5%AE%89%E8%A3%85-asdf:~:text=%E4%B8%AD%EF%BC%8C%E8%AF%B7%E6%9F%A5%E7%9C%8B-,ohmyzsh/ohmyzsh%238837,open%20in%20new%20window,-%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E3%80%82">ohmyzsh/ohmyzsh#8837 - https://asdf-vm.com/zh-hans/guide/getting-started.html#_3-%E5%AE%89%E8%A3%85-asdf:~:text=%E4%B8%AD%EF%BC%8C%E8%AF%B7%E6%9F%A5%E7%9C%8B-,ohmyzsh/ohmyzsh%238837,open%20in%20new%20window,-%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E3%80%82</a>了解更多。</p><p><code>asdf</code> 脚本需要在设置好的 <code>$PATH</code> 之后和已经生效的框架（比如 oh-my-zsh 等等）之后的位置生效。</p><p>通常打开一个新的终端标签页来重启你的 <code>shell</code> 让 <code>PATH</code> 更改即时生效。</p><p>或者在当前窗口运行 <code>source ~/.zshrc</code> 让 <code>PATH</code> 更改即时生效。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> ~/.zshrc</span></span><br></pre></td></tr></table></figure><h3 id="核心安装完成！">核心安装完成！</h3><p>这样就完成了 asdf 核心的安装 🎉</p><p>asdf 仅在你安装插件、工具和管理它们的版本时才开始真正发挥作用。请继续阅读下面的指南来了解这些是如何做到的。</p><h3 id="安装插件">安装插件</h3><p>出于演示目的，我们将通过 <code>asdf-nodejs</code> 插件来安装和设置 Node.js。</p><h3 id="插件依赖">插件依赖</h3><p>每个插件都有依赖，所以我们需要确认应该列举了这些依赖的插件源码。对于 asdf-nodejs 来说，它们是：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install gpg gawk</span><br></pre></td></tr></table></figure><p>我们应该提前安装这些依赖，因为有些插件有 <code>post-install</code> 钩子。</p><h3 id="安装插件-2">安装插件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git</span><br></pre></td></tr></table></figure><p>访问<a href="https://github.com/asdf-vm/asdf-nodejs">asdf-vm/asdf-nodejs: Node.js plugin for asdf version manager - https://github.com/asdf-vm/asdf-nodejs</a>了解更多信息。</p><h3 id="安装指定版本">安装指定版本</h3><p>现在我们已经有了 Node.js 插件，所以我们可以开始安装某个版本了。</p><p>我们通过 <code>asdf list all nodejs</code> 可以看到所有可用的版本或者通过 <code>asdf list all nodejs 14</code> 查看版本子集。</p><p>我们将只安装最新可用的 <code>latest</code> 版本：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf install nodejs latest</span><br></pre></td></tr></table></figure><blockquote><p>注意<br>asdf 强制使用准确的版本。<code>latest</code> 是一个通过 asdf 来解析到执行时刻的实际版本号的辅助工具。</p></blockquote><p>可以安装可用的 <code>15.10.0</code> 版本：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf install nodejs 15.10.0</span><br></pre></td></tr></table></figure><h3 id="设置默认版本">设置默认版本</h3><p>asdf 在从当前工作目录一直往上到 <code>$HOME</code> 目录的所有 <code>.tool-versions</code> 文件中进行工具的版本查找。查找在执行 asdf 管理的工具时实时发生。</p><blockquote><p>警告<br>如果没有为工具找到指定的版本，则会出现错误。<code>asdf current</code> 将显示当前目录中的工具和版本解析结果，或者不存在，以便你可以观察哪些工具将无法执行。</p></blockquote><h4 id="全局">全局</h4><p>全局默认配置在 <code>$HOME/.tool-versions</code> 文件中进行管理。使用以下命令可以设置一个全局版本：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf global nodejs latest</span><br></pre></td></tr></table></figure><p><code>$HOME/.tool-versions</code> 文件内容将会如下所示：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodejs 16.5.0</span><br></pre></td></tr></table></figure><p>某些操作系统已经有一些由系统而非 asdf 安装和管理的工具了，python 就是一个常见的例子。你需要告诉 asdf 将管理权还给系统。版本参考部分 将会引导你。</p><h4 id="本地">本地</h4><p>本地版本被定义在 <code>$PWD/.tool-versions</code> 文件中（当前工作目录）。通常，这将会是一个项目的 Git 存储库。当在你想要的目录执行：</p><p>如果当前工作目录没有 <code>.tool-versions</code>，您可以手动创建:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">touch</span> .tool-versions</span></span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdf local nodejs latest</span><br></pre></td></tr></table></figure><p><code>$PWD/.tool-versions</code> 文件内容将会如下所示：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodejs 16.5.0</span><br></pre></td></tr></table></figure><h2 id="使用现有工具版本文件">使用现有工具版本文件</h2><p>asdf 支持从其他版本管理器的现有版本文件中迁移过来，比如 <code>rbenv</code> 的 <code>.ruby-version</code> 文件。这在每个插件中都原生支持。</p><p><code>asdf-nodejs</code> 支持从 <code>.nvmrc</code> 和 <code>.node-version</code> 文件进行迁移。为了启用此功能，请在 <code>asdf</code> 配置文件 <code>$HOME/.asdfrc</code> 中加入以下内容：</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">legacy_version_file</span> = <span class="literal">yes</span></span><br></pre></td></tr></table></figure><p>请查看 <a href="https://asdf-vm.com/zh-hans/manage/configuration.html">配置 - https://asdf-vm.com/zh-hans/manage/configuration.html</a> 参考页面可以了解更多配置选项。</p><h2 id="完成指南！">完成指南！</h2><p>恭喜你完成了 <code>asdf</code> 的快速上手 🎉 你现在可以管理你的项目的 <code>nodejs</code> 版本了。对于项目中的其他工具/运行环境可以执行类似步骤即可！</p><h2 id="更多命令">更多命令</h2><p><code>asdf</code> 还有更多命令需要熟悉，你可以通过运行 <code>asdf --help</code> 或者 <code>asdf</code> 来查看它们。命令主要分为三类：</p><ul><li><p>asdf 核心</p></li><li><p>插件</p></li><li><p>（工具的）版本</p></li></ul><p>asdf 中所有可用命令的列表。这个列表就是 <code>asdf help</code> 命令的打印内容。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">asdf</span></span><br><span class="line">MANAGE PLUGINS</span><br><span class="line">asdf plugin add &lt;name&gt; [&lt;git-url&gt;]      从插件仓库添加插件或者，添加一个 Git repo 作为插件</span><br><span class="line">asdf plugin list [--urls] [--refs]      列出已安装的插件。可选择显示 git url 和 git-ref</span><br><span class="line">asdf plugin list all                    列出所有在 asdf-plugins 上注册的 List 插件带有 URL 的存储库</span><br><span class="line">asdf plugin remove &lt;name&gt;               删除插件和软件包版本</span><br><span class="line">asdf plugin update &lt;name&gt; [&lt;git-ref&gt;]   更新插件到最新提交默认分支或特定的 git-ref</span><br><span class="line">asdf plugin update --all                更新所有插件到最新提交默认分支</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MANAGE PACKAGES</span><br><span class="line">asdf install                            安装所有在 .tool-versions 文件中列出的软件包版本</span><br><span class="line">asdf install &lt;name&gt;                     安装一个在 .tool-versions 文件中列出的特定软件包版本</span><br><span class="line">asdf install &lt;name&gt; &lt;version&gt;           安装特定版本的包</span><br><span class="line">asdf install &lt;name&gt; latest[:&lt;version&gt;]  安装最新的稳定版本包，或可选版本，安装最新的稳定版本，或以给定的字符串开头</span><br><span class="line">asdf uninstall &lt;name&gt; &lt;version&gt;         删除特定版本的包</span><br><span class="line">asdf current                            显示当前版本集或正在用于所有包</span><br><span class="line">asdf current &lt;name&gt;                     显示当前版本集或正在用于包装</span><br><span class="line">asdf where &lt;name&gt; [&lt;version&gt;]           示已安装的安装路径或当前版本</span><br><span class="line">asdf which &lt;command&gt;                    显示可执行文件的路径</span><br><span class="line">asdf local &lt;name&gt; &lt;version&gt;             设置包本地版本</span><br><span class="line">asdf local &lt;name&gt; latest[:&lt;version&gt;]    将包本地版本设置为提供的最新版本</span><br><span class="line">asdf global &lt;name&gt; &lt;version&gt;            设置包全局版本</span><br><span class="line">asdf global &lt;name&gt; latest[:&lt;version&gt;]   将包全局版本设置为提供的最新版本</span><br><span class="line">asdf shell &lt;name&gt; &lt;version&gt;             将包版本设置为当前 shell 中的 `ASDF_$&#123;LANG&#125;_VERSION`</span><br><span class="line">asdf latest &lt;name&gt; [&lt;version&gt;]          显示包的最新稳定版本</span><br><span class="line">asdf latest --all                       显示所有最新的稳定版本软件包以及是否已安装</span><br><span class="line">asdf list &lt;name&gt; [version]              列出软件包的已安装版本和可选择过滤版本</span><br><span class="line">asdf list all &lt;name&gt; [&lt;version&gt;]        列出包的所有版本和可选择过滤返回的版本</span><br><span class="line">asdf help &lt;name&gt; [&lt;version&gt;]            插件和工具的输出文档</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">UTILS</span><br><span class="line">asdf exec &lt;command&gt; [args...]           为当前版本执行命令 shim</span><br><span class="line">asdf env &lt;command&gt; [util]               在用于命令 shim 执行的环境</span><br><span class="line">asdf info                               打印操作系统、Shell 和 ASDF 调试信息</span><br><span class="line">asdf reshim &lt;name&gt; &lt;version&gt;            为特定包的版本重新创建 shims</span><br><span class="line">asdf shim-versions &lt;command&gt;            列出插件和版本提供命令</span><br><span class="line">                                        provide a command</span><br><span class="line">asdf update                             更新到最新的稳定版本</span><br><span class="line">asdf update --head                      将 asdf 更新到 master 分支上的最新版本</span><br><span class="line"></span><br><span class="line">RESOURCES</span><br><span class="line">GitHub: https://github.com/asdf-vm/asdf</span><br><span class="line">Docs:   https://asdf-vm.com</span><br></pre></td></tr></table></figure><h2 id="常见问题-FAQs">常见问题 FAQs</h2><h2 id="参考链接">参考链接</h2><p>[1] <a href="https://asdf-vm.com/">Home | asdf - https://asdf-vm.com/</a></p><p>[2] <a href="https://brew.sh/">The Missing Package Manager for macOS (or Linux) — Homebrew - https://brew.sh/</a></p><p>[3] <a href="https://ohmyz.sh/">Oh My Zsh - a delightful &amp; open source framework for Zsh - https://ohmyz.sh/</a></p><p>[4] <a href="https://github.com/asdf-vm/asdf-nodejs">asdf-vm/asdf-nodejs: Node.js plugin for asdf version manager - https://github.com/asdf-vm/asdf-nodejs</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;asdf 入门&lt;/h1&gt;
+&lt;h2 id=&quot;推荐理由&quot;&gt;推荐理由&lt;/h2&gt;
+&lt;p&gt;CloudoLife 推荐使用 &lt;code&gt;asdf&lt;/code&gt; 统一管理不同工具/编程语言/运行环境多版本。推荐理由：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;简单性&lt;/strong&gt;，只需要安装 asdf 和对应工具/编程语言/运行环境的插件，无需为不同的工具/编程语言/运行环境安装其他多版本管理工具。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;一致性&lt;/strong&gt;，使用相同的 asdf 基本命令和配置，可以统一管理不同工具/编程语言/运行环境多版本，按您所需，灵活无缝切换不同版本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;多样性&lt;/strong&gt;，官方和社区插件已经支持多达数百种工具/编程语言/运行环境，几乎涵盖到所有工具/编程语言/运行环境。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;及时性&lt;/strong&gt;，插件支持的工具/编程语言/运行环境与上游保持同步，版本更新非常及时，非常容易尝试新版本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Awosome Software" scheme="https://cloudolife.cn/categories/Awosome-Software/"/>
+    
+    <category term="asdf" scheme="https://cloudolife.cn/categories/Awosome-Software/asdf/"/>
+    
+    
+    <category term="macOS" scheme="https://cloudolife.cn/tags/macOS/"/>
+    
+    <category term="Homebrew" scheme="https://cloudolife.cn/tags/Homebrew/"/>
+    
+    <category term="brew" scheme="https://cloudolife.cn/tags/brew/"/>
+    
+    <category term="zsh" scheme="https://cloudolife.cn/tags/zsh/"/>
+    
+    <category term="Oh My Zsh" scheme="https://cloudolife.cn/tags/Oh-My-Zsh/"/>
+    
+    <category term="Node.js" scheme="https://cloudolife.cn/tags/Node-js/"/>
+    
+    <category term="node" scheme="https://cloudolife.cn/tags/node/"/>
+    
+    <category term="Awosome Software" scheme="https://cloudolife.cn/tags/Awosome-Software/"/>
+    
+    <category term="asdf" scheme="https://cloudolife.cn/tags/asdf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[Logseq 博客 中文翻译] Newsletter #7: 使用 Logseq 构建个人学习基础架构</title>
+    <link href="https://cloudolife.cn/2022/06/25/Awosome-Software/Logseq/Blog/newsletter-7-build-a-personal-learning-infrastructure-with-logseq/"/>
+    <id>https://cloudolife.cn/2022/06/25/Awosome-Software/Logseq/Blog/newsletter-7-build-a-personal-learning-infrastructure-with-logseq/</id>
+    <published>2022-06-25T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>使用 Logseq 构建个人学习基础架构</h1><p>星期二快乐，Logseqers 同胞！</p><p>本周我们将继续学习 Logseq 主题。 为什么？ 因为社区不断为学习者提供实用资源。 因此，我们再次选择了最有用的插件和内容来帮助您构建个人学习系统。<br>但是，我们希望做更多的事情来帮助您成为一个有效的学习者。</p><p>如果你想同时学习如何学习和掌握查询，你应该参加今年夏天的 Logseq 学习冲刺。 想知道更多？ 继续阅读并回复此电子邮件。</p><span id="more"></span><h2 id="学习冲刺">学习冲刺</h2><p>在过去两周我们做了十几次用户访谈之后，有一点很清楚：Logseq 主要用于学习和存储知识。检索知识最流行（但令人困惑）的方式是 Logseq 的查询。<br>但是你如何使用查询？以及如何快速学会正确使用它们？</p><p>为了回答这些问题，我们想组织一个为期 3 周的学习冲刺。您不仅将学习如何学习 Logseq 的简单和高级查询，还将学习一两件关于如何快速学习的知识。<br>我（Ramses）将促进这个 sprint 并教授我的学习过程。与一些高级用户一起，我将向您展示简单和高级查询的可能性。三周后，您将获得一个学习系统、几个查询驱动的仪表板和一个由 Logseq 爱好者组成的网络。</p><p>如果您有兴趣参加今年 7 月或 8 月的学习冲刺，请回复此电子邮件，让我们知道您想参加。也请告诉我们您喜欢哪个月份（7 月或 8 月）。一旦我们有更多关于学习冲刺开始时间和地点的详细信息，我们会尽快给您发送电子邮件。</p><h2 id="新版本：0-7-5">新版本：0.7.5</h2><p>今天，Logseq 桌面版和移动版（Android）新版本发布。 新的 Logseq iOS 版本正在等待 Apple 的批准。 <a href="https://github.com/logseq/logseq/releases/tag/0.7.5">前往 GitHub - https://github.com/logseq/logseq/releases/tag/0.7.5</a>或查看应用程序内部（… &gt; 设置）以进行更新。</p><p>没有发布任何新功能，这个版本只是为了增加润色和性能。 我们还为我们的 <a href="https://docs.logseq.com/#/page/Logseq%20Protocol">Logseq 协议 - https://docs.logseq.com/#/page/Logseq%20Protocol</a>添加了快速捕获功能，这对于（集成）开发人员来说会派上用场。<br><a href="https://github.com/logseq/logseq/issues/new?assignees=&amp;labels=&amp;template=bug_report.yaml">发现错误？ 请在 GitHub 上告诉我们。 - https://github.com/logseq/logseq/issues/new?assignees=&amp;labels=&amp;template=bug_report.yaml</a></p><h2 id="新插件">新插件</h2><p>Logseq Marketplace 不断增长，现在有 35 个主题和 129 个插件！在 Logseq 中的 … &gt; Plugins &gt; Marketplace 中搜索它们。这些是我们最喜欢的新插件。</p><p><a href="https://github.com/sawhney17/logseq-go-now">🏠 Go Home Now! - https://github.com/sawhney17/logseq-go-now</a></p><p>您有多经常在页面上书写并希望快速将该页面添加到您的日记页面？使用此插件，您可以点击键盘快捷键并立即在今天的期刊页面末尾创建一个新块。</p><p><a href="https://github.com/omnivore-app/logseq-omnivore">🤓 Logseq Omnivore - https://github.com/omnivore-app/logseq-omnivore</a></p><p>Read-it-later 应用程序是许多学习者必不可少的工具，但并非每个应用程序都与 Logseq 集成。但是开源应用程序 <a href="https://omnivore.app/">Omnivore - https://omnivore.app/</a> 现在可以了！[请务必阅读 Brian Sunter 关于如何设置此集成的指南 - <a href="https://briansunter.com/graph/#/page/omnivore-logseq-guide">https://briansunter.com/graph/#/page/omnivore-logseq-guide</a>]。</p><p><a href="https://github.com/briansunter/logseq-get-youtube-captions">📺 Get YouTube Captions - https://github.com/briansunter/logseq-get-youtube-captions</a></p><p>Brian Sunter 的另一个有用的插件是这个插件，它可以让你将 YouTube 字幕直接下载到你的 Logseq 图中。并结合 Brian 的 GPT-3 插件，可以<a href="https://twitter.com/Bsunter/status/1537115206412664833?s=20&amp;t=wDmEgk2ti5P7UHrXEctihQ">轻松将 20 分钟的视频变成 5 点摘要 - https://twitter.com/Bsunter/status/1537115206412664833?s=20&amp;t=wDmEgk2ti5P7UHrXEctihQ</a>。</p><p><a href="https://github.com/swk777/logseq-rainbow-tags">🌈 Logseq Rainbow Tags - https://github.com/swk777/logseq-rainbow-tags</a></p><p>最后但并非最不重要的一点是，此插件适用于你们中的所有定制者。如果您一直想为特定标签提供自定义颜色，彩虹标签插件是必备的。</p><h2 id="向社区学习">向社区学习</h2><p><a href="https://www.youtube.com/watch?v=C8u677y988g">🛠 如何在 Logseq 中创建间隔重复的抽认卡 - https://www.youtube.com/watch?v=C8u677y988g</a></p><p>你知道 Logseq 内置了抽认卡功能吗？在本演练中，Dario 展示了如何使用 Notepad++ 和 Microsoft Excel 快速创建多个 Logseq 抽认卡。这是学习工作流机制的一个很好的演示。</p><p>想要快速了解此工作流程吗？<a href="https://hub.logseq.com/use-cases/1Sr4awszMQzD4GM5KvWim7/how-to-quickly-create-spaced-repetition-flashcards-in-logseq-using-notepad-and-excel/jxPxEdkM4BBhLfrz9PfjBr">查看我们从社区中心的视频中截取的屏幕截图 - https://hub.logseq.com/use-cases/1Sr4awszMQzD4GM5KvWim7/how-to-quickly-create-spaced-repetition-flashcards-in-logseq-using-notepad-and-excel/jxPxEdkM4BBhLfrz9PfjBr</a>。</p><p><a href="https://www.appsntips.com/learn/create-book-tracker-logseq-keep-track-books-you-read/">📚 如何在 Logseq 中创建图书跟踪器 - https://www.appsntips.com/learn/create-book-tracker-logseq-keep-track-books-you-read/</a></p><p>如果您使用 Logseq 来跟踪您的习惯并存储您的笔记，为什么不同时保留一个书籍跟踪器呢？ <a href="https://twitter.com/appsntips">appntips - https://twitter.com/appsntips</a> 的这篇操作指南文章可帮助您设置元数据模板并使用查询创建自己的图书跟踪仪表板。你在这里学到的东西可以很容易地应用到你在 Logseq 中运行的其他流程中。</p><p><a href="https://qwxlea.github.io/#/page/datalog%2Fintro%20to%20datalog">🔎 Logseq 中的 Datalog 简介 - https://qwxlea.github.io/#/page/datalog%2Fintro%20to%20datalog</a></p><p>Twitter 上的 Logseq 社区正在蓬勃发展，并且始终共享有用的资源。就像 <a href="https://qwxlea.github.io/#/page/datalog%2Fintro%20to%20datalog">Alex Qwxlea 的这个资源 - https://qwxlea.github.io/#/page/datalog%2Fintro%20to%20datalog</a>一样，展示了如何利用 Datalog（AKA 高级查询）的力量。</p><p><a href="https://briansunter.com/graph/#/page/logseq-social">👥 Logseq 博客网络 (logseq-social) - https://briansunter.com/graph/#/page/logseq-social</a></p><p>如果您想公开学习并与其他 Logseqer 建立联系，请务必考虑加入 Logseq 博客网络。<a href="https://briansunter.com/graph/#/page/logseq-social">正如 Brian Sunter 在他的公共图谱中所解释的 - https://briansunter.com/graph/#/page/logseq-social</a>，发布您的图谱并开始关注其他公共图谱非常容易。该计划的目标是创建一个有趣的公共图谱网络以供学习。</p><p><a href="https://www.youtube.com/watch?v=QF5BzxtkZvQ">🧠 使用外部思维来发展你的思维 - https://www.youtube.com/watch?v=QF5BzxtkZvQ</a></p><p>如果您一直在考虑创建 Zettelkasten 来改善您的思维方式，那么您绝对应该关注 <a href="https://twitter.com/JeffreyWebber_">Jeffrey Webber - https://twitter.com/JeffreyWebber_</a>。在这个演示中，Jeffrey 展示了他如何处理一个主题或问题，然后通过写作来理解它。<br>[[Zettelkasten Method]]</p><p><a href="https://www.youtube.com/watch?v=i7S4fXTJAnc">📋 如何在 Logseq 中注释 PDF 的任何部分 - https://www.youtube.com/watch?v=i7S4fXTJAnc</a></p><p>让我们以另一个演示结束本周的 Newsletter。在这段简短的视频中，<a href="https://twitter.com/mturilin">Mikhail Turilin - https://twitter.com/mturilin</a> 展示了他如何使用 Logseq 将他的手写笔记转换为数字笔记。借助 PDF 注释功能，他甚至可以在他的类型注释中包含绘图。</p><hr><h2 id="原文链接-2">原文链接</h2><p><a href="https://blog.logseq.com/newsletter-7-build-a-personal-learning-infrastructure-with-logseq/">Newsletter #7: Build a Personal Learning Infrastructure With Logseq - https://blog.logseq.com/newsletter-7-build-a-personal-learning-infrastructure-with-logseq/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;使用 Logseq 构建个人学习基础架构&lt;/h1&gt;
+&lt;p&gt;星期二快乐，Logseqers 同胞！&lt;/p&gt;
+&lt;p&gt;本周我们将继续学习 Logseq 主题。 为什么？ 因为社区不断为学习者提供实用资源。 因此，我们再次选择了最有用的插件和内容来帮助您构建个人学习系统。&lt;br&gt;
+但是，我们希望做更多的事情来帮助您成为一个有效的学习者。&lt;/p&gt;
+&lt;p&gt;如果你想同时学习如何学习和掌握查询，你应该参加今年夏天的 Logseq 学习冲刺。 想知道更多？ 继续阅读并回复此电子邮件。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Awosome Software" scheme="https://cloudolife.cn/categories/Awosome-Software/"/>
+    
+    <category term="Logseq" scheme="https://cloudolife.cn/categories/Awosome-Software/Logseq/"/>
+    
+    <category term="Blog" scheme="https://cloudolife.cn/categories/Awosome-Software/Logseq/Blog/"/>
+    
+    
+    <category term="Awosome Software" scheme="https://cloudolife.cn/tags/Awosome-Software/"/>
+    
+    <category term="Note Taking" scheme="https://cloudolife.cn/tags/Note-Taking/"/>
+    
+    <category term="Networked Thinking" scheme="https://cloudolife.cn/tags/Networked-Thinking/"/>
+    
+    <category term="Thinking" scheme="https://cloudolife.cn/tags/Thinking/"/>
+    
+    <category term="Logseq" scheme="https://cloudolife.cn/tags/Logseq/"/>
+    
+    <category term="Blog" scheme="https://cloudolife.cn/tags/Blog/"/>
+    
+    <category term="Newsletter" scheme="https://cloudolife.cn/tags/Newsletter/"/>
+    
+    <category term="Sprint" scheme="https://cloudolife.cn/tags/Sprint/"/>
+    
+    <category term="Flashcard" scheme="https://cloudolife.cn/tags/Flashcard/"/>
+    
+    <category term="Zettelkasten Method" scheme="https://cloudolife.cn/tags/Zettelkasten-Method/"/>
+    
+    <category term="Omnivore" scheme="https://cloudolife.cn/tags/Omnivore/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[Logseq 文档中文翻译] - Logseq 协议</title>
+    <link href="https://cloudolife.cn/2022/06/25/Awosome-Software/Logseq/Docs/Logseq-Protocol/"/>
+    <id>https://cloudolife.cn/2022/06/25/Awosome-Software/Logseq/Docs/Logseq-Protocol/</id>
+    <published>2022-06-25T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>Logseq 协议</h1><p>Logseq 提供了一个协议 <code>logseq://</code> 以允许第三方应用程序打开并在 Logseq 中调用操作。</p><span id="more"></span><h2 id="支持以下网址：">支持以下网址：</h2><h3 id="logseq-graph-graph-name-params"><code>logseq://graph/&lt;graph-name&gt;?&lt;params&gt;</code></h3><p>有可选参数 <code>block-id</code> 和 <code>page</code></p><p>例子：</p><ul><li><p><code>logseq://graph/&lt;graph name&gt;</code> - 打开图谱</p></li><li><p><code>logseq://graph/&lt;graph name&gt;?page=&lt;page name&gt;</code> - 打开图谱中的页面</p></li><li><p><code>logseq://graph/&lt;graph name&gt;?block-id=&lt;block uuid&gt;</code> - 打开图谱中页面的块</p></li></ul><h3 id="logseq-x-callback-url-quickCapture-params"><code>logseq://x-callback-url/quickCapture?&lt;params&gt;</code></h3><p>快速捕获短文本和链接，可以作为现代浏览器的书签，页面<code>&lt;a&gt;</code>标签或从命令行 shell 打开</p><p>基本用法：</p><ul><li><p>将以下链接“分享到 Logseq”拖到您的书签栏（<code>cmd+shift+b</code> 在 macOS 上切换书签栏）。然后您就可以为您的 Logseq 应用程序开启“快速捕获”功能，即从浏览器快速捕获当前页面链接、标题和内容到 Logseq，类似书签。</p></li><li><p>[分享到 Logseq](javascript:var%20d=document,w=window,f=‘logseq://x-callback-url/quickCapture’,l=d.location,e=encodeURIComponent,p='?url=%27+e(l.href)+%27&amp;title=%27+e(d.title)+%27&amp;content=%27+e(w.getSelection?w.getSelection().toString():d.getSelection?d.getSelection():d.selection.createRange().text)+%27&amp;x-source=bm%27;a=function(){l.href=f+p};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else{a()}void(0))<br>（或打开 <a href="https://jsfiddle.net/andelf/kvm5Le6z/7/">https://jsfiddle.net/andelf/kvm5Le6z/7/</a> 并将“Share to Logseq”链接拖到书签栏）</p></li></ul><p>参数：</p><ul><li><p><code>url</code>：页面网址</p></li><li><p><code>title</code>：页面标题</p></li><li><p><code>content</code>：（可选）突出显示的文本（选择）</p></li></ul><p>设置（在 <code>config.edn</code> 中）：</p><p>模板变量是 <code>&#123;time&#125;</code>、<code>&#123;text&#125;</code> 和 <code>&#123;url&#125;</code></p><figure class="highlight edn"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:quick-capture-templates</span> &#123;<span class="symbol">:text</span> <span class="string">&quot;[[quick capture]] **&#123;time&#125;** &#123;text&#125; &#123;url&#125;&quot;</span>&#125;</span><br></pre></td></tr></table></figure><h2 id="参考链接-4">参考链接</h2><p>[1] <a href="https://docs.logseq.com/#/page/Contents">Contents - https://docs.logseq.com/#/page/Contents</a></p><p>[2] <a href="https://logseq.com/">Logseq: A privacy-first, open-source knowledge base - https://logseq.com/</a></p><hr><h2 id="原文链接-3">原文链接</h2><p><a href="https://docs.logseq.com/#/page/Logseq%20Protocol">Logseq Protocol - https://docs.logseq.com/#/page/Logseq%20Protocol</a><br>Logseq 文档中文翻译 - Logseq 协议</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;Logseq 协议&lt;/h1&gt;
+&lt;p&gt;Logseq 提供了一个协议 &lt;code&gt;logseq://&lt;/code&gt; 以允许第三方应用程序打开并在 Logseq 中调用操作。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Awosome Software" scheme="https://cloudolife.cn/categories/Awosome-Software/"/>
+    
+    <category term="Logseq" scheme="https://cloudolife.cn/categories/Awosome-Software/Logseq/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Awosome-Software/Logseq/Docs/"/>
+    
+    
+    <category term="Awosome Software" scheme="https://cloudolife.cn/tags/Awosome-Software/"/>
+    
+    <category term="Note Taking" scheme="https://cloudolife.cn/tags/Note-Taking/"/>
+    
+    <category term="Networked Thinking" scheme="https://cloudolife.cn/tags/Networked-Thinking/"/>
+    
+    <category term="Thinking" scheme="https://cloudolife.cn/tags/Thinking/"/>
+    
+    <category term="Logseq" scheme="https://cloudolife.cn/tags/Logseq/"/>
+    
+    <category term="Logseq 协议" scheme="https://cloudolife.cn/tags/Logseq-%E5%8D%8F%E8%AE%AE/"/>
+    
+    <category term="Logseq 文档中文翻译" scheme="https://cloudolife.cn/tags/Logseq-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[中文翻译] Kubernetes 中的时区和 k8tz</title>
+    <link href="https://cloudolife.cn/2022/06/04/Cloud-Native/Kubernetes-K8S/Time-Zone/Timezone-in-Kubernetes-With-k8tz/"/>
+    <id>https://cloudolife.cn/2022/06/04/Cloud-Native/Kubernetes-K8S/Time-Zone/Timezone-in-Kubernetes-With-k8tz/</id>
+    <published>2022-06-04T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>Kubernetes 中的时区和 k8tz</h1><p>Kubernetes 已将自己确立为容器编排的事实标准。 它允许我们在节点集群上执行我们的容器并控制它们周围的所有配置，例如安装存储卷、Secret、网络管理等等。</p><p>容器在主机的内核上运行，并从那里获得时钟，但时区不是来自内核，而是来自用户空间。 因此，在大多数情况下，它们默认使用协调世界时 (UTC)。</p><p>即使代码与时区无关，即使将容器日志与系统日志相关联之类的事情也会让人头疼。一些应用程序使用机器的时区作为默认时区，并希望用户设置时区。当集群中容器的时区不一致时，问题会变得更大。只是没有标准。幸运的是，有几种方法可以解决这个问题并确定我们正在运行的容器的时区。但在我们找到解决方案之前，让我们先了解一下这个问题。</p><span id="more"></span><h2 id="如何设定时区">如何设定时区</h2><p>在大多数 UNIX 系统中，不同的时区由时区信息格式 (TZif) 定义。它是 1980 年代引入的二进制文件格式。可以在 IANA 时区数据库中找到这些文件的可靠且准确的来源。这些文件通常位于 <code>/usr/share/zoneinfo</code>。在大多数发行版中，这些文件是发行版的一部分并且默认安装。当我们谈论 Docker 基础镜像时，它们中的大多数默认情况下都不包含此包，它们需要使用包管理器手动安装或从源代码编译，例如：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">debian/ubuntu</span></span><br><span class="line">apt-get install tzdata</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">alpine</span></span><br><span class="line">apk add tzdata</span><br></pre></td></tr></table></figure><p>一些基础镜像（例如 CentOS 和 Fedora）附带了开箱即用的 <code>tzdata</code> 包。</p><p>但是，拥有这些文件是不够的，我们仍然需要在机器（或容器）的级别上定义所需的时区是什么。 <code>/etc/localtime</code> 文件配置本地系统的系统范围内的时区。它通常是指向 <code>/usr/share/zoneinfo</code> 的符号链接，其次是时区数据库名称，例如“Europe/Amsterdam”（即 <code>/usr/share/zoneinfo/Europe/Amsterdam</code>）。您可以在 <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List">Wikipedia - https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List</a>上找到可用时区的列表。</p><p>指定时区的另一种方法是使用 <code>TZ</code> 环境变量。它可以设置为时区标识符（即 <code>TZ=Europe/Amsterdam</code>），但习惯仅在所需时区与机器时区不同的情况下设置它。设置时，它是在 <code>/etc/localtime</code> 之前。</p><h2 id="Docker-Podman-中设置时区">Docker / Podman 中设置时区</h2><p>现在，我们了解了时区的来源以及如何设置机器（或容器）的时区，让我们更深入地研究，并尝试证明Docker / Podman 的问题。为此，我们将在一个空的Ubuntu容器中执行命令 <code>date</code>：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -i --<span class="built_in">rm</span> ubuntu:21.04 <span class="built_in">date</span></span></span><br><span class="line">Tue Sep 29 00:00:00 UTC 2021</span><br></pre></td></tr></table></figure><p>从输出来看，我们可以看到时区是 <code>UTC</code>。 Ubuntu基本映像不包含 <code>/usr/share/zoneinfo</code> 或 <code>/etc/etc/localtime</code>。默认情况下，正如我们以前所学，需要设置容器时区。 如果我们有选择，我们可以创建将安装 <code>tzdata</code> 软件包并将链接 <code>/etc/localtime</code> 设置到我们所需的时区（<code>Europe/Amsterdam</code>）的链接的 <code>Dockerfile</code>，例如：</p><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">21.04</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> \</span></span><br><span class="line"><span class="language-bash">    apt-get update &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    apt-get install -y tzdata &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">ln</span> -sf /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime &amp;&amp; \</span></span><br><span class="line"><span class="language-bash">    <span class="built_in">rm</span> -rf /var/lib/apt/lists/*</span></span><br></pre></td></tr></table></figure><p>如果我们使用 <code>docker build -t ubuntu:amsterdam</code> 构建新镜像并在其中运行 <code>date</code> 命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -i --<span class="built_in">rm</span> ubuntu-amsterdam:0 <span class="built_in">date</span></span></span><br><span class="line">Tue Sep 29 02:00:00 CEST 2021</span><br></pre></td></tr></table></figure><p>现在的输出有所不同，时间偏移为 <code>+0200</code>，时区缩写在本例中为 <code>CEST</code>（中欧夏令时）。</p><p>但这并不总是需要构建镜像，有几个原因不应该将其视为最佳实践：</p><ul><li><p>并非所有镜像都有包管理器，有些镜像只是从 <code>FROM scratch</code> 开始</p></li><li><p>为我们依赖的任何镜像维护 <code>Dockerfile</code> 将是一项艰巨的任务</p></li><li><p>我们必须将这些新镜像上传到我们的集群可以到达的地方</p></li><li><p>我们可能现在才知道或决定构建时间中的时区应该是什么</p></li></ul><p>我们稍后将讨论更多问题，但让我们首先解决这些问题。</p><p>我们可以从主机挂载所需的文件，而不是在构建时安装 <code>tzdata</code> 包，例如：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -v /usr/share/zoneinfo/Europe/Amsterdam:/etc/localtime -i --rm ubuntu:21.04 date</span><br><span class="line">Tue Sep 29 02:00:00 CEST 2021</span><br></pre></td></tr></table></figure><p>所以这要容易得多，我们使用 <code>-v</code> 将 TZif 文件从主机直接挂载到容器的 <code>/etc/localtime</code> 并解决了上述所有问题，我们现在几乎可以运行任何具有所需时区的镜像。</p><blockquote><p>此外，建议挂载整个 <code>/usr/share/zoneinfo</code> 目录，因为应用程序在运行时可能需要有关其他时区的信息，即 <code>-v /usr/share/zoneinfo:/usr/share/zoneinfo:ro</code>。</p></blockquote><p>所以现在我们知道如何解决这个问题，让我们继续讨论 Kubernetes。 为此，我们将创建一个 <code>date-pod.yaml</code> 文件，在 Ubuntu 镜像上运行命令 <code>date</code>，类似于我们的 <code>docker run</code> 命令：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># date-pod.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">date-pod</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">ubuntu:21.04</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">ubuntu</span></span><br><span class="line">    <span class="attr">args:</span> [<span class="string">&quot;date&quot;</span>]</span><br><span class="line">  <span class="attr">restartPolicy:</span> <span class="string">OnFailure</span></span><br></pre></td></tr></table></figure><p>让我们用 <code>kubectl apply -f date-pod.yaml</code> 执行这个 pod 并用 <code>kubectl logs date-pod</code> 打印日志，我们会看到打印的日期类似于：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tue Sep 29 00:00:00 UTC 2021</span><br></pre></td></tr></table></figure><p>再说一次，时区是 UTC。 为了解决这个问题，我们将使用 <code>hostPath</code> 卷和 <code>volumeMounts</code> 来挂载时区，这类似于 <code>docker run</code> 命令中的 <code>-v</code> 参数。 创建 <code>date-pod-amsterdam.yaml</code> 文件：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">date-pod-amsterdam</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">ubuntu:21.04</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">ubuntu</span></span><br><span class="line">    <span class="attr">args:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">date</span></span><br><span class="line">    <span class="attr">volumeMounts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">zoneinfo</span></span><br><span class="line">      <span class="attr">mountPath:</span> <span class="string">/etc/localtime</span></span><br><span class="line">      <span class="attr">subPath:</span> <span class="string">Europe/Amsterdam</span></span><br><span class="line">      <span class="attr">readOnly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">volumes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">zoneinfo</span></span><br><span class="line">    <span class="attr">hostPath:</span></span><br><span class="line">      <span class="attr">path:</span> <span class="string">/usr/share/zoneinfo</span></span><br><span class="line">  <span class="attr">restartPolicy:</span> <span class="string">OnFailure</span></span><br></pre></td></tr></table></figure><p>使用 <code>kubectl apply -f date-pod-amsterdam.yaml</code> 应用它并使用 <code>kubectl logs date-pod-amsterdam</code> 查看日志：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tue Sep 29 02:00:00 CEST 2021</span><br></pre></td></tr></table></figure><blockquote><p>此外，建议挂载整个 <code>/usr/share/zoneinfo</code> 目录，因为应用程序在运行时可能需要有关其他时区的信息。</p></blockquote><p>那么，问题解决了吗？ 不完全是…</p><ul><li><p>如果 pod 已经定义了 <code>TZ</code> 环境变量，我们的 <code>/etc/localtime</code> 挂载将被忽略</p></li><li><p>这是非常手动的工作，对于每个 pod，我们需要添加 <code>hostPath</code> 卷并具有 1 或 2 个 <code>volumeMounts</code></p></li><li><p>无法保证集群中的所有节点都安装了 <code>tzdata</code></p></li><li><p>我们并不总是有权使用 <code>hostPath</code> 也没有访问节点的权限</p></li><li><p>如果一些 pod 有时区，而另一些则没有——这只会造成更多混乱</p></li><li><p>大多数 Helm 包不支持通过 <code>values.yaml</code> 添加这些补丁</p></li></ul><p>所以是时候见见 <code>k8tz</code> 了……</p><blockquote><p>清理创建的资源：<code>kubectl delete pod date-pod date-pod-amsterdam</code></p></blockquote><h2 id="k8tz-设定时区"><code>k8tz</code> 设定时区</h2><p>k8tz 是一个 Kubernetes 准入控制器和一个将时区注入 Pod 的 CLI 工具。 它可以用作手动工具，在本地自动转换我们的 Deployment 和 Pod，也可以作为准入控制器安装，并使用注释来完全自动化任何创建的 Pod 的过程。 但是，不止于此。 为了解决前面提到的所有问题，k8tz 使用了稍微不同的策略。</p><p>它不分配 <code>hostPath</code>，而是分配 <code>emptyDir</code> 并注入引导程序 <code>initContainer</code> 以用 TZif 文件填充卷。 然后使用 <code>emptyDir</code> 将 <code>/etc/localtime</code> 和 <code>/usr/share/zoneinfo</code> 挂载到 Pod 中的每个容器。 并且为了确保所需的时区有效，它会将 <code>TZ</code> 环境变量添加到所有容器中。</p><p>k8tz准入控制器可以与Helm一起安装，很简单：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">helm repo add k8tz https://k8tz.github.io/k8tz/</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">helm install k8tz k8tz/k8tz --<span class="built_in">set</span> timezone=Europe/Amsterdam</span></span><br></pre></td></tr></table></figure><p>现在可以创建 Pod，无需更多配置</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">kubectl run -i -t ubuntu --image=ubuntu:21.04 --restart=OnFailure --<span class="built_in">rm</span>=<span class="literal">true</span> --<span class="built_in">command</span> <span class="built_in">date</span></span></span><br><span class="line">Tue Sep 29 02:00:00 CEST 2021</span><br></pre></td></tr></table></figure><p>您还可以使用 <a href="http://k8tz.io/timezone">k8tz.io/timezone</a> 等注解来选择 pod 的时区：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">kubectl run -i -t ubuntu --image=ubuntu:21.04 --restart=OnFailure --<span class="built_in">rm</span>=<span class="literal">true</span> --<span class="built_in">command</span> <span class="built_in">date</span> --annotations k8tz.io/timezone=Europe/London</span></span><br><span class="line">Tue Sep 29 01:00:00 BST 2021</span><br></pre></td></tr></table></figure><p>或者使用 <code>k8tz.io/inject</code> 为 Pod 禁用时区注入：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">kubectl run -i -t ubuntu --image=ubuntu:21.04 --restart=OnFailure --<span class="built_in">rm</span>=<span class="literal">true</span> --<span class="built_in">command</span> <span class="built_in">date</span> --annotations k8tz.io/inject=<span class="literal">false</span></span></span><br><span class="line">Tue Sep 29 00:00:00 UTC 2021</span><br></pre></td></tr></table></figure><p>如果出于某种原因你想使用 <code>hostPath</code> 而不是 <code>initContainer</code>，你可以使用 <code>k8tz.io/strategy</code> 注解：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">kubectl run -i -t ubuntu --image=ubuntu:21.04 --restart=OnFailure --<span class="built_in">rm</span>=<span class="literal">true</span> --<span class="built_in">command</span> <span class="built_in">date</span> --annotations k8tz.io/strategy=hostPath</span></span><br><span class="line">Tue Sep 29 02:00:00 CEST 2021</span><br></pre></td></tr></table></figure><p>这些注释也可以在命名空间中指定，并影响在命名空间中创建的所有 pod。</p><h2 id="结论">结论</h2><p>Kubernetes 中的时区问题有多种解决方案，这些解决方案可以手动实现，但在此过程中存在一些挑战和限制。使用 <code>k8tz</code>，您可以自动执行该过程，并且无需额外设置或更改现有资源即可工作，即使节点上没有所需文件也是如此。确保系统中所有组件的时区一致，并且所有组件都可以访问有关不同时区的信息。</p><p>k8tz 是免费的开源项目，请查看：<a href="https://github.com/k8tz/k8tz">github.com/k8tz/k8tz</a>。</p><blockquote><p>免责声明：我是 k8tz 的作者。</p></blockquote><h2 id="参考链接-5">参考链接</h2><p>[1] <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List">List of tz database time zones - Wikipedia - https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List</a></p><p>[2] <a href="https://github.com/k8tz/k8tz">k8tz/k8tz: Kubernetes admission controller and a CLI tool to inject timezones into Pods and CronJobs - https://github.com/k8tz/k8tz</a></p><hr><h2 id="原文链接-4">原文链接</h2><p><a href="https://medium.com/@yonatankahana/timezone-in-kubernetes-with-k8tz-fdefca785238">Timezone in Kubernetes With k8tz. k8tz is a great tool to automate… | by Yonatan Kahana | Medium - https://medium.com/@yonatankahana/timezone-in-kubernetes-with-k8tz-fdefca785238</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;Kubernetes 中的时区和 k8tz&lt;/h1&gt;
+&lt;p&gt;Kubernetes 已将自己确立为容器编排的事实标准。 它允许我们在节点集群上执行我们的容器并控制它们周围的所有配置，例如安装存储卷、Secret、网络管理等等。&lt;/p&gt;
+&lt;p&gt;容器在主机的内核上运行，并从那里获得时钟，但时区不是来自内核，而是来自用户空间。 因此，在大多数情况下，它们默认使用协调世界时 (UTC)。&lt;/p&gt;
+&lt;p&gt;即使代码与时区无关，即使将容器日志与系统日志相关联之类的事情也会让人头疼。一些应用程序使用机器的时区作为默认时区，并希望用户设置时区。当集群中容器的时区不一致时，问题会变得更大。只是没有标准。幸运的是，有几种方法可以解决这个问题并确定我们正在运行的容器的时区。但在我们找到解决方案之前，让我们先了解一下这个问题。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="Time Zone" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/Time-Zone/"/>
+    
+    <category term="k8tz" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/Time-Zone/k8tz/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="tzdate" scheme="https://cloudolife.cn/tags/tzdate/"/>
+    
+    <category term="localtime" scheme="https://cloudolife.cn/tags/localtime/"/>
+    
+    <category term="zoneinfo" scheme="https://cloudolife.cn/tags/zoneinfo/"/>
+    
+    <category term="TZ" scheme="https://cloudolife.cn/tags/TZ/"/>
+    
+    <category term="UTC" scheme="https://cloudolife.cn/tags/UTC/"/>
+    
+    <category term="Coordinated Universal Time" scheme="https://cloudolife.cn/tags/Coordinated-Universal-Time/"/>
+    
+    <category term="Coordinated Universal Time (UTC)" scheme="https://cloudolife.cn/tags/Coordinated-Universal-Time-UTC/"/>
+    
+    <category term="TZif" scheme="https://cloudolife.cn/tags/TZif/"/>
+    
+    <category term="Time Zone Information Format" scheme="https://cloudolife.cn/tags/Time-Zone-Information-Format/"/>
+    
+    <category term="Time Zone Information Format (TZif)" scheme="https://cloudolife.cn/tags/Time-Zone-Information-Format-TZif/"/>
+    
+    <category term="docker" scheme="https://cloudolife.cn/tags/docker/"/>
+    
+    <category term="kubectl" scheme="https://cloudolife.cn/tags/kubectl/"/>
+    
+    <category term="Helm" scheme="https://cloudolife.cn/tags/Helm/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Time Zone" scheme="https://cloudolife.cn/tags/Time-Zone/"/>
+    
+    <category term="k8tz" scheme="https://cloudolife.cn/tags/k8tz/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[Awosome Software - Logseq] Logseqers 之家！</title>
+    <link href="https://cloudolife.cn/2022/05/01/Awosome-Software/Logseq/Blog/Welcome/"/>
+    <id>https://cloudolife.cn/2022/05/01/Awosome-Software/Logseq/Blog/Welcome/</id>
+    <published>2022-05-01T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>Logseqers 之家！</h1><p>Logseq 官方博客上线了！ 了解 Logseq 爱好者对这个新网站的期望。</p><span id="more"></span><p><img src="../images/Awosome-Software/Logseq/Blog/welcome-featured.png" alt="image.png"></p><p>欢迎来到 Logseq 官方博客！ 很荣幸作为 Logseq 的第一位社区经理撰写第一篇文章。 我的名字是 <a href="https://blog.logseq.com/author/ramses/">Ramses  - https://blog.logseq.com/author/ramses/</a>，我将成为您在这个网站上的主持人。 我的目标是帮助您充分利用 Logseq 并结识我们一些出色的社区贡献者。</p><p>如果您来到这里，您可能已经知道 Logseq 是什么。 如果您不是这样，<a href="https://blog.logseq.com/about">请转到关于页面，以了解关于此有用的思维工具的更多信息 - https://blog.logseq.com/about</a>。 在这篇简短的帖子中，我将分享博客有什么内容以及您在这里学到的知识。</p><h2 id="这个博客的目的">这个博客的目的</h2><p>在网络上有很多有用的 Logseq 内容，但是尚无一站式存储 Logseq 内容的地方。 对于多媒体内容，我们已经创建了<a href="https://hub.logseq.com/">社区中心 - https://hub.logseq.com/</a>，但是没有地方收集所有书面的 Logseq 内容。 这就是这个博客将致力于的。</p><p>除了与 Logseq 用户群分享内容外，我们还希望与大家直接联系。 这不仅可以帮助您充分利用 Logseq，还可以帮助我们改善工具。 反馈是我们的命脉。 这就是为什么我们还将使用此博客向您发送定期更新的原因。</p><h2 id="期望什么内容">期望什么内容</h2><p>为了向您提供源源不断的内容和产品更新，我们将从每周的新闻简报开始。 我们感谢 <a href="https://twitter.com/TechWithEd">Ed Nico - https://twitter.com/TechWithEd</a> 运行的  <a href="https://logseqweekly.com/">Logseq Weekly - https://logseqweekly.com/</a>，但是现在正是直接与大家分享更多的时候。 我们不仅可以分享产品更新，而且还会汇总新的插件，主题和其他值得您关注的内容。 总而言之，博客的最终目标是帮助您充分利用 Logseq。</p><p>除了策划的新闻简报外，我们还将（重新）发表我们社区成员的实践文章。 从<a href="https://blog.logseq.com/how-to-get-started-with-networked-thinking-and-logseq/">了解网络化思维的概念 - https://blog.logseq.com/how-to-get-started-with-networked-thinking-and-logseq/</a>到<a href="https://blog.logseq.com/how-to-set-up-an-automated-daily-template-in-logseq/">在Logseq 中设置自动化 - https://blog.logseq.com/how-to-set-up-an-automated-daily-template-in-logseq/</a>，此博客上的内容将帮助您成为记笔记超级用户。</p><p><a href="https://blog.logseq.com/contact">如果您有如何使这个博客变得更好的想法，请告诉我们！ - https://blog.logseq.com/contact</a></p><h2 id="如何为博客做出贡献">如何为博客做出贡献</h2><p>我们不仅想扩大 Logseq 超级用户的社区，而且还为内容创建者提供了一个平台。我们在这里帮助您发展个人品牌。</p><p>如果您已经创建了与 Logseq 相关的内容或想为此博客编写，<a href="https://blog.logseq.com/contribute">请向我们发送您的宣传内容 - https://blog.logseq.com/contribute</a>。我们渴望重新发布您的内容并为您提供完整的署名。如果您是经验不足的作家，但对 Logseq 有深刻的了解？我们将通过提供反馈和专业编辑来帮助您撰写文章。<br>如果您不是内容创建者，但仍然想帮助 Logseq 社区？<a href="https://blog.logseq.com/contribute">请转到我们的贡献页面 - https://blog.logseq.com/contribute</a>，以了解如何通过编写代码或捐款来帮助项目。Logseq 的存在是因为有像您这样的社区成员。</p><h2 id="但首先…">但首先…</h2><p>5月9日，星期一，我们将发送第一个官方的 Logseq 新闻简报。它将是来自 Logseq 生态系统的有用内容的汇总。<a href="https://blog.logseq.com/#/portal/">单击此处注册每周的新闻简报 - https://blog.logseq.com/#/portal/</a>。</p><p>如果您想为新闻简报提供策划的内容，请<a href="https://blog.logseq.com/suggest-resource">通过此表单向我们发送您的建议 - https://blog.logseq.com/suggest-resource</a>。是的，请随时建议您自己的内容！</p><p>由 <a href="https://blog.logseq.com/author/ramses/">Ramses Oudt - https://blog.logseq.com/author/ramses/</a> 发布。</p><h2 id="参考链接-3">参考链接</h2><p>[1] <a href="https://logseq.com/">Logseq: A privacy-first, open-source knowledge base - https://logseq.com/</a></p><p>[2] <a href="https://blog.logseq.com/author/ramses/">Ramses Oudt - Logseq Blog - https://blog.logseq.com/author/ramses/</a></p><p>[3] <a href="https://blog.logseq.com/about/">About Logseq and this blog - https://blog.logseq.com/about/</a></p><p>[4] <a href="https://hub.logseq.com/">Logseq Community Hub - https://hub.logseq.com/</a></p><p>[5] <a href="https://twitter.com/TechWithEd">Ed Nico (@TechWithEd) / Twitter - https://twitter.com/TechWithEd</a></p><p>[6] <a href="https://logseqweekly.com/">Logseq Weekly – Keeping you up to date with Logseq developments - https://logseqweekly.com/</a></p><p>[7] <a href="https://blog.logseq.com/how-to-get-started-with-networked-thinking-and-logseq/">How to Get Started With Networked Thinking and Logseq - https://blog.logseq.com/how-to-get-started-with-networked-thinking-and-logseq/</a></p><p>[8] <a href="https://blog.logseq.com/how-to-set-up-an-automated-daily-template-in-logseq/">How to Set Up an Automated Daily Template in Logseq - https://blog.logseq.com/how-to-set-up-an-automated-daily-template-in-logseq/</a></p><p>[9] <a href="https://blog.logseq.com/contact">Contact us - https://blog.logseq.com/contact</a></p><p>[10] <a href="https://blog.logseq.com/contribute">Contribute to Logseq - https://blog.logseq.com/contribute</a></p><p>[11] <a href="https://blog.logseq.com/#/portal/">Logseq Blog - https://blog.logseq.com/#/portal/</a></p><p>[12] <a href="https://blog.logseq.com/suggest-resource">Suggest a resource - https://blog.logseq.com/suggest-resource</a></p><hr><h2 id="原文链接">原文链接</h2><p><a href="https://blog.logseq.com/welcome/">Welcome to the Home of Logseqers! - https://blog.logseq.com/welcome/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;Logseqers 之家！&lt;/h1&gt;
+&lt;p&gt;Logseq 官方博客上线了！ 了解 Logseq 爱好者对这个新网站的期望。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Awosome Software" scheme="https://cloudolife.cn/categories/Awosome-Software/"/>
+    
+    <category term="Logseq" scheme="https://cloudolife.cn/categories/Awosome-Software/Logseq/"/>
+    
+    <category term="Blog" scheme="https://cloudolife.cn/categories/Awosome-Software/Logseq/Blog/"/>
+    
+    
+    <category term="Awosome Software" scheme="https://cloudolife.cn/tags/Awosome-Software/"/>
+    
+    <category term="Note Taking" scheme="https://cloudolife.cn/tags/Note-Taking/"/>
+    
+    <category term="Networked Thinking" scheme="https://cloudolife.cn/tags/Networked-Thinking/"/>
+    
+    <category term="Thinking" scheme="https://cloudolife.cn/tags/Thinking/"/>
+    
+    <category term="Logseq" scheme="https://cloudolife.cn/tags/Logseq/"/>
+    
+    <category term="Blog" scheme="https://cloudolife.cn/tags/Blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 常见问题解答</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/FAQ/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/FAQ/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>常见问题解答</h1><p>常见问题解答</p><span id="more"></span><h2 id="我可以用-minikube-运行较旧的-Kubernetes-版本吗？我必须降级我的-minikube-版本吗？">我可以用 minikube 运行较旧的 Kubernetes 版本吗？我必须降级我的 minikube 版本吗？</h2><p>您无需下载旧的 minikube 即可运行较旧的 Kubernetes 版本。您可以使用您想要的任何版本 <code>--kubernetes-version</code> 标志创建一个 Kubernetes 群集。</p><p>例子：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --kubernetes-version=v1.15.0</span><br></pre></td></tr></table></figure><h2 id="如何使用-minikube-创建多个集群？">如何使用 minikube 创建多个集群？</h2><p>默认情况下，<code>minikube  start</code> 创建了一个名为 <code>minikube</code> 的集群。如果您想创建一个不同的群集或更改其名称，则可以使用 <code>-profile</code>（或者 <code>-P</code>）标志，该​​标志将创建带有指定名称的群集。请注意，同一台计算机上可以有多个群集。</p><p>要查看当前群集的列表，请运行：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube profile list</span><br></pre></td></tr></table></figure><p>minikube 配置文件应与自己的设置和驱动程序相互隔离。如果要创建具有多个节点的单个群集，请尝试使用<a href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/">多节点功能 - https://minikube.sigs.k8s.io/docs/tutorials/multi_node/</a>。</p><h2 id="我可以将-minikube-替代-Docker-桌面吗？">我可以将 minikube 替代 Docker 桌面吗？</h2><p>是的！遵循我们的教程，<a href="https://minikube.sigs.k8s.io/docs/tutorials/docker_desktop_replacement/">使用 Minikube 替代 Docker 桌面 - https://minikube.sigs.k8s.io/docs/tutorials/docker_desktop_replacement/</a>。</p><h2 id="我可以在不运行-Kubernetes-的情况下启动-minikube-吗？">我可以在不运行 Kubernetes 的情况下启动 minikube 吗？</h2><p>是的！如果您只想在不启动 Kubernetes 本身的情况下使用 minikube 替代 Docker 桌面，请尝试：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --container-runtime=docker --no-kubernetes</span><br></pre></td></tr></table></figure><p>另外，如果您想暂时关闭 Kubernetes，则可以暂停，然后再解开 Kubernetes。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube pause</span><br></pre></td></tr></table></figure><p>minikube 还具有一个附加组件，会在一定程度的不活动中自动暂停 Kubernetes：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons enable auto-pause </span><br></pre></td></tr></table></figure><h2 id="Docker-驱动程序：如何设置-minikube-的-cgroup-manager？">Docker 驱动程序：如何设置 minikube 的 cgroup manager？</h2><p>默认情况下，minikube 使用 Kubernetes 群集使用 <code>cgroupfs </code> cgroup manager。如果您正在使用 <code>systemd </code> cgroup manager 的系统，这可能会导致冲突。要使用 <code>systemd </code> cgroup manager，请运行：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --force-systemd=true</span><br></pre></td></tr></table></figure><h2 id="如果我有一个带有VM驱动程序的现有群集，我该如何与Docker驱动程序一起运行-minikube？">如果我有一个带有VM驱动程序的现有群集，我该如何与Docker驱动程序一起运行 minikube？</h2><p>首先，请确保您的Docker服务正在运行。然后，您都需要：</p><p>（a）删除现有群集并创建一个新群集</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">minikube delete</span><br><span class="line">minikube start --driver=docker</span><br></pre></td></tr></table></figure><p>或者，（b）创建一个带有不同配置文件名称的第二个集群：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start -p p1 --driver=docker </span><br></pre></td></tr></table></figure><h2 id="minikube支持IPv6吗？">minikube支持IPv6吗？</h2><p>Minikube目前不支持IPv6。但是，它在路线图上。您也可以参考开放问题。</p><h2 id="如何防止Linux上的密码提示？">如何防止Linux上的密码提示？</h2><p>最简单的方法是使用Docker驱动程序，因为后端服务始终以 <code>root</code> 运行。</p><p>没有用户可能想尝试 <code>change_minikube_none_user = true</code>，在没有 <code>sudo</code> 的情况下，kubectl等将有效。有关更多详细信息，请参见<a href="https://minikube.sigs.k8s.io/docs/handbook/config/#environment-variables">环境变量 - https://minikube.sigs.k8s.io/docs/handbook/config/#environment-variables</a>。</p><p>另外，您可以将 <code>sudo</code> 配置为切勿提示 minikube 发出的命令。</p><h2 id="我如何忽略系统验证？">我如何忽略系统验证？</h2><p>minikube 的引导程序 kubeadm 在安装Kubernetes之前验证了主机系统上的功能列表。如果您遇到了错误，并且尽管您的系统限制仍然想尝试 minikube，则可以通过使用此额外选项启动 minikube 来跳过验证：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --extra-config kubeadm.ignore-preflight-errors=SystemVerification</span><br></pre></td></tr></table></figure><h2 id="使用-minikube-进行-Knative-设置所需的最低资源分配是什么？">使用 minikube 进行 Knative 设置所需的最低资源分配是什么？</h2><p>请使用 minikube 分配足够的资源用于 Knative 设置，尤其是在本地机器上运行 minikube 群集时。我们建议至少分配6个CPU和8G内存：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --cpus 6 --memory 8000</span><br></pre></td></tr></table></figure><h2 id="我需要在本地安装kubectl吗？">我需要在本地安装kubectl吗？</h2><p>不，minikube 带有内置的kubectl安装。请参阅 <a href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/">minikube 的Kubectl文档 - https://minikube.sigs.k8s.io/docs/handbook/kubectl/</a>。</p><h2 id="如何选择进入Beta发布通知？">如何选择进入Beta发布通知？</h2><p>只需运行以下命令即可注册到Beta通知：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube config set WantBetaUpdateNotification true</span><br></pre></td></tr></table></figure><h2 id="我可以摆脱-minikube-输出中的表情符号吗？">我可以摆脱 minikube 输出中的表情符号吗？</h2><p>是的！如果您希望在 minikube 输出😔中没有表情符号，只需将 <code>MINIKUBE_IN_STYLE</code> 环境变量设置为 <code>0</code> 或<code>false</code>：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MINIKUBE_IN_STYLE=0 minikube start</span><br></pre></td></tr></table></figure><h2 id="如何从远程网络访问-minikube-群集？">如何从远程网络访问 minikube 群集？</h2><p>minikube 的主要目标是快速建立本地的 Kubernetes 群集，因此我们强烈不鼓励使用 minikube 在生产或监听远程流量。根据设计，minikube 的目的是仅在本地网络上监听。</p><p>但是，可以配置 minikube 在远程网络上监听。这将使您的网络向外界打开，不建议您使用。如果您不完全了解安全含义，请避免使用此安全性。</p><p>对于Docker和Podman驱动程序，请使用 <code>--listen-address</code> 标志：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --listen-address=0.0.0.0</span><br></pre></td></tr></table></figure><h2 id="如何将最大资源分配给-minikube？">如何将最大资源分配给 minikube？</h2><p>在开始命令上设置内存和 CPU 标志将使用最大可用资源：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --memory=max --cpus=max</span><br></pre></td></tr></table></figure><h2 id="如何在其他硬盘驱动器上运行-minikube？">如何在其他硬盘驱动器上运行 minikube？</h2><p>将 <code>MINIKUBE_HOME </code> env设置为要运行 minikube 的驱动器上的路径，然后运行 <code>minikube start</code>。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Unix</span></span><br><span class="line">export MINIKUBE_HOME=/otherdrive/.minikube</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Windows</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash"><span class="built_in">env</span>:MINIKUBE_HOME = <span class="string">&quot;D:\.minikube&quot;</span></span></span><br><span class="line"></span><br><span class="line">minikube start</span><br></pre></td></tr></table></figure><hr><h2 id="原文链接-7">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/faq/">FAQ | minikube - https://minikube.sigs.k8s.io/docs/faq/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;常见问题解答&lt;/h1&gt;
+&lt;p&gt;常见问题解答&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="FAQs" scheme="https://cloudolife.cn/tags/FAQs/"/>
+    
+    <category term="Frequently Asked Questions" scheme="https://cloudolife.cn/tags/Frequently-Asked-Questions/"/>
+    
+    <category term="Frequently Asked Questions (FAQs)" scheme="https://cloudolife.cn/tags/Frequently-Asked-Questions-FAQs/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 开始 minikube</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Get-Started/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Get-Started/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="开始-minikube">开始 minikube</h2><p>minikube 是本地 Kubernetes，专注于让 Kubernetes 易于学习和开发。</p><p>您只需要 Docker（或类似兼容的）容器或虚拟机环境，只需一个命令 <code>minikube start</code> 即可使用 Kubernetes。</p><span id="more"></span><h2 id="你需要什么">你需要什么</h2><ul><li><p>2 个 CPU或更多</p></li><li><p>2GB 可用内存</p></li><li><p>20GB 可用磁盘空间</p></li><li><p>连接互联网</p></li><li><p>容器或虚拟机管理器，例如：Docker、Hyperkit、Hyper-V、KVM、Parallels、Podman、VirtualBox 或 VMware Fusion/Workstation。访问<a href="https://minikube.sigs.k8s.io/docs/drivers/">驱动程序 - https://minikube.sigs.k8s.io/docs/drivers/</a>了解更多信息。</p></li></ul><h2 id="1-安装">1 安装</h2><h3 id="Linux">Linux</h3><p>下载二进制文件在 x86-64 Linux 上安装最新的 minikube 稳定版本：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64</span><br><span class="line">sudo install minikube-linux-amd64 /usr/local/bin/minikube</span><br></pre></td></tr></table></figure><p>或者使用 Debian 包安装</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb</span><br><span class="line">sudo dpkg -i minikube_latest_amd64.deb</span><br></pre></td></tr></table></figure><p>或者使用 RPM 包安装</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm</span><br><span class="line">sudo rpm -Uvh minikube-latest.x86_64.rpm</span><br></pre></td></tr></table></figure><h3 id="macOS">macOS</h3><p>下载二进制在 x86-64 macOS 上安装最新的 minikube 稳定版本：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64</span><br><span class="line">sudo install minikube-darwin-amd64 /usr/local/bin/minikube</span><br></pre></td></tr></table></figure><p>或者使用 Homebrew 安装</p><p>如果安装了 <a href="https://brew.sh/">Homebrew 包管理器 - https://brew.sh/</a>：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install minikube</span><br></pre></td></tr></table></figure><p>如果通过 brew 安装后运行 <code>which minikube</code> 失败，您可能必须删除旧的 minikube 链接并链接新安装的二进制文件：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew unlink minikube</span><br><span class="line">brew link minikube</span><br></pre></td></tr></table></figure><h3 id="Windows">Windows</h3><p>下载 .exe 文件在 x86-64 Windows 上安装最新的 minikube 稳定版本：</p><ul><li><ol><li>下载<a href="https://storage.googleapis.com/minikube/releases/latest/minikube-installer.exe">最新版本 - https://storage.googleapis.com/minikube/releases/latest/minikube-installer.exe</a>。<br>或者，如果使用 PowerShell，请使用以下命令：</li></ol></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">New-Item -Path &#x27;c:\&#x27; -Name &#x27;minikube&#x27; -ItemType Directory -Force</span><br><span class="line">Invoke-WebRequest -OutFile &#x27;c:\minikube\minikube.exe&#x27; -Uri &#x27;https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe&#x27; -UseBasicParsing</span><br></pre></td></tr></table></figure><ul><li><ol start="2"><li>将二进制文件添加到您的 <code>PATH</code> 中。<br>确保以管理员身份运行 PowerShell。</li></ol></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash">oldPath = [Environment]::GetEnvironmentVariable(<span class="string">&#x27;Path&#x27;</span>, [EnvironmentVariableTarget]::Machine)</span></span><br><span class="line">if ($oldPath.Split(&#x27;;&#x27;) -inotcontains &#x27;C:\minikube&#x27;)&#123; `</span><br><span class="line">  [Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, $(&#x27;&#123;0&#125;;C:\minikube&#x27; -f $oldPath), [EnvironmentVariableTarget]::Machine) `</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>如果您使用 CLI 执行安装，则需要先关闭该 CLI 并打开一个新的 CLI，然后再继续。</p><p>或者使用 Windows 包管理器：</p><p>如果安装了 <a href="https://docs.microsoft.com/en-us/windows/package-manager/">Windows 包管理器 - https://docs.microsoft.com/en-us/windows/package-manager/</a>，请使用以下命令安装 minikube：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winget install minikube</span><br></pre></td></tr></table></figure><p>或者使用 Chocolatey：</p><p>如果安装了 <a href="https://chocolatey.org/">Chocolatey 包管理器 - https://chocolatey.org/</a>，请使用以下命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winget install minikube</span><br></pre></td></tr></table></figure><p>对于其他平台架构，请参阅<a href="https://github.com/kubernetes/minikube/releases/latest">发布页面 - https://github.com/kubernetes/minikube/releases/latest</a>以了解 minikube 安装方式。</p><h2 id="2-启动集群">2 启动集群</h2><p>从具有管理员访问权限的终端（但未以 root 身份登录），运行：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start</span><br></pre></td></tr></table></figure><p>如果 minikube 无法启动，请参阅<a href="https://minikube.sigs.k8s.io/docs/drivers/">驱动程序页面 - https://minikube.sigs.k8s.io/docs/drivers/</a>以获取设置兼容容器或虚拟机管理器的帮助。</p><h2 id="3-与您的集群交互">3 与您的集群交互</h2><p>如果您已经安装了 <code>kubectl</code>，您现在可以使用它来访问您闪亮的新集群：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get po -A</span><br></pre></td></tr></table></figure><p>或者，minikube 可以下载适当版本的 kubectl，您应该可以像这样使用它：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube kubectl -- get po -A</span><br></pre></td></tr></table></figure><p>您还可以通过将以下内容添加到您的 shell 配置中来使您的生活更轻松：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias kubectl=&quot;minikube kubectl --&quot;</span><br></pre></td></tr></table></figure><p>最初，某些服务（例如 <code>storage-provisioner</code>）可能尚未处于运行状态。这是集群启动期间的正常情况，并且会立即自行解决。为了进一步了解您的集群状态，minikube 捆绑了 Kubernetes Dashboard，让您可以轻松适应新环境：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube dashboard</span><br></pre></td></tr></table></figure><h2 id="4-部署应用程序">4 部署应用程序</h2><p>创建一个示例部署并在端口 <code>8080</code> 上公开它：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4</span><br><span class="line">kubectl expose deployment hello-minikube --type=NodePort --port=8080</span><br></pre></td></tr></table></figure><p>这可能需要一点时间，但是当您运行时，您的部署将很快出现：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services hello-minikube</span><br></pre></td></tr></table></figure><p>访问此服务的最简单方法是让 minikube 为您启动 Web 浏览器：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube service hello-minikube</span><br></pre></td></tr></table></figure><p>或者，使用 kubectl 转发端口：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl port-forward service/hello-minikube 7080:8080</span><br></pre></td></tr></table></figure><p>然后！您的应用程序现在在 <a href="http://localhost:7080/">http://localhost:7080/</a> 上可用。</p><p>您应该能够在应用程序输出中看到来自 <code>nginx</code> 的请求元数据，例如 <code>CLIENT VALUES</code>、<code>SERVER VALUES</code>、<code>HEADERS RECEIVED</code> 和 <code>BODY</code>。尝试更改请求的路径并观察 <code>CLIENT VALUES</code> 的变化。同样，您可以对其执行 POST 请求并观察输出的 <code>BODY</code> 部分中显示的正文。</p><h3 id="负载均衡器部署">负载均衡器部署</h3><p>要访问 LoadBalancer 部署，请使用 <code>minikube tunnel</code> 命令。这是一个示例部署：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl create deployment balanced --image=k8s.gcr.io/echoserver:1.4  </span><br><span class="line">kubectl expose deployment balanced --type=LoadBalancer --port=8080</span><br></pre></td></tr></table></figure><p>在另一个窗口中，启动隧道以为“平衡”部署创建可路由 IP：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube tunnel</span><br></pre></td></tr></table></figure><p>要查找可路由 IP，请运行此命令并检查 <code>EXTERNAL-IP</code> 列：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services balanced</span><br></pre></td></tr></table></figure><p>您的部署现在在 <EXTERNAL-IP>:8080 可用</p><h2 id="5-管理您的集群">5 管理您的集群</h2><p>在不影响已部署应用程序的情况下暂停 Kubernetes：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube pause</span><br></pre></td></tr></table></figure><p>取消暂停暂停的实例：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube unpause</span><br></pre></td></tr></table></figure><p>停止集群：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube stop</span><br></pre></td></tr></table></figure><p>增加默认内存限制（需要重新启动）：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube config set memory 16384</span><br></pre></td></tr></table></figure><p>浏览易于安装的 Kubernetes 服务目录：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons list</span><br></pre></td></tr></table></figure><p>创建第二个运行旧 Kubernetes 版本的集群：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start -p aged --kubernetes-version=v1.16.1</span><br></pre></td></tr></table></figure><p>删除所有 minikube 集群：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube delete --all</span><br></pre></td></tr></table></figure><h2 id="进行下一步">进行下一步</h2><ul><li><p><a href="https://minikube.sigs.k8s.io/docs/handbook/">minikube 手册 - https://minikube.sigs.k8s.io/docs/handbook/</a></p></li><li><p><a href="https://minikube.sigs.k8s.io/docs/tutorials/">社区贡献的教程 - https://minikube.sigs.k8s.io/docs/tutorials/</a></p></li><li><p><a href="https://minikube.sigs.k8s.io/docs/commands/">minikube 命令参考 - https://minikube.sigs.k8s.io/docs/commands/</a></p></li><li><p><a href="https://minikube.sigs.k8s.io/docs/contrib/">贡献者指南 - https://minikube.sigs.k8s.io/docs/contrib/</a></p></li><li><p>参加我们的<a href="https://forms.gle/Gg3hG5ZySw8c1C24A">快速 5 题调查 - https://forms.gle/Gg3hG5ZySw8c1C24A</a>，分享您的想法🙏</p></li></ul><hr><h2 id="原文链接-8">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/start/">minikube start | minikube - https://minikube.sigs.k8s.io/docs/start/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;开始-minikube&quot;&gt;开始 minikube&lt;/h2&gt;
+&lt;p&gt;minikube 是本地 Kubernetes，专注于让 Kubernetes 易于学习和开发。&lt;/p&gt;
+&lt;p&gt;您只需要 Docker（或类似兼容的）容器或虚拟机环境，只需一个命令 &lt;code&gt;minikube start&lt;/code&gt; 即可使用 Kubernetes。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="macOS" scheme="https://cloudolife.cn/tags/macOS/"/>
+    
+    <category term="Homebrew" scheme="https://cloudolife.cn/tags/Homebrew/"/>
+    
+    <category term="brew" scheme="https://cloudolife.cn/tags/brew/"/>
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="kubectl" scheme="https://cloudolife.cn/tags/kubectl/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Get Started" scheme="https://cloudolife.cn/tags/Get-Started/"/>
+    
+    <category term="Linux" scheme="https://cloudolife.cn/tags/Linux/"/>
+    
+    <category term="Windows" scheme="https://cloudolife.cn/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 访问应用程序</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Accessing-apps/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Accessing-apps/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>手册 - 访问应用程序</h1><p>如何访问在 minikube 中运行的应用程序</p><p>Kubernetes 中有两大类服务：</p><ul><li><p>NodePort 节点端口</p></li><li><p>LoadBalancer 负载均衡器</p></li></ul><p>minikube 两者都支持。继续阅读！</p><span id="more"></span><h2 id="NodePort-节点端口访问">NodePort 节点端口访问</h2><p>NodePort 服务是将外部流量直接传输到您的服务的最基本方式。 NodePort，顾名思义，打开一个特定的端口，任何发送到这个端口的流量都会被转发给服务。</p><h3 id="使用-service-命令获取-NodePort">使用 service 命令获取 NodePort</h3><p>我们还有一个获取 minikube IP 和服务的 NodePort 的快捷方式：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube service --url &lt;service-name&gt;</span><br></pre></td></tr></table></figure><h3 id="使用-kubectl-获取-NodePort">使用 kubectl 获取 NodePort</h3><p>minikube VM 通过主机专用 IP 地址暴露给主机系统，可以使用 <code>minikube ip</code> 命令获取。 NodePort 类型的任何服务都可以在 NodePort 上通过该 IP 地址访问。</p><p>要确定您的服务的 NodePort，您可以使用这样的 kubectl 命令（注意 nodePort 在 JSON 输出中以小写 n 开头）：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get service &lt;service-name&gt; --output=&#x27;jsonpath=&quot;&#123;.spec.ports[0].nodePort&#125;&quot;&#x27;</span><br></pre></td></tr></table></figure><h4 id="增加-NodePort-范围">增加 NodePort 范围</h4><p>默认情况下，minikube 只公开端口 30000-32767。如果这对您不起作用，您可以使用以下方法调整范围：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --extra-config=apiserver.service-node-port-range=1-65535</span><br></pre></td></tr></table></figure><p>此标志还接受以逗号,分隔的端口和端口范围列表。</p><h2 id="LoadBalancer-负载均衡器访问">LoadBalancer 负载均衡器访问</h2><p>LoadBalancer 服务是向 Internet 公开服务的标准方式。使用这种方法，每个服务都会获得自己的 IP 地址。</p><h2 id="使用-minikube-隧道">使用 minikube 隧道</h2><p>LoadBalancer 类型的服务可以通过 <code>minikube tunnel</code> 命令公开。它必须在单独的终端窗口中运行以保持 LoadBalancer 运行。终端中的 <code>Ctrl-C</code> 可用于终止清理网络路由的进程。</p><h3 id="例子">例子</h3><p>在单独的终端中运行 <code>minikube tunnel</code></p><p>它会要求输入密码。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube tunnel</span><br></pre></td></tr></table></figure><p><code>minikube tunnel</code> 作为一个进程运行，使用集群的 IP 地址作为网关，在主机上创建到集群的服务 CIDR 的网络路由。隧道命令将外部 IP 直接暴露给在主机操作系统上运行的任何程序。</p><p>隧道输出示例</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Password:</span><br><span class="line">Status:</span><br><span class="line">machine: minikube</span><br><span class="line">pid: 39087</span><br><span class="line">route: 10.96.0.0/12 -&gt; 192.168.64.194</span><br><span class="line">minikube: Running</span><br><span class="line">services: [hello-minikube]</span><br><span class="line">  errors:</span><br><span class="line">minikube: no errors</span><br><span class="line">router: no errors</span><br><span class="line">loadbalancer emulator: no errors</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure><h3 id="创建-Kubernetes-部署">创建 Kubernetes 部署</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create deployment hello-minikube1 --image=k8s.gcr.io/echoserver:1.4</span><br></pre></td></tr></table></figure><h3 id="创建一个-kubernetes-服务类型-LoadBalancer">创建一个 kubernetes 服务类型 LoadBalancer</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=8080</span><br></pre></td></tr></table></figure><p>检查外部 IP</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">kubectl get svc</span></span><br><span class="line">NAME              TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE</span><br><span class="line">hello-minikube1   LoadBalancer   10.96.184.178   10.96.184.178   8080:30791/TCP   40s</span><br></pre></td></tr></table></figure><p>请注意，如果没有 minikube 隧道，kubernetes 会将外部 IP 显示为“待处理”。</p><h3 id="在浏览器中尝试">在浏览器中尝试</h3><p>在浏览器中打开（确保没有设置代理）</p><p><code>http://REPLACE_WITH_EXTERNAL_IP:8080</code></p><p>每个服务都将获得自己的外部 ip。</p><h3 id="DNS-解析（实验性）">DNS 解析（实验性）</h3><p>如果您在 macOS 上，则隧道命令还允许从主机对 Kubernetes 服务进行 DNS 解析。</p><p>注意：docker 驱动不支持 DNS 解析</p><h3 id="清理孤立路由">清理孤立路由</h3><p>如果 <code>minikube tunnel</code> 突然关闭，它可能会在您的系统上留下孤立的网络路由。如果发生这种情况，<code>~/.minikube/tunnels.json</code> 文件将包含该隧道的条目。要删除孤立路由，请运行：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube tunnel --cleanup</span><br></pre></td></tr></table></figure><p>注意： <code>--cleanup</code> 标志的默认值为 <code>true</code>。</p><h3 id="避免密码提示">避免密码提示</h3><p>添加路由需要用户具有 root 权限，因此如何运行 <code>minikube tunnel</code> 会因操作系统而异。如果您想避免输入 root 密码，请考虑为“ip”和“route”命令设置 NOPASSWD：<br><a href="https://superuser.com/questions/1328452/sudoers-nopasswd-for-single-executable-but-allowing-others">linux - Sudoers NOPASSWD for single executable but allowing others - Super User - https://superuser.com/questions/1328452/sudoers-nopasswd-for-single-executable-but-allowing-others</a></p><h3 id="在-Windows-上访问-1024-端口需要-root-权限">在 Windows 上访问 &lt;1024 端口需要 root 权限</h3><p>如果您在 Windows 上使用 Docker 驱动程序，则您有可能拥有旧版本的 SSH 客户端，您可能会收到类似的错误 - 特权端口只能由 root 转发。或者如果访问端口小于 1024，即使在 minikube 隧道之后，您也可能无法访问该服务，但对于大于 1024 的端口可以正常工作。</p><p>为了解决这个问题，请确保您运行的是最新版本的 SSH 客户端。您可以通过在具有管理员权限的命令提示符中运行以下命令在 Windows 上安装最新版本的 SSH 客户端（需要巧克力包管理器）</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install openssh</span><br></pre></td></tr></table></figure><p>默认情况下在 Windows 10 上可用的最新版本（OpenSSH_for_Windows_7.7p1，LibreSSL 2.6.5）不起作用。您可以在此处跟踪此问题 - <a href="https://github.com/PowerShell/Win32-OpenSSH/issues/1693">https://github.com/PowerShell/Win32-OpenSSH/issues/1693 - https://github.com/PowerShell/Win32-OpenSSH/issues/1693</a></p><hr><h2 id="原文链接-9">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/accessing/">Accessing apps | minikube - https://minikube.sigs.k8s.io/docs/handbook/accessing/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;手册 - 访问应用程序&lt;/h1&gt;
+&lt;p&gt;如何访问在 minikube 中运行的应用程序&lt;/p&gt;
+&lt;p&gt;Kubernetes 中有两大类服务：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;NodePort 节点端口&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;LoadBalancer 负载均衡器&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;minikube 两者都支持。继续阅读！&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="kubectl" scheme="https://cloudolife.cn/tags/kubectl/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="App" scheme="https://cloudolife.cn/tags/App/"/>
+    
+    <category term="Deployment" scheme="https://cloudolife.cn/tags/Deployment/"/>
+    
+    <category term="Service" scheme="https://cloudolife.cn/tags/Service/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 附加组件</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Addons/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Addons/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>手册 - 附加组件</h1><p>有关维护的 minikube 附加组件的详细信息</p><p>附加组件是 minikube 的维护扩展，用于为 Kubernetes 添加功能。</p><span id="more"></span><p><a href="">使用 Kong Ingress 控制器附加组件</a></p><p><a href="">入口 DNS</a></p><p><a href="">自动 Google Cloud Platform 身份验证</a></p><p><a href="">将附加组件配置为使用自定义 Registry 和镜像</a></p><hr><h2 id="原文链接-10">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/addons/">Addons | minikube https://minikube.sigs.k8s.io/docs/handbook/addons/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;手册 - 附加组件&lt;/h1&gt;
+&lt;p&gt;有关维护的 minikube 附加组件的详细信息&lt;/p&gt;
+&lt;p&gt;附加组件是 minikube 的维护扩展，用于为 Kubernetes 添加功能。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="kubectl" scheme="https://cloudolife.cn/tags/kubectl/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Deployment" scheme="https://cloudolife.cn/tags/Deployment/"/>
+    
+    <category term="Service" scheme="https://cloudolife.cn/tags/Service/"/>
+    
+    <category term="Addons" scheme="https://cloudolife.cn/tags/Addons/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 基本控制</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Baisc-Controls/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Baisc-Controls/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>手册 - 基本控制</h1><p>查看 minikube 实战！</p><p>运行以下命令启动集群：（如无特别说明，集群默认为 minikube）</p><span id="more"></span><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start</span><br></pre></td></tr></table></figure><p>访问在 minikube 集群中运行的 Kubernetes 仪表板：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube dashboard</span><br></pre></td></tr></table></figure><p>启动后，您可以使用 <code>kubectl</code> 与您的集群进行交互，就像任何其他 Kubernetes 集群一样。 例如，启动服务器：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4</span><br></pre></td></tr></table></figure><p>将服务公开为 NodePort</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl expose deployment hello-minikube --type=NodePort --port=8080</span><br></pre></td></tr></table></figure><p>minikube 可以很容易地在浏览器中打开这个暴露的端点：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube service hello-minikube</span><br></pre></td></tr></table></figure><p>升级您的集群：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --kubernetes-version=latest</span><br></pre></td></tr></table></figure><p>启动第二个本地集群（注意：如果 minikube 使用裸机/无驱动程序，这命令将不起作用）：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start -p cluster2</span><br></pre></td></tr></table></figure><p>停止本地集群：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">minikube stop</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">停止第二个本地集群</span></span><br><span class="line">minikube stop -p cluster2</span><br></pre></td></tr></table></figure><p>删除本地集群：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">minikube delete</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除第二个本地集群</span></span><br><span class="line">minikube delete -p cluster2</span><br></pre></td></tr></table></figure><p>删除所有本地集群和配置文件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube delete --all</span><br></pre></td></tr></table></figure><hr><h2 id="原文链接-11">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/controls/">Basic controls | minikube https://minikube.sigs.k8s.io/docs/handbook/controls/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;手册 - 基本控制&lt;/h1&gt;
+&lt;p&gt;查看 minikube 实战！&lt;/p&gt;
+&lt;p&gt;运行以下命令启动集群：（如无特别说明，集群默认为 minikube）&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="kubectl" scheme="https://cloudolife.cn/tags/kubectl/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Deployment" scheme="https://cloudolife.cn/tags/Deployment/"/>
+    
+    <category term="Service" scheme="https://cloudolife.cn/tags/Service/"/>
+    
+    <category term="Basic controls" scheme="https://cloudolife.cn/tags/Basic-controls/"/>
+    
+    <category term="Profile" scheme="https://cloudolife.cn/tags/Profile/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 证书</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Certificate/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Certificate/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="手册-证书">手册 - 证书</h2><p>关于 TLS 证书</p><span id="more"></span><h2 id="不受信任的根证书">不受信任的根证书</h2><p>许多组织在公司网络中部署自己的根证书和 CA 服务。 出于安全和隐私方面的考虑，内部网站、镜像存储库和其他资源可能会安装由该 CA 服务颁发的 SSL 服务器证书。<br>您可以将根证书安装到 minikube 集群中，以访问集群内的这些企业资源。</p><h2 id="教程">教程</h2><p>您将需要 PEM 格式的公司 X.509 根证书。 如果是 DER 格式，请转换：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -inform der -in my_company.cer -out my_company.pem</span><br></pre></td></tr></table></figure><p>将证书复制到 certs 目录中：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p $HOME/.minikube/certs</span><br><span class="line">cp my_company.pem $HOME/.minikube/certs/my_company.pem</span><br></pre></td></tr></table></figure><p>然后使用 <code>--embed-certs</code> 标志重新启动 minikube 以同步证书：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --embed-certs</span><br></pre></td></tr></table></figure><hr><h2 id="原文链接-12">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/untrusted_certs/">Certificates | minikube - https://minikube.sigs.k8s.io/docs/handbook/untrusted_certs/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;手册-证书&quot;&gt;手册 - 证书&lt;/h2&gt;
+&lt;p&gt;关于 TLS 证书&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Deployment" scheme="https://cloudolife.cn/tags/Deployment/"/>
+    
+    <category term="Service" scheme="https://cloudolife.cn/tags/Service/"/>
+    
+    <category term="Certificate" scheme="https://cloudolife.cn/tags/Certificate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 配置</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Config/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Config/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>手册 - 配置</h1><p>配置集群</p><span id="more"></span><h2 id="基本配置">基本配置</h2><p>大多数 minikube 配置是通过标志接口完成的。要查看 <code>start</code> 命令可以使用哪些标志，请运行：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --help</span><br></pre></td></tr></table></figure><h2 id="持久配置">持久配置</h2><p>minikube 允许用户使用 <code>minikube config</code> 命令持久存储要使用的新默认值在所有配置文件中。这是通过提供属性名称和属性值来完成的。</p><p>例如，要持久配置 minikube 以使用 hyperkit：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube config set driver hyperkit</span><br></pre></td></tr></table></figure><p>您可以使用以下方法获取可配置字段的完整列表：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube config --help</span><br></pre></td></tr></table></figure><p>要获取当前设置的配置属性的列表：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube config view</span><br></pre></td></tr></table></figure><h2 id="Kubernetes-配置">Kubernetes 配置</h2><p>minikube 允许用户使用任意值配置 Kubernetes 组件。要使用此功能，您可以在 <code>minikube start</code> 命令上使用 <code>--extra-config</code> 标志。</p><p>这个标志是可重复的，所以你可以用几个不同的值多次传递它来设置多个选项。</p><h3 id="选择-Kubernetes-版本">选择 Kubernetes 版本</h3><p>默认情况下，minikube 安装在 minikube 发布时可用的最新稳定版本的 Kubernetes。您可以使用 <code>--kubernetes-version</code> 标志选择不同的 Kubernetes 版本，例如：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --kubernetes-version=v1.11.10</span><br></pre></td></tr></table></figure><p>minikube 遵循 <a href="https://kubernetes.io/docs/setup/version-skew-policy/">Kubernetes 版本和版本倾斜支持政策 - https://kubernetes.io/docs/setup/version-skew-policy/</a>，因此我们保证支持最近 3 个 Kubernetes 次要版本的最新版本。在实际可行的情况下，minikube 还旨在支持旧版本，以便用户可以模拟旧环境。<br>有关受支持版本的最新信息，请参阅 <a href="https://github.com/kubernetes/minikube/blob/master/pkg/minikube/constants/constants.go">constants.go - https://github.com/kubernetes/minikube/blob/master/pkg/minikube/constants/constants.go</a> 中的 <code>OldestKubernetesVersion</code> 和 <code>NewestKubernetesVersion</code>。</p><h3 id="启用功能开关">启用功能开关</h3><p>Kubernetes alpha/experimental features 可以通过 <code>minikube start</code> 命令上的 <code>--feature-gates</code> 标志启用或禁用。它采用 <code>key=value</code> 形式的字符串，其中 <code>key</code> 是组件名称，<code>value</code> 是它的状态。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --feature-gates=EphemeralContainers=true</span><br></pre></td></tr></table></figure><h3 id="修改-Kubernetes-默认值">修改 Kubernetes 默认值</h3><p>kubeadm 引导程序可以通过 <code>minikube start</code> 命令上的 <code>--extra-config</code> 标志进行配置。它采用 <code>component.key=value</code> 形式的字符串，其中 <code>component</code> 是字符串之一</p><ul><li><p>kubeadm</p></li><li><p>kubelet</p></li><li><p>apiserver</p></li><li><p>controller-manager</p></li><li><p>scheduler</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --extra-config=apiserver.v=10 --extra-config=kubelet.max-pods=100</span><br></pre></td></tr></table></figure><p>例如，要允许 Kubernetes 在不受支持的 Docker 版本上启动：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --extra-config=kubeadm.ignore-preflight-errors=SystemVerification</span><br></pre></td></tr></table></figure><h2 id="运行时配置">运行时配置</h2><p>minikube 中的默认容器运行时各不相同。您可以使用以下命令显式选择一个：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --container-runtime=docker</span><br></pre></td></tr></table></figure><p>其他可用选项包括：</p><ul><li><p><a href="https://github.com/containerd/containerd">containerd - https://github.com/containerd/containerd</a></p></li><li><p><a href="https://github.com/cri-o/cri-o">cri-o - https://github.com/cri-o/cri-o</a></p></li></ul><p>查看 <a href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/">Container Runtimes | Kubernetes - https://kubernetes.io/docs/setup/production-environment/container-runtimes/</a></p><h2 id="环境变量">环境变量</h2><p>minikube 支持为 minikube 配置中列出的每个值传递环境变量，而不是使用标志。这是通过传递带有前缀 <code>MINIKUBE_</code> 的环境变量来完成的。</p><p>例如 <code>minikube start --iso-url=&quot;$ISO_URL&quot; </code> 标志也可以通过设置 <code>MINIKUBE_ISO_URL=&quot;$ISO_URL&quot;</code> 环境变量来设置。</p><h3 id="独有的环境变量调优">独有的环境变量调优</h3><p>有些功能只能通过 minikube 特定的环境变量访问，这里是这些功能的列表：</p><ul><li><p>MINIKUBE_HOMEMINIKUBE_HOME - （字符串）设置 minikube 用于状态/配置的 <code>.minikube</code> 目录的路径。请注意：这仅由 minikube 使用，不会影响与 kubectl 等 Kubernetes 工具相关的任何内容。</p></li><li><p>MINIKUBE_IN_STYLE - (bool) 手动设置表情符号和颜色是否应该出现在 minikube 中。设置为 <code>false</code> 或 <code>0</code> 以禁用此功能，设置为 <code>true</code> 或 <code>1</code> 以强制将其打开。<br>CHANGE_MINIKUBE_NONE_USER - (bool) 自动将 ~/.minikube 的所有权更改为 <code>$SUDO_USER</code> 的值</p></li><li><p>MINIKUBE_ENABLE_PROFILING - (int, 1 启用它) 启用为 minikube 生成跟踪分析</p></li><li><p>MINIKUBE_SUPPRESS_DOCKER_PERFORMANCE - (bool) 在 Docker 运行缓慢时抑制 Docker 性能警告</p></li></ul><p>示例：禁用表情符号</p><h3 id="Linux-2">Linux</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export MINIKUBE_IN_STYLE=false</span><br><span class="line"></span><br><span class="line">minikube start</span><br></pre></td></tr></table></figure><h3 id="macOS-2">macOS</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export MINIKUBE_IN_STYLE=false</span><br><span class="line"></span><br><span class="line">minikube start</span><br></pre></td></tr></table></figure><h3 id="Windows-2">Windows</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash"><span class="built_in">env</span>:MINIKUBE_IN_STYLE=<span class="literal">false</span></span></span><br><span class="line"></span><br><span class="line">minikube start</span><br></pre></td></tr></table></figure><h3 id="持久化环境变量值">持久化环境变量值</h3><p>要使环境变量在重新启动后保持不变：</p><ul><li><p>Linux 和 macOS：将这些声明添加到 <code>~/.bashrc</code> 或存储 shell 环境变量的任何位置。</p></li><li><p>Windows：将这些声明添加到您的 <code>~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</code> 或在 PowerShell 终端中运行以下命令：</p></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Environment]::SetEnvironmentVariable(&quot;key&quot;, &quot;value&quot;, [EnvironmentVariableTarget]::User)</span><br></pre></td></tr></table></figure><hr><h2 id="原文链接-13">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/config/">Configuration | minikube - https://minikube.sigs.k8s.io/docs/handbook/config/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;手册 - 配置&lt;/h1&gt;
+&lt;p&gt;配置集群&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="kubectl" scheme="https://cloudolife.cn/tags/kubectl/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Deployment" scheme="https://cloudolife.cn/tags/Deployment/"/>
+    
+    <category term="Service" scheme="https://cloudolife.cn/tags/Service/"/>
+    
+    <category term="Config" scheme="https://cloudolife.cn/tags/Config/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 部署应用程序</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Deploying-apps/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Deploying-apps/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>手册 - 部署应用程序</h1><p>如何将应用程序部署到 minikube</p><span id="more"></span><h2 id="kubectl">kubectl</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl create deployment hello-minikube1 --image=k8s.gcr.io/echoserver:1.4</span><br><span class="line">kubectl expose deployment hello-minikube1 --type=LoadBalancer --port=8080</span><br></pre></td></tr></table></figure><h2 id="附加组件">附加组件</h2><p>minikube 有一个内置的应用程序和服务列表，可以轻松部署，例如 Istio 或 Ingress。 要列出适用于您的 minikube 版本的可用插件：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons list</span><br></pre></td></tr></table></figure><p>要启用附加组件，请参阅：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons enable &lt;name&gt;</span><br></pre></td></tr></table></figure><p>要在启动时启用插件，可以多次指定 <code>–-addons</code> 选项：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --addons &lt;name1&gt; --addons &lt;name2&gt;</span><br></pre></td></tr></table></figure><p>对于暴露浏览器访问端点的附加组件，您可以使用以下命令快速打开它们：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons open &lt;name&gt;</span><br></pre></td></tr></table></figure><p>要禁用附加组件：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons disable &lt;name&gt;</span><br></pre></td></tr></table></figure><hr><h2 id="原文链接-14">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/deploying/">Deploying apps | minikube - https://minikube.sigs.k8s.io/docs/handbook/deploying/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;手册 - 部署应用程序&lt;/h1&gt;
+&lt;p&gt;如何将应用程序部署到 minikube&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="kubectl" scheme="https://cloudolife.cn/tags/kubectl/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="App" scheme="https://cloudolife.cn/tags/App/"/>
+    
+    <category term="Deployment" scheme="https://cloudolife.cn/tags/Deployment/"/>
+    
+    <category term="Service" scheme="https://cloudolife.cn/tags/Service/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 文件同步</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-FileSync/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-FileSync/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>手册 - 文件同步</h1><p>如何将文件同步到 minikube</p><span id="more"></span><h2 id="内置同步">内置同步</h2><p>minikube 有一个内置的文件同步机制，但它只在 <code>minikube start</code> 运行时同步，尽管在 Kubernetes 启动之前。 这可能有用的示例是系统或 Kubernetes 配置文件的自定义版本，例如：</p><ul><li>DNS 配置</li><li>SSL 证书</li><li>Kubernetes 服务元数据</li></ul><h3 id="添加文件">添加文件</h3><p>将要同步的文件放在 <code>$MINIKUBE_HOME/files</code></p><p>例如，运行以下命令将导致部署自定义 <code>/etc/resolv.conf</code>：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.minikube/files/etc</span><br><span class="line">echo nameserver 8.8.8.8 &gt; ~/.minikube/files/etc/resolv.conf</span><br><span class="line">minikube start</span><br></pre></td></tr></table></figure><h2 id="其他方法">其他方法</h2><p>通过一些工作，可以在主机和 VM 之间设置 Syncthing，以实现持久的文件同步。</p><p>如果您正在寻找适合迭代应用程序开发的解决方案，请考虑使用已知可与 minikube 配合使用的 Kubernetes 工具：</p><ul><li><p><a href="https://draft.sh/">Draft - https://draft.sh/</a>：查看具体的 <a href="https://github.com/Azure/draft/blob/master/docs/install-minikube.md">minikube 说明 - https://github.com/Azure/draft/blob/master/docs/install-minikube.md</a></p></li><li><p><a href="https://github.com/okteto/okteto">Okteto - https://github.com/okteto/okteto</a></p></li><li><p><a href="https://github.com/GoogleContainerTools/skaffold">Skaffold - https://github.com/GoogleContainerTools/skaffold</a></p></li></ul><hr><h2 id="原文链接-15">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/filesync/">File Sync | minikube - https://minikube.sigs.k8s.io/docs/handbook/filesync/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;手册 - 文件同步&lt;/h1&gt;
+&lt;p&gt;如何将文件同步到 minikube&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="kubectl" scheme="https://cloudolife.cn/tags/kubectl/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Deployment" scheme="https://cloudolife.cn/tags/Deployment/"/>
+    
+    <category term="Service" scheme="https://cloudolife.cn/tags/Service/"/>
+    
+    <category term="File Sync" scheme="https://cloudolife.cn/tags/File-Sync/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 主机访问</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Host-Access/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Host-Access/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>手册 - 主机访问</h1><p>如何从 Pod 访问主机资源</p><span id="more"></span><h2 id="先决条件">先决条件</h2><p>在您的主机上运行的服务必须绑定到所有 IP (0.0.0.0) 和接口，或者绑定到您的 VM 桥接的 IP 和接口。如果服务仅绑定到 localhost (127.0.0.1)，这将不起作用。</p><h2 id="host-minikube-internal">host.minikube.internal</h2><p>为了更容易访问您的主机，minikube v1.10 将主机名条目 <code>host.minikube.internal</code> 添加到 <code>/etc/hosts</code>。 <code>host.minikube.internal</code> 解析到的 IP 因驱动程序而异，并且可能因集群而异。</p><h2 id="验证连接性">验证连接性</h2><p>您可以使用 <code>minikube ssh</code> 来确认连接：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">minikube ssh</span></span><br><span class="line">                          _             _</span><br><span class="line">            _         _ ( )           ( )</span><br><span class="line">  ___ ___  (_)  ___  (_)| |/&#x27;)  _   _ | |_      __  </span><br><span class="line">/&#x27; _ ` _ `\| |/&#x27; _ `\| || , &lt;  ( ) ( )| &#x27;_`\  /&#x27;__`\</span><br><span class="line">| ( ) ( ) || || ( ) || || |\`\ | (_) || |_) )(  ___/</span><br><span class="line">(_) (_) (_)(_)(_) (_)(_)(_) (_)`\___/&#x27;(_,__/&#x27;`\____)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ping host.minikube.internal</span></span><br><span class="line">PING host.minikube.internal (192.168.64.1): 56 data bytes</span><br><span class="line">64 bytes from 192.168.64.1: seq=0 ttl=64 time=0.225 ms</span><br></pre></td></tr></table></figure><p>要测试与在您的主机上侦听的特定 TCP 服务的连接，请使用 <code>nc -vz host.minikube.internal &lt;port&gt;</code>：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">nc -vz host.minikube.internal 8000</span></span><br><span class="line">Connection to host.minikube.internal 8000 port [tcp/*] succeeded!</span><br></pre></td></tr></table></figure><p>以下是解释不同消息的方法：</p><ul><li><p><code>Connection succeeded</code>：您已连接！</p></li><li><p><code>Connection refused </code>：服务没有监听端口，至少没有跨所有接口</p></li></ul><blockquote><p>笔记<br>当使用旧版本的 minikube 时，您可能需要在 minikube 映像中手动安装 ping 和 netcat 等工具：</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install iputils-ping netcat-openbsd</span><br></pre></td></tr></table></figure><hr><h2 id="原文链接-16">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/host-access/">Host access | minikube - https://minikube.sigs.k8s.io/docs/handbook/host-access/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;手册 - 主机访问&lt;/h1&gt;
+&lt;p&gt;如何从 Pod 访问主机资源&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Host" scheme="https://cloudolife.cn/tags/Host/"/>
+    
+    <category term="VM" scheme="https://cloudolife.cn/tags/VM/"/>
+    
+    <category term="Virtual Machine" scheme="https://cloudolife.cn/tags/Virtual-Machine/"/>
+    
+    <category term="Virtual Machine (VM)" scheme="https://cloudolife.cn/tags/Virtual-Machine-VM/"/>
+    
+    <category term="Shell" scheme="https://cloudolife.cn/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - Kubectl</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Kubectl/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Kubectl/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>手册 - Kubectl</h1><p>在 minikube 中使用 <code>kubectl</code></p><p>默认情况下，在执行 minikube start 命令后，<code>kubectl</code> 被配置为访问 minikube 内的 kubernetes 集群控制平面。<br>但是，如果 kubectl 没有在本地安装，minikube 已经包含 kubectl，可以这样使用：</p><span id="more"></span><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube kubectl -- &lt;kubectl commands&gt;</span><br></pre></td></tr></table></figure><h2 id="别名">别名</h2><p>您还可以为 kubectl 起别名以便于使用。</p><h3 id="Linux-和-macOS">Linux 和 macOS</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias kubectl=&quot;minikube kubectl --&quot;</span><br></pre></td></tr></table></figure><p>或者，您可以创建一个指向 minikube 二进制文件“kubectl”的符号链接。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s $(which minikube) /usr/local/bin/kubectl</span><br></pre></td></tr></table></figure><h3 id="Windows-3">Windows</h3><p>PowerShell</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function kubectl &#123; minikube kubectl -- $args &#125;</span><br></pre></td></tr></table></figure><p>命令提示符</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doskey kubectl=minikube kubectl $*</span><br></pre></td></tr></table></figure><h2 id="使用">使用</h2><p>获取 pods</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube kubectl -- get pods</span><br></pre></td></tr></table></figure><p>在 Kubernetes 集群中创建部署</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube kubectl -- create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4</span><br></pre></td></tr></table></figure><p>使用 NodePort 服务公开部署</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube kubectl -- expose deployment hello-minikube --type=NodePort --port=8080</span><br></pre></td></tr></table></figure><p>如需更多帮助</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube kubectl -- --help</span><br></pre></td></tr></table></figure><h2 id="Shell-自动补全">Shell 自动补全</h2><p>创建别名或符号链接后，您可以按照 <a href="https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/">bash auto-completion on Linux | Kubernetes - https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/</a> 启用 shell-autocompletion。</p><hr><h2 id="原文链接-17">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/">Kubectl | minikube - https://minikube.sigs.k8s.io/docs/handbook/kubectl/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;手册 - Kubectl&lt;/h1&gt;
+&lt;p&gt;在 minikube 中使用 &lt;code&gt;kubectl&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;默认情况下，在执行 minikube start 命令后，&lt;code&gt;kubectl&lt;/code&gt; 被配置为访问 minikube 内的 kubernetes 集群控制平面。&lt;br&gt;
+但是，如果 kubectl 没有在本地安装，minikube 已经包含 kubectl，可以这样使用：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="kubectl" scheme="https://cloudolife.cn/tags/kubectl/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Deployment" scheme="https://cloudolife.cn/tags/Deployment/"/>
+    
+    <category term="Service" scheme="https://cloudolife.cn/tags/Service/"/>
+    
+    <category term="Shell" scheme="https://cloudolife.cn/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 挂载文件系统</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Mount/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Mount/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>挂载文件系统</h1><p>如何将主机目录挂载到虚拟机中</p><span id="more"></span><h2 id="9P-挂载">9P 挂载</h2><p>9P 挂载灵活且适用于所有虚拟机管理程序，但在与大型文件夹（&gt;600 个文件）一起使用时会遇到性能和可靠性问题。 请参阅驱动器安装作为替代方案。<br>使用 mount 子命令将主机中的目录挂载到 VM 中：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube mount &lt;source directory&gt;:&lt;target directory&gt;</span><br></pre></td></tr></table></figure><p>例如，这会将您的主目录挂载为在 minikube VM 中显示为 <code>/host</code>：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube mount $HOME:/host</span><br></pre></td></tr></table></figure><p>然后可以从 Kubernetes 清单中引用该目录，例如：</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;apiVersion&quot;</span><span class="punctuation">:</span> <span class="string">&quot;v1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Pod&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;metadata&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ubuntu&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;spec&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;containers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ubuntu&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;image&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ubuntu:18.04&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;bash&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;stdin&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;stdinOnce&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;tty&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;workingDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/host&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;volumeMounts&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">          <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;mountPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/host&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;host-mount&quot;</span></span><br><span class="line">          <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;volumes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;host-mount&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;hostPath&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/host&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><h2 id="驱动器挂载">驱动器挂载</h2><p>一些管理程序具有内置的主机文件夹共享。 驱动程序挂载可靠且性能良好，但路径无法跨操作系统或管理程序预测：</p><table><thead><tr><th>驱动</th><th>操作系统</th><th>主机目录</th><th>虚拟机</th></tr></thead><tbody><tr><td>VirtualBox</td><td>Linux</td><td>/home</td><td>/hosthome</td></tr><tr><td>VirtualBox</td><td>macOS</td><td>/Users</td><td>/Users</td></tr><tr><td>VirtualBox</td><td>Windows</td><td>C://Users</td><td>/c/Users</td></tr><tr><td>VMware Fusion</td><td>macOS</td><td>/Users</td><td>/mnt/hgfs/Users</td></tr><tr><td>KVM</td><td>Linux</td><td>Unsupported</td><td>Unsupported</td></tr><tr><td>HyperKit</td><td>macOS</td><td>Supported</td><td>Supported</td></tr></tbody></table><p>可以通过将 <code>--disable-driver-mounts</code> 传递给 <code>minikube start</code> 来禁用这些挂载。</p><p>HyperKit 挂载可以使用以下标志： <code>--nfs-share=[]</code>：通过 NFS 挂载与访客共享的本地文件夹 <code>--nfs-shares-root='/nfsshares'</code>：NFS 共享的根目录，默认为 <code>/nfsshares</code>。</p><h2 id="文件同步">文件同步</h2><p>请参阅<a href="https://minikube.sigs.k8s.io/docs/handbook/filesync/">文件同步 - https://minikube.sigs.k8s.io/docs/handbook/filesync/</a></p><hr><h2 id="原文链接-18">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/mount/">Mounting filesystems | minikube - https://minikube.sigs.k8s.io/docs/handbook/mount/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;挂载文件系统&lt;/h1&gt;
+&lt;p&gt;如何将主机目录挂载到虚拟机中&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="kubectl" scheme="https://cloudolife.cn/tags/kubectl/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Deployment" scheme="https://cloudolife.cn/tags/Deployment/"/>
+    
+    <category term="Service" scheme="https://cloudolife.cn/tags/Service/"/>
+    
+    <category term="Mount" scheme="https://cloudolife.cn/tags/Mount/"/>
+    
+    <category term="File System" scheme="https://cloudolife.cn/tags/File-System/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 网络策略</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Network-Policy/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Network-Policy/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>网络策略</h1><p>控制流经集群的流量</p><p>minikube 允许用户在本地 Kubernetes 集群中创建和测试网络策略。这很有用，因为它允许在应用程序开发期间考虑、构建和评估网络策略，将其作为流程的一个组成部分，而不是在开发结束时“固定”。</p><span id="more"></span><p><a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">Kubernetes NetworkPolicies - https://kubernetes.io/docs/concepts/services-networking/network-policies/</a>允许在 IP 地址或端口级别（OSI 第 3 层或第 4 层）控制通过集群的 Pod 网络流量。链接页面提供了有关功能和实现的更多信息。</p><p>但是，<a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/#prerequisites">先决条件 - https://kubernetes.io/docs/concepts/services-networking/network-policies/#prerequisites</a>说明网络策略是由容器网络接口 (CNI) 网络插件实现的。因此，要在任何 Kubernetes 集群中使用或测试网络策略，您必须使用支持 NetworkPolicy 的网络解决方案。在没有实现它的控制器的情况下创建 NetworkPolicy 资源将无效。</p><p>普通 minikube 安装（<code>minikube start</code>）不支持任何 <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">NetworkPolicies - https://kubernetes.io/docs/concepts/services-networking/network-policies/</a>，因为默认 CNI <a href="https://github.com/aojea/kindnet">Kindnet - https://github.com/aojea/kindnet</a> 在设计上不支持网络策略<a href="https://github.com/kubernetes-sigs/kind/issues/842#issuecomment-528824670">Network Policy | minikube - https://github.com/kubernetes-sigs/kind/issues/842#issuecomment-528824670</a>。</p><p>但是，如果安装了受支持的 CNI（例如 Calico），minikube 可以支持 <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">NetworkPolicies - https://kubernetes.io/docs/concepts/services-networking/network-policies/</a>。此外，在这种情况下，<a href="https://projectcalico.docs.tigera.io/security/kubernetes-network-policy">Kubernetes 网络策略 - https://projectcalico.docs.tigera.io/security/kubernetes-network-policy</a>和 ​​<a href="https://projectcalico.docs.tigera.io/security/calico-network-policy">Calico 网络策略 - https://projectcalico.docs.tigera.io/security/calico-network-policy</a>都受支持。</p><p>Calico 网络策略提供了比 Kubernetes 网络策略更丰富的策略功能，包括：</p><ul><li><p>政策排序/优先级</p></li><li><p>拒绝规则</p></li><li><p>更灵活的匹配规则</p></li></ul><h2 id="在-minikube-集群上启用-Calico">在 minikube 集群上启用 Calico</h2><p>可以在正在运行的 minikube 集群上替换 CNI，但是按照<a href="https://minikube.sigs.k8s.io/docs/start/">入门 - https://minikube.sigs.k8s.io/docs/start/</a>指南中的说明，只需将 <code>--cni calico</code> 标志附加到 <code>minikube start</code> 命令就容易得多！从一开始就安装了 Calico 的页面来构建 minikube 集群。</p><h2 id="Kubernetes-网络策略示例">Kubernetes 网络策略示例</h2><p>关于声明网络策略的 Kubernetes 文档是开始了解可能性的好地方。此外，下面的进一步阅读中的教程提供了更多指导。<br>下面来自 Kubernetes NetworkPolicies 文档的 YAML 显示了一个非常简单的默认入口隔离策略或命名空间，方法是创建一个选择所有 Pod 但不允许任何入口流量到这些 Pod 的 NetworkPolicy。</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">NetworkPolicy</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">default-deny-ingress</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">podSelector:</span> &#123;&#125;</span><br><span class="line">  <span class="attr">policyTypes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Ingress</span></span><br></pre></td></tr></table></figure><h2 id="Calico-网络策略示例">Calico 网络策略示例</h2><p>Calico 网络策略文档是了解 Calico 网络策略的扩展特性集以及它如何与 Kubernetes 网络策略共存的最佳场所。<br>下面来自 Calico 策略教程的 YAML 显示了一个非常简单的默认拒绝全局 Calico 网络策略（不适用于 vanilla Kubernetes 网络策略），它通常用作有效的零信任网络模型的起点。请注意，全局 Calico 网络策略没有命名空间，并且会影响与策略选择器匹配的所有 pod。相比之下，Kubernetes 网络策略是命名空间的，因此您需要为每个命名空间创建一个默认拒绝策略以实现相同的效果。在此示例中，kube-system 命名空间中的 pod 被排除在外，以保持 Kubernetes 自身平稳运行。</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">projectcalico.org/v3</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">GlobalNetworkPolicy</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">default-deny</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span> <span class="string">projectcalico.org/namespace</span> <span class="type">!=</span> <span class="string">&quot;kube-system&quot;</span></span><br><span class="line">  <span class="attr">types:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Ingress</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Egress</span></span><br></pre></td></tr></table></figure><h2 id="进一步阅读">进一步阅读</h2><p>本<a href="https://projectcalico.docs.tigera.io/security/tutorials/kubernetes-policy-advanced">高级 Kubernetes 策略教程 - https://projectcalico.docs.tigera.io/security/tutorials/kubernetes-policy-advanced</a>提供了一个示例，说明使用 Kubernetes 网络策略可以实现什么。它逐步介绍了使用 Kubernetes NetworkPolicy 来定义更复杂的网络策略。</p><p>本 <a href="https://projectcalico.docs.tigera.io/security/tutorials/calico-policy">Calico 策略教程 - https://projectcalico.docs.tigera.io/security/tutorials/calico-policy</a>演示了 Calico 网络策略提供的超越普通 Kubernetes 网络策略的扩展功能。为了演示这一点，本教程采用与上述教程类似的方法，但使用 Calico 网络策略并突出显示两种策略类型之间的差异，利用 Kubernetes 网络策略中不可用的功能。</p><hr><h2 id="原文链接-19">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/network_policy/">Network Policy | minikube - https://minikube.sigs.k8s.io/docs/handbook/network_policy/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;网络策略&lt;/h1&gt;
+&lt;p&gt;控制流经集群的流量&lt;/p&gt;
+&lt;p&gt;minikube 允许用户在本地 Kubernetes 集群中创建和测试网络策略。这很有用，因为它允许在应用程序开发期间考虑、构建和评估网络策略，将其作为流程的一个组成部分，而不是在开发结束时“固定”。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Shell" scheme="https://cloudolife.cn/tags/Shell/"/>
+    
+    <category term="Network Polocy" scheme="https://cloudolife.cn/tags/Network-Polocy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 离线使用</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Offline/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Offline/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>手册 - 离线使用</h1><p>缓存控制 minikube 所有的一切。</p><span id="more"></span><p>minikube 内置支持将下载的资源缓存到 <code>$MINIKUBE_HOME/cache</code> 中。以下是重要的文件位置：</p><ul><li><p><code>~/.minikube/cache</code> - 顶级文件夹</p></li><li><p><code>~/.minikube/cache/iso</code> - 虚拟机 ISO 映像。通常每个主要 minikube 版本更新一次。</p></li><li><p><code>~/.minikube/cache/images</code> - Kubernetes 使用的 Docker 镜像。</p></li><li><p><code>~/.minikube/cache/&lt;version&gt;</code> - Kubernetes 二进制文件，例如 kubeadm 和 kubelet</p></li></ul><h2 id="Kubernetes-镜像缓存">Kubernetes 镜像缓存</h2><p>注意：none 驱动程序将镜像直接缓存到 Docker 中，而不是单独的磁盘缓存中。<br><code>minikube start</code> 默认缓存所有需要的 Kubernetes 镜像。这个默认值可以通过设置 <code>--cache-images=false</code> 来改变。 minikube 缓存命令不会显示这些镜像。</p><h2 id="共享-minikube-缓存">共享 minikube 缓存</h2><p>为了在其他主机上离线使用，可以复制 <code>~/.minikube/cache</code> 的内容。截至 v1.0 版本，此目录包含 685MB 数据：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cache/iso/minikube-v1.0.0.iso</span><br><span class="line">cache/images/gcr.io/k8s-minikube/storage-provisioner_v1.8.1</span><br><span class="line">cache/images/k8s.gcr.io/k8s-dns-sidecar-amd64_1.14.13</span><br><span class="line">cache/images/k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64_1.14.13</span><br><span class="line">cache/images/k8s.gcr.io/kubernetes-dashboard-amd64_v1.10.1</span><br><span class="line">cache/images/k8s.gcr.io/kube-scheduler_v1.14.0</span><br><span class="line">cache/images/k8s.gcr.io/coredns_1.3.1</span><br><span class="line">cache/images/k8s.gcr.io/kube-controller-manager_v1.14.0</span><br><span class="line">cache/images/k8s.gcr.io/kube-apiserver_v1.14.0</span><br><span class="line">cache/images/k8s.gcr.io/pause_3.1</span><br><span class="line">cache/images/k8s.gcr.io/etcd_3.3.10</span><br><span class="line">cache/images/k8s.gcr.io/kube-addon-manager_v9.0</span><br><span class="line">cache/images/k8s.gcr.io/k8s-dns-kube-dns-amd64_1.14.13</span><br><span class="line">cache/images/k8s.gcr.io/kube-proxy_v1.14.0</span><br><span class="line">cache/v1.14.0/kubeadm</span><br><span class="line">cache/v1.14.0/kubelet</span><br></pre></td></tr></table></figure><p>如果存在这些文件中的任何一个，minikube 将使用直接将它们复制到 VM 中，而不是从 Internet 中提取它们。</p><hr><h2 id="原文链接-20">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/offline/">Offline usage | minikube - https://minikube.sigs.k8s.io/docs/handbook/offline/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;手册 - 离线使用&lt;/h1&gt;
+&lt;p&gt;缓存控制 minikube 所有的一切。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Shell" scheme="https://cloudolife.cn/tags/Shell/"/>
+    
+    <category term="Offline" scheme="https://cloudolife.cn/tags/Offline/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[minikube 文档中文翻译] 手册 - 离线使用</title>
+    <link href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Persistent-Volumes/"/>
+    <id>https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Persistent-Volumes/</id>
+    <published>2022-04-16T00:00:00.000Z</published>
+    <updated>2022-07-09T01:37:01.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1>手册 - 持久卷</h1><p>关于持久卷 (hostPath)</p><p>minikube 开箱即用地支持 <code>hostPath</code> 类型的 <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolume - https://kubernetes.io/docs/concepts/storage/persistent-volumes/</a>。这些 PersistentVolume 映射到正在运行的 minikube 实例（通常是 VM，除非您使用 <code>--driver=none</code>、<code>--driver=docker</code> 或 <code>--driver=podman</code>）内的目录。有关其工作原理的更多信息，请阅读下面的动态配置部分。</p><span id="more"></span><h2 id="关于挂载、持久性和-minikube-主机的说明">关于挂载、持久性和 minikube 主机的说明</h2><p>minikube 配置为持久保存存储在以下目录下的文件，这些目录是在 Minikube VM 中创建的（如果在裸机上运行，​​则在您的本地主机上）。重新启动时，您可能会丢失其他目录中的数据。</p><ul><li><code>/data*</code></li><li><code>/var/lib/minikube</code></li><li><code>/var/lib/docker</code></li><li><code>/var/lib/containerd</code></li><li><code>/var/lib/buildkit</code></li><li><code>/var/lib/containers</code></li><li><code>/tmp/hostpath_pv*</code></li><li><code>/tmp/hostpath-provisioner*</code></li></ul><ul><li>另一个目录的挂载点，存储在 <code>/var</code> 下或单独的数据磁盘</li></ul><p>这是一个示例 PersistentVolume 配置，用于将数据保存在 <code>/data</code> 目录中：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">PersistentVolume</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">pv0001</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">accessModes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ReadWriteOnce</span></span><br><span class="line">  <span class="attr">capacity:</span></span><br><span class="line">    <span class="attr">storage:</span> <span class="string">5Gi</span></span><br><span class="line">  <span class="attr">hostPath:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/data/pv0001/</span></span><br></pre></td></tr></table></figure><p>您还可以通过在已安装的主机文件夹中创建 PV 来实现持久性。</p><h2 id="动态配置和-CSI">动态配置和 CSI</h2><p>此外，minikube 实现了一个非常简单、规范的动态存储控制器实现，它与它的部署一起运行。这管理 hostPath 卷的配置（而不是通过以前的 in-tree hostPath 提供程序）。</p><p>默认的 <a href="https://github.com/kubernetes/minikube/blob/master/pkg/storage/storage_provisioner.go">Storage Provisioner 控制器 - https://github.com/kubernetes/minikube/blob/master/pkg/storage/storage_provisioner.go</a>在 minikube 代码库中进行内部管理，展示了将自定义存储控制器作为系统的存储组件插入 kubernetes 是多么容易，并动态地为 pod 提供，以测试你的 pod 在持久存储时的行为映射到它。</p><p>请注意，这不是基于 CSI 的存储提供程序，而是当控制器发现有未完成的存储请求时，它只是动态声明类型为 hostpath 的 PersistentVolume 对象。</p><hr><h2 id="原文链接-21">原文链接</h2><p><a href="https://minikube.sigs.k8s.io/docs/handbook/persistent_volumes/">Persistent Volumes | minikube - https://minikube.sigs.k8s.io/docs/handbook/persistent_volumes/</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1&gt;手册 - 持久卷&lt;/h1&gt;
+&lt;p&gt;关于持久卷 (hostPath)&lt;/p&gt;
+&lt;p&gt;minikube 开箱即用地支持 &lt;code&gt;hostPath&lt;/code&gt; 类型的 &lt;a href=&quot;https://kubernetes.io/docs/concepts/storage/persistent-volumes/&quot;&gt;PersistentVolume - https://kubernetes.io/docs/concepts/storage/persistent-volumes/&lt;/a&gt;。这些 PersistentVolume 映射到正在运行的 minikube 实例（通常是 VM，除非您使用 &lt;code&gt;--driver=none&lt;/code&gt;、&lt;code&gt;--driver=docker&lt;/code&gt; 或 &lt;code&gt;--driver=podman&lt;/code&gt;）内的目录。有关其工作原理的更多信息，请阅读下面的动态配置部分。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/categories/Cloud-Native/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/"/>
+    
+    
+    <category term="Cloud Native" scheme="https://cloudolife.cn/tags/Cloud-Native/"/>
+    
+    <category term="Docs" scheme="https://cloudolife.cn/tags/Docs/"/>
+    
+    <category term="K8S" scheme="https://cloudolife.cn/tags/K8S/"/>
+    
+    <category term="Kubernetes" scheme="https://cloudolife.cn/tags/Kubernetes/"/>
+    
+    <category term="Kubernetes (K8S)" scheme="https://cloudolife.cn/tags/Kubernetes-K8S/"/>
+    
+    <category term="Infrastructure" scheme="https://cloudolife.cn/tags/Infrastructure/"/>
+    
+    <category term="IaC" scheme="https://cloudolife.cn/tags/IaC/"/>
+    
+    <category term="Infrastructure as Code" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code/"/>
+    
+    <category term="Infrastructure as Code (IaC)" scheme="https://cloudolife.cn/tags/Infrastructure-as-Code-IaC/"/>
+    
+    <category term="CNCF" scheme="https://cloudolife.cn/tags/CNCF/"/>
+    
+    <category term="Cloud Native Computing Foundation" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation/"/>
+    
+    <category term="Cloud Native Computing Foundation (CNCF)" scheme="https://cloudolife.cn/tags/Cloud-Native-Computing-Foundation-CNCF/"/>
+    
+    <category term="minikube" scheme="https://cloudolife.cn/tags/minikube/"/>
+    
+    <category term="Handbook" scheme="https://cloudolife.cn/tags/Handbook/"/>
+    
+    <category term="Shell" scheme="https://cloudolife.cn/tags/Shell/"/>
+    
+    <category term="Persistent Volume" scheme="https://cloudolife.cn/tags/Persistent-Volume/"/>
+    
+  </entry>
+  
+</feed>

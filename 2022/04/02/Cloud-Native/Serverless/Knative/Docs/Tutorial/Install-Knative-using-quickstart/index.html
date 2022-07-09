@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cloudolife.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="使用 quickstart 安装 Knative 本主题介绍如何使用 Knative quickstart 插件在本地快速安装部署 Knative Serving 和 Knative Eventing 。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="[Knative] 使用 quickstart 安装 Knative">
+<meta property="og:url" content="https://cloudolife.cn/2022/04/02/Cloud-Native/Serverless/Knative/Docs/Tutorial/Install-Knative-using-quickstart/index.html">
+<meta property="og:site_name" content="CloudoLife">
+<meta property="og:description" content="使用 quickstart 安装 Knative 本主题介绍如何使用 Knative quickstart 插件在本地快速安装部署 Knative Serving 和 Knative Eventing 。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-02T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-09T01:37:01.756Z">
+<meta property="article:author" content="CloudoLife">
+<meta property="article:tag" content="Homebrew">
+<meta property="article:tag" content="Cloud Native">
+<meta property="article:tag" content="Docs">
+<meta property="article:tag" content="kubectl">
+<meta property="article:tag" content="K8S">
+<meta property="article:tag" content="Kubernetes">
+<meta property="article:tag" content="Kubernetes (K8S)">
+<meta property="article:tag" content="Infrastructure">
+<meta property="article:tag" content="IaC">
+<meta property="article:tag" content="Infrastructure as Code">
+<meta property="article:tag" content="Infrastructure as Code (IaC)">
+<meta property="article:tag" content="CNCF">
+<meta property="article:tag" content="Cloud Native Computing Foundation">
+<meta property="article:tag" content="Cloud Native Computing Foundation (CNCF)">
+<meta property="article:tag" content="minikube">
+<meta property="article:tag" content="Knative Serving">
+<meta property="article:tag" content="Knative Eventing">
+<meta property="article:tag" content="quickstart">
+<meta property="article:tag" content="kind">
+<meta property="article:tag" content="kn">
+<meta property="article:tag" content="kn-quickstart">
+<meta property="article:tag" content="Serverless">
+<meta property="article:tag" content="Knative">
+<meta property="article:tag" content="Tutorial">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://cloudolife.cn/2022/04/02/Cloud-Native/Serverless/Knative/Docs/Tutorial/Install-Knative-using-quickstart/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cloudolife.cn/2022/04/02/Cloud-Native/Serverless/Knative/Docs/Tutorial/Install-Knative-using-quickstart/","path":"2022/04/02/Cloud-Native/Serverless/Knative/Docs/Tutorial/Install-Knative-using-quickstart/","title":"[Knative] 使用 quickstart 安装 Knative"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Knative] 使用 quickstart 安装 Knative | CloudoLife</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6C9MN35QG"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-H6C9MN35QG","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="CloudoLife" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CloudoLife</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">面向云生活 - 云技术改变生活</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">24</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-crossplane"><a href="/tags/Crossplane/" rel="section"><i class="fa fa-book fa-fw"></i>Crossplane</a></li><li class="menu-item menu-item-infrastructure-as-code-(iac)"><a href="/tags/Infrastructure-as-Code-IaC/" rel="section"><i class="fa fa-book fa-fw"></i>Infrastructure as Code (IaC)</a></li><li class="menu-item menu-item-knative"><a href="/tags/Knative/" rel="section"><i class="fa fa-book fa-fw"></i>Knative</a></li><li class="menu-item menu-item-kubernetes-(k8s)"><a href="/tags/Kubernetes-K8S/" rel="section"><i class="fa fa-book fa-fw"></i>Kubernetes (K8S)</a></li><li class="menu-item menu-item-minikube-文档中文翻译"><a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Index/" rel="section"><i class="fa fa-book fa-fw"></i>minikube 文档中文翻译</a></li><li class="menu-item menu-item-pulumi"><a href="/tags/Pulumi/" rel="section"><i class="fa fa-book fa-fw"></i>Pulumi</a></li><li class="menu-item menu-item-about"><a href="/about-us/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">使用 quickstart 安装 Knative</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%BD%A0%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D"><span class="nav-number">1.1.</span> <span class="nav-text">在你开始之前</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Knative-CLI"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装 Knative CLI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Homebrew"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">使用 Homebrew</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">使用二进制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Go"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">使用 Go</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">使用容器镜像</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Knative-quickstart-%E6%8F%92%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">安装 Knative quickstart 插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Homebrew-2"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用 Homebrew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%8C%E8%BF%9B%E5%88%B6-2"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用二进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Go-2"><span class="nav-number">1.2.3.</span> <span class="nav-text">使用 Go</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C-Knative-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B%E6%8F%92%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">运行 Knative 快速开始插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-kind"><span class="nav-number">1.3.1.</span> <span class="nav-text">使用 kind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-minikube"><span class="nav-number">1.3.2.</span> <span class="nav-text">使用 minikube</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E4%B8%80%E6%AD%A5"><span class="nav-number">1.4.</span> <span class="nav-text">下一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5-9"><span class="nav-number">1.5.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E6%96%87%E9%93%BE%E6%8E%A5-28"><span class="nav-number">1.6.</span> <span class="nav-text">原文链接</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CloudoLife</p>
+  <div class="site-description" itemprop="description">Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener external nofollow noreferrer" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/02/Cloud-Native/Serverless/Knative/Docs/Tutorial/Install-Knative-using-quickstart/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Knative] 使用 quickstart 安装 Knative | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Knative] 使用 quickstart 安装 Knative
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-02T00:00:00+00:00">2022-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/" itemprop="url" rel="index"><span itemprop="name">Cloud Native</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Serverless/" itemprop="url" rel="index"><span itemprop="name">Serverless</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Serverless/Knative/" itemprop="url" rel="index"><span itemprop="name">Knative</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Serverless/Knative/Docs/" itemprop="url" rel="index"><span itemprop="name">Docs</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Serverless/Knative/Docs/Tutorial/" itemprop="url" rel="index"><span itemprop="name">Tutorial</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>12 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>使用 quickstart 安装 Knative</h1>
+<p>本主题介绍如何使用 Knative <code>quickstart</code> 插件在本地快速安装部署 Knative Serving 和 Knative Eventing 。</p>
+<span id="more"></span>
+<p>该插件在本地 Kubernetes 集群上快速安装预配置的 Knative 部署。</p>
+<blockquote>
+<p>警告</p>
+</blockquote>
+<pre><code>Knative `quickstart` 环境仅供实验使用。有关生产环境就绪安装，请参阅基于 YAML 的安装或 Knative Operator 安装。
+</code></pre>
+<h2 id="在你开始之前">在你开始之前</h2>
+<p>在开始使用 Knative <code>quickstart</code> 部署之前，您必须安装：</p>
+<ul>
+<li>
+<p>kind（Docker 中的 Kubernetes ）或 minikube，使您能够使用 Docker 容器节点运行本地 Kubernetes 集群。</p>
+</li>
+<li>
+<p>Kubernetes CLI (<code>kubectl</code>) 对 Kubernetes 集群运行命令。您可以使用 kubectl 部署应用程序、检查和管理集群资源以及查看日志。</p>
+</li>
+<li>
+<p>Knative CLI (<code>kn</code>) v0.25 或更高版本。有关说明，请参阅下一节。</p>
+</li>
+<li>
+<p>您需要至少 3 个 CPU 和 3 GB 的 RAM 才能创建集群。</p>
+</li>
+</ul>
+<h3 id="安装-Knative-CLI">安装 Knative CLI</h3>
+<p>Knative CLI (<code>kn</code>) 为创建 Knative 资源（例如 Knative Service 服务和 Event Source事件源）提供了一个快速简单的操作界面，无需直接创建或修改 YAML 文件。</p>
+<p><code>kn</code> CLI 还简化了其他复杂的完成过程，例如自动缩放和流量拆分。</p>
+<h4 id="使用-Homebrew">使用 Homebrew</h4>
+<p>执行以下操作之一：</p>
+<p>要使用 Homebrew 安装 <code>kn</code>，请运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install kn</span><br></pre></td></tr></table></figure>
+<p>要将现有的 <code>kn</code> 安装升级到最新版本，请运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew upgrade kn</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>疑问 使用 Homebrew 升级 kn 时遇到问题？</p>
+</blockquote>
+<p>如果您在使用 Homebrew 升级时遇到问题，可能是由于 CLI 仓库的更改导致 <code>master</code> 分支重命名为 <code>main</code>。 通过运行以下命令解决此问题：</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew tap --repair</span><br><span class="line">brew update</span><br><span class="line">brew upgrade kn</span><br></pre></td></tr></table></figure>
+<p>通过运行以下命令验证插件是否正常工作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kn version</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>期望输出</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Version:      v1.3.1</span><br><span class="line">Build Date:   2022-03-11 18:43:10</span><br><span class="line">Git Revision: a591c0c0</span><br><span class="line">Supported APIs:</span><br><span class="line">* Serving</span><br><span class="line">  serving.knative.dev/v1 (knative-serving v1.3.0)</span><br><span class="line">* Eventing</span><br><span class="line">  sources.knative.dev/v1 (knative-eventing v1.3.0)</span><br><span class="line">  eventing.knative.dev/v1 (knative-eventing v1.3.0)</span><br></pre></td></tr></table></figure>
+<h4 id="使用二进制">使用二进制</h4>
+<p>您可以通过下载系统适用的可执行二进制文件并将其放在系统路径 <code>PATH</code>  中来安装 <code>kn</code>。 请注意，您需要 <code>kn</code> <code>v0.25</code> 或更高版本。</p>
+<ol>
+<li>
+<p>从 <code>kn</code> <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/knative/client/releases">发布页面 https://github.com/knative/client/releases</a>下载适用于您系统的二进制文件。</p>
+</li>
+<li>
+<p>通过运行以下命令将二进制文件重命名为 <code>kn</code> 并使其可执行：</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv &lt;path-to-binary-file&gt; kn</span><br><span class="line">chmod +x kn</span><br></pre></td></tr></table></figure>
+<p>其中 <code>&lt;path-to-binary-file&gt;</code> 是您在上一步中下载的二进制文件的路径，例如 <code>kn-darwin-amd64</code> 或 <code>kn-linux-amd64</code>。</p>
+<p>通过运行以下命令将可执行二进制文件移动到 <code>PATH</code> 上的目录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv kn /usr/local/bin</span><br></pre></td></tr></table></figure>
+<h4 id="使用-Go">使用 Go</h4>
+<ol>
+<li>检出 kn 客户端仓库：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/knative/client.git</span><br><span class="line"></span><br><span class="line">cd client/</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>构建可执行二进制文件：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hack/build.sh -f</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>将 kn 移动到您的系统路径 <code>PATH</code> 中，并验证 <code>kn</code> 命令是否正常工作。 例如：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv kn /usr/local/bin</span><br><span class="line"></span><br><span class="line">kn version</span><br></pre></td></tr></table></figure>
+<h4 id="使用容器镜像">使用容器镜像</h4>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://gcr.io/knative-releases/knative.dev/client/cmd/kn">最新发布容器镜像链接 https://gcr.io/knative-releases/knative.dev/client/cmd/kn</a></p>
+<p>您可以从容器镜像运行 <code>kn</code>。 例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -v &quot;$HOME/.kube/config:/root/.kube/config&quot; gcr.io/knative-releases/knative.dev/client/cmd/kn:latest service list</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<pre><code>从容器镜像运行 `kn` 不会将二进制文件放在永久路径上。 每次要使用 `kn` 时都必须重复上一步命令。
+</code></pre>
+<h2 id="安装-Knative-quickstart-插件">安装 Knative quickstart 插件</h2>
+<p>首先，安装 Knative <code>quickstart</code> 插件：</p>
+<h3 id="使用-Homebrew-2">使用 Homebrew</h3>
+<p>执行以下操作之一：</p>
+<p>要使用 Homebrew 安装 <code>quickstart</code> 插件，请运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install knative-sandbox/kn-plugins/quickstart</span><br></pre></td></tr></table></figure>
+<p>要将现有的 <code>quickstart</code> 升级到最新版本，请运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew upgrade knative-sandbox/kn-plugins/quickstart</span><br></pre></td></tr></table></figure>
+<h3 id="使用二进制-2">使用二进制</h3>
+<p>从 <code>kn-plugin-quickstart</code> 快速开始<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/knative-sandbox/kn-plugin-quickstart/releases">发布页面 https://github.com/knative-sandbox/kn-plugin-quickstart/releases</a>下载适用于您系统的可执行二进制文件。<br>
+将可执行二进制文件移动到 <code>PATH</code> 上的目录，例如 <code>/usr/local/bin</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv &lt;path-to-binary-file&gt; kn</span><br><span class="line">chmod +x kn</span><br></pre></td></tr></table></figure>
+<p>其中 <code>&lt;path-to-binary-file&gt;</code> 是您在上一步中下载的二进制文件的路径，例如 <code>kn-quickstart-darwin-amd64</code> 或 <code>kn-quickstart-linux-amd64</code>。</p>
+<p>验证插件是否正常工作，例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kn quickstart --help</span><br></pre></td></tr></table></figure>
+<h3 id="使用-Go-2">使用 Go</h3>
+<p>检出 <code>kn-plugin-quickstart</code> 仓库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/knative-sandbox/kn-plugin-quickstart.git</span><br><span class="line">cd kn-plugin-quickstart/</span><br></pre></td></tr></table></figure>
+<p>构建可执行二进制文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hack/build.sh</span><br></pre></td></tr></table></figure>
+<p>将生成的可执行二进制文件移动到 <code>PATH</code> 上的目录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv kn-quickstart /usr/local/bin</span><br></pre></td></tr></table></figure>
+<p>验证插件是否正常工作，例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kn quickstart --help</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>期望输出</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Get up and running with a local Knative environment</span><br><span class="line">Usage:</span><br><span class="line">kn-quickstart [command]</span><br><span class="line">Available Commands:</span><br><span class="line">completion  Generate the autocompletion script for the specified shell</span><br><span class="line">help        Help about any command</span><br><span class="line">kind        Quickstart with Kind</span><br><span class="line">minikube    Quickstart with Minikube</span><br><span class="line">version     Prints the plugin version</span><br><span class="line">Flags:</span><br><span class="line">-h, --help   help for kn-quickstart</span><br><span class="line">Use &quot;kn-quickstart [command] --help&quot; for more information about a command.  </span><br></pre></td></tr></table></figure>
+<h2 id="运行-Knative-快速开始插件">运行 Knative 快速开始插件</h2>
+<p><code>quickstart</code> 插件完成以下功能：</p>
+<ul>
+<li>
+<p>检查您是否已经安装了选定版本的 Kubernetes 实例</p>
+</li>
+<li>
+<p>创建一个名为 <code>knative</code> 的集群</p>
+</li>
+<li>
+<p>安装 Knative Serving，Kourier 作为默认网络层，<a target="_blank" rel="noopener external nofollow noreferrer" href="http://sslip.io">sslip.io</a> 作为 DNS</p>
+</li>
+<li>
+<p>安装 Knative Eventing 并创建在内存中的 Broker 和 Channel 实现</p>
+</li>
+</ul>
+<p>要获得 Knative 的本地部署，请运行 <code>quickstart</code> 插件：</p>
+<h3 id="使用-kind">使用 kind</h3>
+<ol>
+<li>通过运行以下命令在本地 Docker 守护程序上安装 Knative 和 Kubernetes：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kn quickstart kind</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>期望输出</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">☸ Creating Kind cluster...</span><br><span class="line">Creating cluster &quot;knative&quot; ...</span><br><span class="line">  ✓ Ensuring node image (kindest/node:v1.23.3) 🖼 </span><br><span class="line">  ✓ Preparing nodes 📦  </span><br><span class="line">  ✓ Writing configuration 📜 </span><br><span class="line">  ✓ Starting control-plane 🕹️ </span><br><span class="line">  ✓ Installing CNI 🔌 </span><br><span class="line">  ✓ Installing StorageClass 💾 </span><br><span class="line">  ✓ Waiting ≤ 2m0s for control-plane = Ready ⏳ </span><br><span class="line">  • Ready after 17s 💚</span><br><span class="line">Set kubectl context to &quot;kind-knative&quot;</span><br><span class="line">You can now use your cluster with:</span><br><span class="line"></span><br><span class="line">kubectl cluster-info --context kind-knative</span><br><span class="line"></span><br><span class="line">Not sure what to do next? 😅  Check out https://kind.sigs.k8s.io/docs/user/quick-start/</span><br><span class="line"></span><br><span class="line">🍿 Installing Knative Serving v1.3.0 ...</span><br><span class="line">    CRDs installed...</span><br><span class="line">    Core installed...</span><br><span class="line">    Finished installing Knative Serving</span><br><span class="line">🕸️ Installing Kourier networking layer v1.3.0 ...</span><br><span class="line">    Kourier installed...</span><br><span class="line">    Ingress patched...</span><br><span class="line">    Finished installing Kourier Networking layer</span><br><span class="line">🕸 Configuring Kourier for Kind...</span><br><span class="line">    Kourier service installed...</span><br><span class="line">    Domain DNS set up...</span><br><span class="line">    Finished configuring Kourier</span><br><span class="line">🔥 Installing Knative Eventing v1.3.0 ... </span><br><span class="line">    CRDs installed...</span><br><span class="line">    Core installed...</span><br><span class="line">    In-memory channel installed...</span><br><span class="line">    Mt-channel broker installed...</span><br><span class="line">    Example broker installed...</span><br><span class="line">    Finished installing Knative Eventing</span><br><span class="line">🚀 Knative install took: 6m57s </span><br><span class="line">🎉 Now have some fun with Serverless and Event Driven Apps!</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>安装插件完成后，验证您有一个名为 <code>knative</code> 的集群：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kind get clusters</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>期望输出</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knative</span><br></pre></td></tr></table></figure>
+<h3 id="使用-minikube">使用 minikube</h3>
+<ol>
+<li>通过运行以下命令在 <code>minikube</code> 实例中安装 Knative 和 Kubernetes ：</li>
+</ol>
+<blockquote>
+<p>注释</p>
+</blockquote>
+<pre><code>minikube 集群将使用 6 GB 的 RAM 创建。 如果您没有足够的内存，您可以通过在此命令之前运行命令 `minikube config set memory 3078` 更改为不低于 3 GB 的其他值。
+</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kn quickstart minikube</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>上一个命令的输出要求您运行 minikube 隧道。 运行以下命令以在单独的辅助终端窗口中启动隧道进程，然后返回主窗口并按 Enter 键继续：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube tunnel --profile knative</span><br></pre></td></tr></table></figure>
+<p>当您使用 Knative quickstart环境时，<code>minikube tunnel</code> 进程必须继续在单独的终端窗口中运行。</p>
+<p>运行隧道进程是必需的，因为它允许您的集群作为 LoadBalancer 从您的主机访问 Knative 入口服务。</p>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<pre><code>要终止 `minikube tunnel` 进程并清理网络路由，请输入快捷键 `Ctrl-C`。 有关 `minikube tunnel` 命令的更多信息，请参阅 [minikube 文档 https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel](https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel)。
+</code></pre>
+<ol start="3">
+<li>安装 quickstart 插件完成后，验证您有一个名为 knative 的集群：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube profile list</span><br></pre></td></tr></table></figure>
+<h2 id="下一步">下一步</h2>
+<ul>
+<li>
+<p>在 Knative 教程中了解如何部署您的第一个 Service 服务。</p>
+</li>
+<li>
+<p>试用 Knative 代码示例。</p>
+</li>
+<li>
+<p>请参阅 Knative Serving 和 Knative Eventing 指南。</p>
+</li>
+</ul>
+<h2 id="参考链接-9">参考链接</h2>
+<p>[1] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://knative.dev/docs/getting-started/quickstart-install/">Install Knative using quickstart - Knative - https://knative.dev/docs/getting-started/quickstart-install/</a></p>
+<p>[2] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://knative.dev/docs/install/yaml-install/">About YAML-based installation - Knative - https://knative.dev/docs/install/yaml-install/</a></p>
+<p>[3] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://knative.dev/docs/install/operator/knative-with-operators/">Installing using the Operator - Knative - https://knative.dev/docs/install/operator/knative-with-operators/</a></p>
+<p>[4] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://kind.sigs.k8s.io/docs/user/quick-start">kind – Quick Start - https://kind.sigs.k8s.io/docs/user/quick-start</a></p>
+<p>[5] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/start/">minikube start | minikube - https://minikube.sigs.k8s.io/docs/start/</a></p>
+<p>[6] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://kubernetes.io/docs/tasks/tools/">Install Tools | Kubernetes - https://kubernetes.io/docs/tasks/tools/</a></p>
+<p>[7] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://brew.sh/">The Missing Package Manager for macOS (or Linux) — Homebrew - https://brew.sh/</a></p>
+<p>[8] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://formulae.brew.sh/formula/kn">kn — Homebrew Formulae - https://formulae.brew.sh/formula/kn</a></p>
+<p>[9] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/knative/client/releases">Releases · knative/client · GitHub - https://github.com/knative/client/releases</a></p>
+<p>[10] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/knative/client">GitHub - knative/client: Knative developer experience, docs, reference Knative CLI implementation - https://github.com/knative/client</a></p>
+<p>[11] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://console.cloud.google.com/gcr/images/knative-releases/GLOBAL/knative.dev/client/cmd/kn">Images – Container Registry – Google Cloud Platform - https://console.cloud.google.com/gcr/images/knative-releases/GLOBAL/knative.dev/client/cmd/kn</a></p>
+<p>[12] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/knative-sandbox/homebrew-kn-plugins">GitHub - knative-sandbox/homebrew-kn-plugins: Homebrew tap for holding all kn plugins that are released together with Knative. - https://github.com/knative-sandbox/homebrew-kn-plugins</a></p>
+<p>[13] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel">Accessing apps | minikube - https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-tunnel</a></p>
+<p>[14] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://knative.dev/docs/">Home - Knative - https://knative.dev/docs/</a></p>
+<hr>
+<h2 id="原文链接-28">原文链接</h2>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://knative.dev/docs/install/quickstart-install/">Install Knative using quickstart Knative https://knative.dev/docs/install/quickstart-install/</a></p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>CloudoLife
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://cloudolife.cn/2022/04/02/Cloud-Native/Serverless/Knative/Docs/Tutorial/Install-Knative-using-quickstart/" title="[Knative] 使用 quickstart 安装 Knative">https://cloudolife.cn/2022/04/02/Cloud-Native/Serverless/Knative/Docs/Tutorial/Install-Knative-using-quickstart/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/CloudoLife/CloudoLife-WeChat-Officai-Account-QRCode-200x260.png">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Homebrew/" rel="tag"><i class="fa fa-tag"></i> Homebrew</a>
+              <a href="/tags/Cloud-Native/" rel="tag"><i class="fa fa-tag"></i> Cloud Native</a>
+              <a href="/tags/Docs/" rel="tag"><i class="fa fa-tag"></i> Docs</a>
+              <a href="/tags/kubectl/" rel="tag"><i class="fa fa-tag"></i> kubectl</a>
+              <a href="/tags/K8S/" rel="tag"><i class="fa fa-tag"></i> K8S</a>
+              <a href="/tags/Kubernetes/" rel="tag"><i class="fa fa-tag"></i> Kubernetes</a>
+              <a href="/tags/Kubernetes-K8S/" rel="tag"><i class="fa fa-tag"></i> Kubernetes (K8S)</a>
+              <a href="/tags/Infrastructure/" rel="tag"><i class="fa fa-tag"></i> Infrastructure</a>
+              <a href="/tags/IaC/" rel="tag"><i class="fa fa-tag"></i> IaC</a>
+              <a href="/tags/Infrastructure-as-Code/" rel="tag"><i class="fa fa-tag"></i> Infrastructure as Code</a>
+              <a href="/tags/Infrastructure-as-Code-IaC/" rel="tag"><i class="fa fa-tag"></i> Infrastructure as Code (IaC)</a>
+              <a href="/tags/CNCF/" rel="tag"><i class="fa fa-tag"></i> CNCF</a>
+              <a href="/tags/Cloud-Native-Computing-Foundation/" rel="tag"><i class="fa fa-tag"></i> Cloud Native Computing Foundation</a>
+              <a href="/tags/Cloud-Native-Computing-Foundation-CNCF/" rel="tag"><i class="fa fa-tag"></i> Cloud Native Computing Foundation (CNCF)</a>
+              <a href="/tags/minikube/" rel="tag"><i class="fa fa-tag"></i> minikube</a>
+              <a href="/tags/Knative-Serving/" rel="tag"><i class="fa fa-tag"></i> Knative Serving</a>
+              <a href="/tags/Knative-Eventing/" rel="tag"><i class="fa fa-tag"></i> Knative Eventing</a>
+              <a href="/tags/quickstart/" rel="tag"><i class="fa fa-tag"></i> quickstart</a>
+              <a href="/tags/kind/" rel="tag"><i class="fa fa-tag"></i> kind</a>
+              <a href="/tags/kn/" rel="tag"><i class="fa fa-tag"></i> kn</a>
+              <a href="/tags/kn-quickstart/" rel="tag"><i class="fa fa-tag"></i> kn-quickstart</a>
+              <a href="/tags/Serverless/" rel="tag"><i class="fa fa-tag"></i> Serverless</a>
+              <a href="/tags/Knative/" rel="tag"><i class="fa fa-tag"></i> Knative</a>
+              <a href="/tags/Tutorial/" rel="tag"><i class="fa fa-tag"></i> Tutorial</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/02/Site/Hexo/Plugins/hexo-generator-searchdb-and-NexT-enable-local-search-on-Hexo/" rel="next" title="[Hexo 插件] hexo-generator-searchdb 插件和 NexT 主题启用 Hexo 本地搜索">
+                  [Hexo 插件] hexo-generator-searchdb 插件和 NexT 主题启用 Hexo 本地搜索 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudoLife</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener external nofollow noreferrer" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

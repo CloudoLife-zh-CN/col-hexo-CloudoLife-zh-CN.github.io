@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cloudolife.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="介绍 Pulumiverse 发表于 2022 年 3 月 30 日，星期三 作者 | David Flanagan 译者 | Blogbin 今天，我们很高兴地宣布，我们正在与 Pulumi 社区合作，为基于 Pulumi 的库、项目和教育材料提供一个互动和协作的场所：Pulumiverse。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="[Infrastructure as Code (IaC)] 介绍 Pulumiverse">
+<meta property="og:url" content="https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/index.html">
+<meta property="og:site_name" content="CloudoLife">
+<meta property="og:description" content="介绍 Pulumiverse 发表于 2022 年 3 月 30 日，星期三 作者 | David Flanagan 译者 | Blogbin 今天，我们很高兴地宣布，我们正在与 Pulumi 社区合作，为基于 Pulumi 的库、项目和教育材料提供一个互动和协作的场所：Pulumiverse。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-02T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-09T01:37:01.756Z">
+<meta property="article:author" content="CloudoLife">
+<meta property="article:tag" content="Infrastructure">
+<meta property="article:tag" content="IaC">
+<meta property="article:tag" content="Infrastructure as Code">
+<meta property="article:tag" content="Infrastructure as Code (IaC)">
+<meta property="article:tag" content="Pulumi">
+<meta property="article:tag" content="Pulumiverse">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/","path":"2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/","title":"[Infrastructure as Code (IaC)] 介绍 Pulumiverse"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Infrastructure as Code (IaC)] 介绍 Pulumiverse | CloudoLife</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6C9MN35QG"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-H6C9MN35QG","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="CloudoLife" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CloudoLife</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">面向云生活 - 云技术改变生活</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">24</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-crossplane"><a href="/tags/Crossplane/" rel="section"><i class="fa fa-book fa-fw"></i>Crossplane</a></li><li class="menu-item menu-item-infrastructure-as-code-(iac)"><a href="/tags/Infrastructure-as-Code-IaC/" rel="section"><i class="fa fa-book fa-fw"></i>Infrastructure as Code (IaC)</a></li><li class="menu-item menu-item-knative"><a href="/tags/Knative/" rel="section"><i class="fa fa-book fa-fw"></i>Knative</a></li><li class="menu-item menu-item-kubernetes-(k8s)"><a href="/tags/Kubernetes-K8S/" rel="section"><i class="fa fa-book fa-fw"></i>Kubernetes (K8S)</a></li><li class="menu-item menu-item-minikube-文档中文翻译"><a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Index/" rel="section"><i class="fa fa-book fa-fw"></i>minikube 文档中文翻译</a></li><li class="menu-item menu-item-pulumi"><a href="/tags/Pulumi/" rel="section"><i class="fa fa-book fa-fw"></i>Pulumi</a></li><li class="menu-item menu-item-about"><a href="/about-us/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">介绍 Pulumiverse</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Pulumiverse%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">什么是 Pulumiverse？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%93%E5%89%8D%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.1.1.</span> <span class="nav-text">当前项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Awesome-Pulumi"><span class="nav-number">1.1.2.</span> <span class="nav-text">Awesome Pulumi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kubernetes-SDKs"><span class="nav-number">1.1.3.</span> <span class="nav-text">Kubernetes SDKs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pulumi-Concourse-Unifi"><span class="nav-number">1.1.4.</span> <span class="nav-text">Pulumi Concourse &amp; Unifi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%82%A8%E7%9A%84%E9%A1%B9%E7%9B%AE%EF%BC%9F"><span class="nav-number">1.1.5.</span> <span class="nav-text">您的项目？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E9%93%BE%E6%8E%A5"><span class="nav-number">1.2.</span> <span class="nav-text">引用链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E6%96%87%E9%93%BE%E6%8E%A5-6"><span class="nav-number">1.3.</span> <span class="nav-text">原文链接</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CloudoLife</p>
+  <div class="site-description" itemprop="description">Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener external nofollow noreferrer" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Infrastructure as Code (IaC)] 介绍 Pulumiverse | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Infrastructure as Code (IaC)] 介绍 Pulumiverse
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-02T00:00:00+00:00">2022-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Infrastructure-as-Code-IaC/" itemprop="url" rel="index"><span itemprop="name">Infrastructure as Code (IaC)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Infrastructure-as-Code-IaC/Pulumi/" itemprop="url" rel="index"><span itemprop="name">Pulumi</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/" itemprop="url" rel="index"><span itemprop="name">Pulumiverse</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>介绍 Pulumiverse</h1>
+<p>发表于 2022 年 3 月 30 日，星期三</p>
+<p>作者 | David Flanagan</p>
+<p>译者 | Blogbin</p>
+<p>今天，我们很高兴地宣布，我们正在与 Pulumi 社区合作，为基于 Pulumi 的库、项目和教育材料提供一个互动和协作的场所：Pulumiverse。</p>
+<span id="more"></span>
+<p>这个项目对我来说特别重要，因为这是我过去尝试过的一个想法，2018 😯，但未能承诺并给予它应有的关注。</p>
+<p>幸运的是，另外两位优秀的 Pulumi 社区成员站出来开始制定他们自己的计划，而我现在在 Pulumi，时机非常巧合。</p>
+<p>我与 Pulumiverse 的创始成员 Ringo De Smet 和 Simen A. W. Olsen 进行了交谈。</p>
+<p>Napoleon Games 的 CI/CD 负责人 Ringo 谈到了他为什么对创建 Pulumiverse 感到兴奋：</p>
+<blockquote>
+<p>对于基础设施自动化，我们在 Pulumi 之前有其他很棒的工具：Chef、Puppet、Ansible。这些工具中的任何一个都有一个充满活力的社区，避免我们所有人都需要重新发明轮子。我们在 Chef 有 Sous-Chefs，在 Puppet 有 Vox Pupuli。但我看到很多 Pulumi 用户一遍又一遍地实现相同的东西。这就是为什么我认为 Pulumi 需要它自己的社区。所以我开始了它：Pulumiverse</p>
+</blockquote>
+<p>Bjerk AS 的开发人员 Simon 分享了：</p>
+<blockquote>
+<p>我想象一个充满志同道合的人的社区，他们构建和支持 Pulumi Provider、自用的组件、配置，并就我们如何以新的方式利用 Pulumi 的力量分享想法。所以我创建了 Pulumiverse 来分享我的热情，回馈 Pulumi 并通过建立一个我们可以一起工作的平台来支持开发人员！</p>
+</blockquote>
+<h2 id="什么是-Pulumiverse？">什么是 Pulumiverse？</h2>
+<p>Pulumiverse 最简单的形式是一个 GitHub 组织。它为任何人提供了一个社区运营的场所，可以与 Pulumi 社区的其他成员进行交流、贡献和协作，并构建任何人都可以共享和使用的抽象和 SDK。</p>
+<p>Pulumi 有许多库或组件集合。其中大部分是根据个别公司和开发人员的要求制作的。 Pulumiverse 旨在打造一个可以创建这些库以及可以存储和讨论 Pulumi 资源的自用的配置的社区。</p>
+<h3 id="当前项目">当前项目</h3>
+<p>Pulumiverse 仅启动了几个项目，但我们知道，在如此出色的社区的支持下，Pulumiverse 将不断发展壮大，并为任何想要为库或项目构建或使用 Pulumi 的人提供宝贵的资源。</p>
+<h3 id="Awesome-Pulumi">Awesome Pulumi</h3>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pulumiverse/awesome-pulumi">🐙 Awesome Pulumi - https://github.com/pulumiverse/awesome-pulumi</a></p>
+<p>每个人都喜欢一个 Awesome 的列表，这个列表为您提供了一个很棒的 Pulumi 资源、书籍、教程、讲座等等的列表。</p>
+<p>想要列出您的项目吗？请发起一个 PR。我们迫不及待地想把它与大家分享。</p>
+<h3 id="Kubernetes-SDKs">Kubernetes SDKs</h3>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pulumiverse/kubernetes-sdks">🐙 Kubernetes SDKs - https://github.com/pulumiverse/kubernetes-sdks</a></p>
+<p>Kubernetes SDKs 项目旨在提供用于与 Kubernetes 自定义资源定义 (CRD) 交互的多语言 SDK。目前，它会自动构建 SDK，用于：</p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://argoproj.github.io/cd/">ArgoCD - https://argoproj.github.io/cd/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://cert-manager.io/">CertManager - https://cert-manager.io/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://projectcontour.io/">Contour - https://projectcontour.io/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://crossplane.io/">Crossplane - https://crossplane.io/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://istio.io/">Istio - https://istio.io/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.konghq.com/kubernetes-ingress-controller/">Kong Ingress - https://docs.konghq.com/kubernetes-ingress-controller/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://knative.dev/docs/">Knative - https://knative.dev/docs/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://redpanda.com/">RedPanda - https://redpanda.com/</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://tyk.io/">Tyk - https://tyk.io/</a></p>
+</li>
+</ul>
+<h3 id="Pulumi-Concourse-Unifi">Pulumi Concourse &amp; Unifi</h3>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pulumiverse/pulumi-concourse">Concourse Provider - https://github.com/pulumiverse/pulumi-concourse</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pulumiverse/pulumi-unifi">Unifi Provider - https://github.com/pulumiverse/pulumi-unifi</a></p>
+</li>
+</ul>
+<p>这只是一个开始，我们希望快速扩展这个集合。因此，如果您正在使用 Kubernetes 并希望获得丰富的开发人员体验来创作自定义资源，请发起一个 Issue 并让我们知道您的需求。</p>
+<p>这些是社区维护的 Provider，是您如何与世界分享您的 Provider 作为 Pulumiverse 的一部分的示例。</p>
+<h3 id="您的项目？">您的项目？</h3>
+<p>您觉得自己的库对社区有益？</p>
+<p>请加入我们在 Pulumi Slack 上的 pulumiverse 频道(<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pulumi.slack.com/">https://pulumi.slack.com/</a>)，我们很乐意帮助您将它转移到 Pulumiverse。</p>
+<p>我们很快会再见！ 👋</p>
+<p>#社区</p>
+<h2 id="引用链接">引用链接</h2>
+<p>[1] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pulumiverse">Pulumiverse - https://github.com/pulumiverse</a></p>
+<p>[2] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.pulumi.com/">Pulumi - Modern Infrastructure as Code - https://www.pulumi.com/</a></p>
+<p>[3] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://pulumi.slack.com/">pulumi.slack.com - https://pulumi.slack.com/</a></p>
+<p>[4] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pulumiverse/awesome-pulumi">🐙 Awesome Pulumi - https://github.com/pulumiverse/awesome-pulumi</a></p>
+<p>[5] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pulumiverse/kubernetes-sdks">🐙 Kubernetes SDKs - https://github.com/pulumiverse/kubernetes-sdks</a></p>
+<p>[6] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://argoproj.github.io/cd/">ArgoCD - https://argoproj.github.io/cd/</a></p>
+<p>[7] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://cert-manager.io/">CertManager - https://cert-manager.io/</a></p>
+<p>[8] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://projectcontour.io/">Contour - https://projectcontour.io/</a></p>
+<p>[9] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://crossplane.io/">Crossplane - https://crossplane.io/</a></p>
+<p>[10] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://istio.io/">Istio - https://istio.io/</a></p>
+<p>[11] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.konghq.com/kubernetes-ingress-controller/">Kong Ingress - https://docs.konghq.com/kubernetes-ingress-controller/</a></p>
+<p>[12] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://knative.dev/docs/">Knative - https://knative.dev/docs/</a></p>
+<p>[13] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://redpanda.com/">RedPanda - https://redpanda.com/</a></p>
+<p>[14] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://tyk.io/">Tyk - https://tyk.io/</a></p>
+<p>[15] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pulumiverse/pulumi-concourse">Concourse Provider - https://github.com/pulumiverse/pulumi-concourse</a></p>
+<p>[16] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/pulumiverse/pulumi-unifi">Unifi Provider - https://github.com/pulumiverse/pulumi-unifi</a></p>
+<h2 id="原文链接-6">原文链接</h2>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.pulumi.com/blog/2022-03-30-introducing-pulumiverse/">Introducing the Pulumiverse | Pulumi Blog - https://www.pulumi.com/blog/2022-03-30-introducing-pulumiverse/</a></p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>CloudoLife
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/" title="[Infrastructure as Code (IaC)] 介绍 Pulumiverse">https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/CloudoLife/CloudoLife-WeChat-Officai-Account-QRCode-200x260.png">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Infrastructure/" rel="tag"><i class="fa fa-tag"></i> Infrastructure</a>
+              <a href="/tags/IaC/" rel="tag"><i class="fa fa-tag"></i> IaC</a>
+              <a href="/tags/Infrastructure-as-Code/" rel="tag"><i class="fa fa-tag"></i> Infrastructure as Code</a>
+              <a href="/tags/Infrastructure-as-Code-IaC/" rel="tag"><i class="fa fa-tag"></i> Infrastructure as Code (IaC)</a>
+              <a href="/tags/Pulumi/" rel="tag"><i class="fa fa-tag"></i> Pulumi</a>
+              <a href="/tags/Pulumiverse/" rel="tag"><i class="fa fa-tag"></i> Pulumiverse</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/02/Site/Hexo/Plugins/hexo-generator-searchdb-and-NexT-enable-local-search-on-Hexo/" rel="prev" title="[Hexo 插件] hexo-generator-searchdb 插件和 NexT 主题启用 Hexo 本地搜索">
+                  <i class="fa fa-chevron-left"></i> [Hexo 插件] hexo-generator-searchdb 插件和 NexT 主题启用 Hexo 本地搜索
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/" rel="next" title="[Infrastructure as Code (IaC)] 为什么 Crossplane 如此令人兴奋">
+                  [Infrastructure as Code (IaC)] 为什么 Crossplane 如此令人兴奋 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudoLife</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener external nofollow noreferrer" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

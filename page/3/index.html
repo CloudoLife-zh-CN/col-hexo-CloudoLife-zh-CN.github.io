@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cloudolife.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="CloudoLife">
+<meta property="og:url" content="https://cloudolife.cn/page/3/index.html">
+<meta property="og:site_name" content="CloudoLife">
+<meta property="og:description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="CloudoLife">
+<meta property="article:tag" content="Cloud-oriented Life, CloudoLife, CoL, Google-oriented Programming (GoP), Infrastructure as Code (IaC), Cloud, Life">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://cloudolife.cn/page/3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/3/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CloudoLife</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6C9MN35QG"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-H6C9MN35QG","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="CloudoLife" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">CloudoLife</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">面向云生活 - 云技术改变生活</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">24</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-crossplane"><a href="/tags/Crossplane/" rel="section"><i class="fa fa-book fa-fw"></i>Crossplane</a></li><li class="menu-item menu-item-infrastructure-as-code-(iac)"><a href="/tags/Infrastructure-as-Code-IaC/" rel="section"><i class="fa fa-book fa-fw"></i>Infrastructure as Code (IaC)</a></li><li class="menu-item menu-item-knative"><a href="/tags/Knative/" rel="section"><i class="fa fa-book fa-fw"></i>Knative</a></li><li class="menu-item menu-item-kubernetes-(k8s)"><a href="/tags/Kubernetes-K8S/" rel="section"><i class="fa fa-book fa-fw"></i>Kubernetes (K8S)</a></li><li class="menu-item menu-item-minikube-文档中文翻译"><a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Index/" rel="section"><i class="fa fa-book fa-fw"></i>minikube 文档中文翻译</a></li><li class="menu-item menu-item-pulumi"><a href="/tags/Pulumi/" rel="section"><i class="fa fa-book fa-fw"></i>Pulumi</a></li><li class="menu-item menu-item-about"><a href="/about-us/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CloudoLife</p>
+  <div class="site-description" itemprop="description">Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener external nofollow noreferrer" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Proxy-and-VPN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Proxy-and-VPN/" class="post-title-link" itemprop="url">[minikube 文档中文翻译] 手册 - 代理和 VPN</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-16T00:00:00+00:00">2022-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/" itemprop="url" rel="index"><span itemprop="name">Cloud Native</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/" itemprop="url" rel="index"><span itemprop="name">Kubernetes (K8S)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/" itemprop="url" rel="index"><span itemprop="name">minikube</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/" itemprop="url" rel="index"><span itemprop="name">Docs</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>手册 - 代理和 VPN</h1>
+<p>如何通过 VPN 或 HTTP/HTTPS 代理使用 minikube</p>
+<p>minikube 需要通过 HTTP、HTTPS 和 DNS 协议访问互联网。</p>
+<h2 id="代理">代理</h2>
+<p>如果需要 HTTP 代理来访问互联网，您可能需要使用环境变量将代理连接信息传递给 minikube 和 Docker：</p>
+<ul>
+<li>
+<p><code>HTTP_PROXY</code> - HTTP 代理的 URL</p>
+</li>
+<li>
+<p><code>HTTPS_PROXY</code> - HTTPS 代理的 URL</p>
+</li>
+<li>
+<p><code>NO_PROXY</code> - 不应通过代理的主机的逗号分隔列表。</p>
+</li>
+</ul>
+<p>这里的 <code>NO_PROXY</code> 变​​量很重要：如果不设置它，minikube 可能无法访问 VM 内的资源。 minikube 使用两个 IP 范围，它们不应该</p>
+<p>通过代理：</p>
+<ul>
+<li>
+<p>192.168.59.0/24：由 minikube VM 使用。可通过 <code>--host-only-cidr</code> 为某些虚拟机管理程序配置</p>
+</li>
+<li>
+<p><code>192.168.39.0/24</code>：由 minikube kvm2 驱动程序使用。</p>
+</li>
+<li>
+<p><code>192.168.49.0/24</code>：由 minikube docker driver 的第一个集群使用。</p>
+</li>
+<li>
+<p><code>10.96.0.0/12</code>：由服务集群 IP 使用。可通过 --service-cluster-ip-range 配置</p>
+</li>
+</ul>
+<p>一个重要提示：如果非 Kubernetes 应用程序（例如 Firefox 或 Chrome）需要 <code>NO_PROXY</code>，您可能需要专门将 minikube IP 添加到逗号分隔列表中，因为它们可能不理解 IP 范围（#3827）。</p>
+<h2 id="示例用法">示例用法</h2>
+<h3 id="macOS-和-Linux">macOS 和 Linux</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export HTTP_PROXY=http://&lt;proxy hostname:port&gt;</span><br><span class="line">export HTTPS_PROXY=https://&lt;proxy hostname:port&gt;</span><br><span class="line">export NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.59.0/24,192.168.39.0/24</span><br><span class="line"></span><br><span class="line">minikube start</span><br></pre></td></tr></table></figure>
+<p>要使环境变量持久化，请考虑将声明添加到 <code>~/.bashrc</code> 或存储用户设置的环境变量的任何位置。</p>
+<h3 id="Windows-4">Windows</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set HTTP_PROXY=http://&lt;proxy hostname:port&gt;</span><br><span class="line">set HTTPS_PROXY=https://&lt;proxy hostname:port&gt;</span><br><span class="line">set NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.59.0/24,192.168.39.0/24</span><br><span class="line"></span><br><span class="line">minikube start</span><br></pre></td></tr></table></figure>
+<p>要持久化设置这些环境变量，请考虑将它们添加到您的系统设置或使用 <code>setx</code>。</p>
+<h3 id="故障排除">故障排除</h3>
+<h4 id="unable-to-cache-ISO…-connection-refused">unable to cache ISO… connection refused</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Unable to start VM: unable to cache ISO: https://storage.googleapis.com/minikube/iso/minikube.iso:</span><br><span class="line">failed to download: failed to download to temp file: download failed: 5 error(s) occurred:</span><br><span class="line"></span><br><span class="line">* Temporary download error: Get https://storage.googleapis.com/minikube/iso/minikube.iso:</span><br><span class="line">proxyconnect tcp: dial tcp &lt;host&gt;:&lt;port&gt;: connect: connection refused</span><br></pre></td></tr></table></figure>
+<p>此错误表示 <code>HTTPS_PROXY</code> 或 <code>HTTP_PROXY</code> 定义的 <code>host:port</code> 组合不正确，或者代理不可用。</p>
+<h4 id="Unable-to-pull-images…Client-Timeout-exceeded-while-awaiting-headers">Unable to pull images…Client.Timeout exceeded while awaiting headers</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Unable to pull images, which may be OK:</span><br><span class="line"></span><br><span class="line">failed to pull image &quot;k8s.gcr.io/kube-apiserver:v1.13.3&quot;: output: Error response from daemon:</span><br><span class="line">Get https://k8s.gcr.io/v2/: net/http: request canceled while waiting for connection</span><br><span class="line">(Client.Timeout exceeded while awaiting headers)</span><br></pre></td></tr></table></figure>
+<p>此错误表示在 VM 中运行的容器运行时无法访问 Internet。验证您是否将适当的值传递给 <code>--docker-env HTTPS_PROXY</code>。</p>
+<h4 id="x509-certificate-signed-by-unknown-authority">x509: certificate signed by unknown authority</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[ERROR ImagePull]: failed to pull image k8s.gcr.io/kube-apiserver:v1.13.3:</span><br><span class="line">output: Error response from daemon:</span><br><span class="line">Get https://k8s.gcr.io/v2/: x509: certificate signed by unknown authority</span><br></pre></td></tr></table></figure>
+<p>这是因为 minikube VM 被隐藏在一个代理后面，该代理重写 HTTPS 响应以包含它自己的 TLS 证书。解决方案是将代理证书安装到启动时复制到 VM 的位置，以便对其进行验证。</p>
+<p>向您的 IT 部门索取适当的 PEM 文件，并将其添加到：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.minikube/files/etc/ssl/certs</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.minikube/certs</span><br></pre></td></tr></table></figure>
+<p>然后运行 ​​<code>minikube delete</code> 和 <code>minikube start</code>。</p>
+<h4 id="downloading-binaries-proxyconnect-tcp-tls-oversized-record-received-with-length-20527">downloading binaries: proxyconnect tcp: tls: oversized record received with length 20527</h4>
+<p><code>HTTPS_PROXY</code> 提供的值可能不正确。验证该值是否指向 HTTP 代理而不是 HTTPS 代理。</p>
+<h2 id="VPN">VPN</h2>
+<p>minikube 需要从主机访问以下 IP 范围：</p>
+<ul>
+<li>
+<p><code>192.168.59.0/24</code>：由 minikube VM 使用。可通过 <code>--host-only-cidr</code> 为某些虚拟机管理程序配置</p>
+</li>
+<li>
+<p><code>192.168.39.0/24</code>：由 minikube kvm2 驱动程序使用。</p>
+</li>
+<li>
+<p><code>10.96.0.0/12</code>：由服务集群 IP 使用。可通过 <code>--service-cluster-ip-range</code> 配置</p>
+</li>
+</ul>
+<p>不幸的是，许多 VPN 配置通过加密隧道将数据包路由到这些目的地，而不是允许数据包进入 minikube 虚拟机。</p>
+<h3 id="可能的解决方法">可能的解决方法</h3>
+<ul>
+<li>
+<ol>
+<li>如果您有访问权限，请在您的 VPN 软件中将上述 IP 范围列入白名单。</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>在您的 VPN 软件中，选择类似于“使用 VPN 时允许本地 (LAN) 访问”（Cisco VPN 示例）的选项。</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>您可能会幸运地为 <code>--host-only-cidr</code> 和 <code>--service-cluster-ip-range</code> 标志选择替代值。</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>关闭 VPN</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="原文链接-22">原文链接</h2>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/handbook/vpn_and_proxy/">Proxies and VPNs | minikube - https://minikube.sigs.k8s.io/docs/handbook/vpn_and_proxy/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Pushing-Images/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Pushing-Images/" class="post-title-link" itemprop="url">[minikube 文档中文翻译] 手册 - 推送镜像</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-16T00:00:00+00:00">2022-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/" itemprop="url" rel="index"><span itemprop="name">Cloud Native</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/" itemprop="url" rel="index"><span itemprop="name">Kubernetes (K8S)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/" itemprop="url" rel="index"><span itemprop="name">minikube</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/" itemprop="url" rel="index"><span itemprop="name">Docs</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>手册 - 推送镜像</h1>
+<p>比较将镜像 Push 推送到 minikube 集群的 8 种方法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Pushing-Images/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Registries/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Registries/" class="post-title-link" itemprop="url">[minikube 文档中文翻译] 手册 - 注册表</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-16T00:00:00+00:00">2022-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/" itemprop="url" rel="index"><span itemprop="name">Cloud Native</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/" itemprop="url" rel="index"><span itemprop="name">Kubernetes (K8S)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/" itemprop="url" rel="index"><span itemprop="name">minikube</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/" itemprop="url" rel="index"><span itemprop="name">Docs</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>手册 - 注册表</h1>
+<p>注册表</p>
+<p>如何与注册表交互</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Registries/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Troubleshooting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Troubleshooting/" class="post-title-link" itemprop="url">[minikube 文档中文翻译] 手册 - 故障排除</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-16T00:00:00+00:00">2022-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/" itemprop="url" rel="index"><span itemprop="name">Cloud Native</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/" itemprop="url" rel="index"><span itemprop="name">Kubernetes (K8S)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/" itemprop="url" rel="index"><span itemprop="name">minikube</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/" itemprop="url" rel="index"><span itemprop="name">Docs</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>手册 - 故障排除</h1>
+<p>如何解决 minikube 问题</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Handbook-Troubleshooting/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Index/" class="post-title-link" itemprop="url">[minikube 文档中文翻译]</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-16T00:00:00+00:00">2022-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/" itemprop="url" rel="index"><span itemprop="name">Cloud Native</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/" itemprop="url" rel="index"><span itemprop="name">Kubernetes (K8S)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/" itemprop="url" rel="index"><span itemprop="name">minikube</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/" itemprop="url" rel="index"><span itemprop="name">Docs</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>656</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>minikube 文档中文翻译</h1>
+<p><img src="/images/minikube/kubernetes-minikube.png" alt="kubernetes-minikube.png"></p>
+<ul>
+<li>
+<p><a href="../Welcome">欢迎! - …/Welcome</a></p>
+</li>
+<li>
+<p><a href="../Get-Started">开始 minikube - …/Get-Started</a></p>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Index/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Welcome/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Welcome/" class="post-title-link" itemprop="url">[minikube 文档中文翻译] 欢迎！</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-16T00:00:00+00:00">2022-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/" itemprop="url" rel="index"><span itemprop="name">Cloud Native</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/" itemprop="url" rel="index"><span itemprop="name">Kubernetes (K8S)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/" itemprop="url" rel="index"><span itemprop="name">minikube</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/" itemprop="url" rel="index"><span itemprop="name">Docs</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>欢迎！</h1>
+<p>Minikube 可以快速在 macOS，Linux 和 Windows 上安装本地的Kubernetes集群。 我们自豪地专注于帮助应用程序开发人员和新的Kubernetes用户。</p>
+<p><img src="/images/minikube/screenshot.png" alt="minikube-screenshot.png"></p>
+<p>🎉最新版本：v1.25.2  -  2月24日，2022年（<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/kubernetes/minikube/blob/master/CHANGELOG.md">更改日志 - https://github.com/kubernetes/minikube/blob/master/CHANGELOG.md</a>）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Welcome/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/09/Cloud-Native/Container/Aliyun-Docker-Images-Acceleration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/09/Cloud-Native/Container/Aliyun-Docker-Images-Acceleration/" class="post-title-link" itemprop="url">阿里云 Docker 镜像加速</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-09T00:00:00+00:00">2022-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/" itemprop="url" rel="index"><span itemprop="name">Cloud Native</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Container/Aliyun/" itemprop="url" rel="index"><span itemprop="name">Aliyun</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>阿里云 Docker 镜像加速</h1>
+<p>由于网络原因，国内下载一个 Docker 官方镜像可能会需要很长的时间，甚至下载失败。为此，阿里云容器镜像服务 ACR 提供了 Docker 官方的镜像站点，从而加速 Docker 官方镜像的下载。</p>
+<h2 id="前置条件">前置条件</h2>
+<p>注册并登录阿里云账号。查看<a target="_blank" rel="noopener external nofollow noreferrer" href="https://help.aliyun.com/document_detail/69335.html">注册账号 - https://help.aliyun.com/document_detail/69335.html</a>了解更多信息。</p>
+<p>如果已经有一个阿里云账号，也可以创建一个 RAM 用户。查看<a target="_blank" rel="noopener external nofollow noreferrer" href="https://help.aliyun.com/document_detail/93720.html">创建RAM用户 - https://help.aliyun.com/document_detail/93720.html</a>了解更多信息。</p>
+<p>开通阿里云容器镜像服务 ACR。以华东2（上海）为例，地址为<a target="_blank" rel="noopener external nofollow noreferrer" href="https://cr.console.aliyun.com/cn-shanghai/instances/">https://cr.console.aliyun.com/cn-shanghai/instances/</a>。</p>
+<h2 id="获取镜像加速器地址">获取镜像加速器地址</h2>
+<p>阿里云容器镜像服务 ACR 会为每一个账号（阿里云账号或 RAM 用户）生成一个镜像加速器地址，配置镜像加速器前，您需要获取镜像加速器地址。</p>
+<p>登录容器镜像服务控制台，，在左侧导航栏选择 镜像工具 &gt; 镜像加速器，在镜像加速器页面获取镜像加速地址。</p>
+<p>镜像加速地址格式一般为 <code>https://&lt;随机字符串&gt;.mirror.aliyuncs.com</code></p>
+<h2 id="使用镜像加速器地址">使用镜像加速器地址</h2>
+<h3 id="Docker">Docker</h3>
+<h4 id="配置-Linux-Docker-daemon">配置 Linux Docker daemon</h4>
+<p>在 Linux 操作系统环境手动启动 <code>dockerd</code> 时传递 <code>--registry-mirror</code> 选项，或者编辑 <code>/etc/docker/daemon.json</code> 并添加 <code>registry-mirrors</code> 键和值，以使更改持久化。</p>
+<blockquote>
+<p>如果 <code>/etc/docker</code> 目录不存在，需要手工创建</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo <span class="built_in">mkdir</span> -p /etc/docker</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;registry-mirrors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;https://&lt;随机字符串&gt;.mirror.aliyuncs.com&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>保存文件并重新加载 Docker 以使更改生效。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo systemctl daemon-reload</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo systemctl restart docker</span></span><br></pre></td></tr></table></figure>
+<h4 id="配置-macOS-Windows-Docker-Desktop">配置 macOS / Windows Docker Desktop</h4>
+<p>选择 Docker Engine</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;experimental&quot;: true,</span><br><span class="line">    &quot;debug&quot;: true,</span><br><span class="line"><span class="addition">+     &quot;registry-mirrors&quot;: [&quot;https://&lt;随机字符串&gt;.mirror.aliyuncs.com&quot;]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="检查镜像加速器地址">检查镜像加速器地址</h4>
+<p>在命令行执行 <code>docker info</code>，如果从结果中看到了如下内容，说明配置成功。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker info</span></span><br><span class="line">...</span><br><span class="line">Registry Mirrors:</span><br><span class="line">https://&lt;随机字符串&gt;.mirror.aliyuncs.com</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="Containerd">Containerd</h3>
+<p>当您使用 Containerd 作为容器运行时，需要按照以下内容修改 Containerd 的 <code>cri</code> 配置，才能让 Pod 的镜像使用镜像加速器。配置路径一般为 <code>/etc/containerd/config.toml</code>。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[plugins.cri]</span><br><span class="line">  [plugins.cri.registry]</span><br><span class="line"><span class="addition">+     [plugins.cri.registry.mirrors]</span></span><br><span class="line"><span class="addition">+       [plugins.cri.registry.mirrors.&quot;docker.io&quot;]</span></span><br><span class="line"><span class="addition">+         endpoint = [&quot;https://&lt;随机字符串&gt;.mirror.aliyuncs.com&quot;]</span></span><br></pre></td></tr></table></figure>
+<p>重启 Containerd</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">systemctl daemon-reload</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">systemctl <span class="built_in">enable</span> --now containerd</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考链接-2">参考链接</h2>
+<p>[1] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.alibabacloud.com/help/zh/container-registry/latest/accelerate-the-download-of-docker-official-images">官方镜像加速 - https://www.alibabacloud.com/help/zh/container-registry/latest/accelerate-the-download-of-docker-official-images</a></p>
+<p>[2] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.docker.com/registry/recipes/mirror/">Registry as a pull through cache | Docker Documentation - https://docs.docker.com/registry/recipes/mirror/</a></p>
+<p>[3] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://cn.aliyun.com/product/acr">容器镜像服务_镜像构建_镜像授权_镜像托管-阿里云 - https://cn.aliyun.com/product/acr</a></p>
+<p>[4] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://help.aliyun.com/document_detail/69335.html">注册账号 - https://help.aliyun.com/document_detail/69335.html</a></p>
+<p>[5] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://help.aliyun.com/document_detail/93720.html">创建RAM用户 - https://help.aliyun.com/document_detail/93720.html</a></p>
+<p>[6] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/containerd/containerd/blob/main/docs/getting-started.md">containerd/getting-started.md at main · containerd/containerd - https://github.com/containerd/containerd/blob/main/docs/getting-started.md</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/" class="post-title-link" itemprop="url">[Infrastructure as Code (IaC)] 为什么 Crossplane 如此令人兴奋</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-02T00:00:00+00:00">2022-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Infrastructure-as-Code-IaC/" itemprop="url" rel="index"><span itemprop="name">Infrastructure as Code (IaC)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Infrastructure-as-Code-IaC/Crossplane/" itemprop="url" rel="index"><span itemprop="name">Crossplane</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>为什么 Crossplane 如此令人兴奋</h1>
+<p>发表于 2021 年 7 月 7 日，星期三</p>
+<p>作者 | Matthias Luebken</p>
+<p>译者 | Blogbin</p>
+<p>我刚刚以产品经理的身份加入 Upbound，能成为这一旅程的一部分，我感到无比兴奋。我真的相信 Crossplane 提供了一些独特的功能，可以通过利用云服务使团队更具创新性和生产力。对于 Crossplane 专家来说，这不是新闻。对于刚接触 Crossplane 的人，我希望这篇文章能给您增加一个视角。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/" class="post-title-link" itemprop="url">[Infrastructure as Code (IaC)] 介绍 Pulumiverse</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-02T00:00:00+00:00">2022-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Infrastructure-as-Code-IaC/" itemprop="url" rel="index"><span itemprop="name">Infrastructure as Code (IaC)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Infrastructure-as-Code-IaC/Pulumi/" itemprop="url" rel="index"><span itemprop="name">Pulumi</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/" itemprop="url" rel="index"><span itemprop="name">Pulumiverse</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>介绍 Pulumiverse</h1>
+<p>发表于 2022 年 3 月 30 日，星期三</p>
+<p>作者 | David Flanagan</p>
+<p>译者 | Blogbin</p>
+<p>今天，我们很高兴地宣布，我们正在与 Pulumi 社区合作，为基于 Pulumi 的库、项目和教育材料提供一个互动和协作的场所：Pulumiverse。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/02/Site/Hexo/Plugins/hexo-generator-searchdb-and-NexT-enable-local-search-on-Hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/02/Site/Hexo/Plugins/hexo-generator-searchdb-and-NexT-enable-local-search-on-Hexo/" class="post-title-link" itemprop="url">[Hexo 插件] hexo-generator-searchdb 插件和 NexT 主题启用 Hexo 本地搜索</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-02T00:00:00+00:00">2022-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Site/" itemprop="url" rel="index"><span itemprop="name">Site</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Site/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Site/Hexo/Plugins/" itemprop="url" rel="index"><span itemprop="name">Plugins</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>hexo-generator-searchdb 插件和 NexT 主题启用 Hexo 本地搜索</h1>
+<p>本文章介绍如何使用 Hexo 插件 <code>hexo-generator-searchdb</code> 和 NexT 主题，为 Hexo 生成的网站启用本地搜索功能。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/02/Site/Hexo/Plugins/hexo-generator-searchdb-and-NexT-enable-local-search-on-Hexo/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudoLife</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener external nofollow noreferrer" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

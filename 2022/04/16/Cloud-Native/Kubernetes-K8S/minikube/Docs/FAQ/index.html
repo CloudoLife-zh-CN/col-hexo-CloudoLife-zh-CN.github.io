@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cloudolife.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="常见问题解答 常见问题解答">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="[minikube 文档中文翻译] 常见问题解答">
+<meta property="og:url" content="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/FAQ/index.html">
+<meta property="og:site_name" content="CloudoLife">
+<meta property="og:description" content="常见问题解答 常见问题解答">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-16T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-09T01:37:01.756Z">
+<meta property="article:author" content="CloudoLife">
+<meta property="article:tag" content="Cloud Native">
+<meta property="article:tag" content="Docs">
+<meta property="article:tag" content="K8S">
+<meta property="article:tag" content="Kubernetes">
+<meta property="article:tag" content="Kubernetes (K8S)">
+<meta property="article:tag" content="Infrastructure">
+<meta property="article:tag" content="IaC">
+<meta property="article:tag" content="Infrastructure as Code">
+<meta property="article:tag" content="Infrastructure as Code (IaC)">
+<meta property="article:tag" content="CNCF">
+<meta property="article:tag" content="Cloud Native Computing Foundation">
+<meta property="article:tag" content="Cloud Native Computing Foundation (CNCF)">
+<meta property="article:tag" content="FAQs">
+<meta property="article:tag" content="Frequently Asked Questions">
+<meta property="article:tag" content="Frequently Asked Questions (FAQs)">
+<meta property="article:tag" content="minikube">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/FAQ/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/FAQ/","path":"2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/FAQ/","title":"[minikube 文档中文翻译] 常见问题解答"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[minikube 文档中文翻译] 常见问题解答 | CloudoLife</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6C9MN35QG"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-H6C9MN35QG","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="CloudoLife" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CloudoLife</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">面向云生活 - 云技术改变生活</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">24</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-crossplane"><a href="/tags/Crossplane/" rel="section"><i class="fa fa-book fa-fw"></i>Crossplane</a></li><li class="menu-item menu-item-infrastructure-as-code-(iac)"><a href="/tags/Infrastructure-as-Code-IaC/" rel="section"><i class="fa fa-book fa-fw"></i>Infrastructure as Code (IaC)</a></li><li class="menu-item menu-item-knative"><a href="/tags/Knative/" rel="section"><i class="fa fa-book fa-fw"></i>Knative</a></li><li class="menu-item menu-item-kubernetes-(k8s)"><a href="/tags/Kubernetes-K8S/" rel="section"><i class="fa fa-book fa-fw"></i>Kubernetes (K8S)</a></li><li class="menu-item menu-item-minikube-文档中文翻译"><a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Index/" rel="section"><i class="fa fa-book fa-fw"></i>minikube 文档中文翻译</a></li><li class="menu-item menu-item-pulumi"><a href="/tags/Pulumi/" rel="section"><i class="fa fa-book fa-fw"></i>Pulumi</a></li><li class="menu-item menu-item-about"><a href="/about-us/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">常见问题解答</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%8F%AF%E4%BB%A5%E7%94%A8-minikube-%E8%BF%90%E8%A1%8C%E8%BE%83%E6%97%A7%E7%9A%84-Kubernetes-%E7%89%88%E6%9C%AC%E5%90%97%EF%BC%9F%E6%88%91%E5%BF%85%E9%A1%BB%E9%99%8D%E7%BA%A7%E6%88%91%E7%9A%84-minikube-%E7%89%88%E6%9C%AC%E5%90%97%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">我可以用 minikube 运行较旧的 Kubernetes 版本吗？我必须降级我的 minikube 版本吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-minikube-%E5%88%9B%E5%BB%BA%E5%A4%9A%E4%B8%AA%E9%9B%86%E7%BE%A4%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">如何使用 minikube 创建多个集群？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%8F%AF%E4%BB%A5%E5%B0%86-minikube-%E6%9B%BF%E4%BB%A3-Docker-%E6%A1%8C%E9%9D%A2%E5%90%97%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">我可以将 minikube 替代 Docker 桌面吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%8F%AF%E4%BB%A5%E5%9C%A8%E4%B8%8D%E8%BF%90%E8%A1%8C-Kubernetes-%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E5%90%AF%E5%8A%A8-minikube-%E5%90%97%EF%BC%9F"><span class="nav-number">1.4.</span> <span class="nav-text">我可以在不运行 Kubernetes 的情况下启动 minikube 吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE-minikube-%E7%9A%84-cgroup-manager%EF%BC%9F"><span class="nav-number">1.5.</span> <span class="nav-text">Docker 驱动程序：如何设置 minikube 的 cgroup manager？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%88%91%E6%9C%89%E4%B8%80%E4%B8%AA%E5%B8%A6%E6%9C%89VM%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%8E%B0%E6%9C%89%E7%BE%A4%E9%9B%86%EF%BC%8C%E6%88%91%E8%AF%A5%E5%A6%82%E4%BD%95%E4%B8%8EDocker%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E4%B8%80%E8%B5%B7%E8%BF%90%E8%A1%8C-minikube%EF%BC%9F"><span class="nav-number">1.6.</span> <span class="nav-text">如果我有一个带有VM驱动程序的现有群集，我该如何与Docker驱动程序一起运行 minikube？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#minikube%E6%94%AF%E6%8C%81IPv6%E5%90%97%EF%BC%9F"><span class="nav-number">1.7.</span> <span class="nav-text">minikube支持IPv6吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2Linux%E4%B8%8A%E7%9A%84%E5%AF%86%E7%A0%81%E6%8F%90%E7%A4%BA%EF%BC%9F"><span class="nav-number">1.8.</span> <span class="nav-text">如何防止Linux上的密码提示？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%A6%82%E4%BD%95%E5%BF%BD%E7%95%A5%E7%B3%BB%E7%BB%9F%E9%AA%8C%E8%AF%81%EF%BC%9F"><span class="nav-number">1.9.</span> <span class="nav-text">我如何忽略系统验证？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-minikube-%E8%BF%9B%E8%A1%8C-Knative-%E8%AE%BE%E7%BD%AE%E6%89%80%E9%9C%80%E7%9A%84%E6%9C%80%E4%BD%8E%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.10.</span> <span class="nav-text">使用 minikube 进行 Knative 设置所需的最低资源分配是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E9%9C%80%E8%A6%81%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85kubectl%E5%90%97%EF%BC%9F"><span class="nav-number">1.11.</span> <span class="nav-text">我需要在本地安装kubectl吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E8%BF%9B%E5%85%A5Beta%E5%8F%91%E5%B8%83%E9%80%9A%E7%9F%A5%EF%BC%9F"><span class="nav-number">1.12.</span> <span class="nav-text">如何选择进入Beta发布通知？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%8F%AF%E4%BB%A5%E6%91%86%E8%84%B1-minikube-%E8%BE%93%E5%87%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E6%83%85%E7%AC%A6%E5%8F%B7%E5%90%97%EF%BC%9F"><span class="nav-number">1.13.</span> <span class="nav-text">我可以摆脱 minikube 输出中的表情符号吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BB%8E%E8%BF%9C%E7%A8%8B%E7%BD%91%E7%BB%9C%E8%AE%BF%E9%97%AE-minikube-%E7%BE%A4%E9%9B%86%EF%BC%9F"><span class="nav-number">1.14.</span> <span class="nav-text">如何从远程网络访问 minikube 群集？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%B0%86%E6%9C%80%E5%A4%A7%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E7%BB%99-minikube%EF%BC%9F"><span class="nav-number">1.15.</span> <span class="nav-text">如何将最大资源分配给 minikube？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E5%85%B6%E4%BB%96%E7%A1%AC%E7%9B%98%E9%A9%B1%E5%8A%A8%E5%99%A8%E4%B8%8A%E8%BF%90%E8%A1%8C-minikube%EF%BC%9F"><span class="nav-number">1.16.</span> <span class="nav-text">如何在其他硬盘驱动器上运行 minikube？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E6%96%87%E9%93%BE%E6%8E%A5-7"><span class="nav-number">1.17.</span> <span class="nav-text">原文链接</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CloudoLife</p>
+  <div class="site-description" itemprop="description">Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener external nofollow noreferrer" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/FAQ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[minikube 文档中文翻译] 常见问题解答 | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [minikube 文档中文翻译] 常见问题解答
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-16T00:00:00+00:00">2022-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/" itemprop="url" rel="index"><span itemprop="name">Cloud Native</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/" itemprop="url" rel="index"><span itemprop="name">Kubernetes (K8S)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/" itemprop="url" rel="index"><span itemprop="name">minikube</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Cloud-Native/Kubernetes-K8S/minikube/Docs/" itemprop="url" rel="index"><span itemprop="name">Docs</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>常见问题解答</h1>
+<p>常见问题解答</p>
+<span id="more"></span>
+<h2 id="我可以用-minikube-运行较旧的-Kubernetes-版本吗？我必须降级我的-minikube-版本吗？">我可以用 minikube 运行较旧的 Kubernetes 版本吗？我必须降级我的 minikube 版本吗？</h2>
+<p>您无需下载旧的 minikube 即可运行较旧的 Kubernetes 版本。您可以使用您想要的任何版本 <code>--kubernetes-version</code> 标志创建一个 Kubernetes 群集。</p>
+<p>例子：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --kubernetes-version=v1.15.0</span><br></pre></td></tr></table></figure>
+<h2 id="如何使用-minikube-创建多个集群？">如何使用 minikube 创建多个集群？</h2>
+<p>默认情况下，<code>minikube  start</code> 创建了一个名为 <code>minikube</code> 的集群。如果您想创建一个不同的群集或更改其名称，则可以使用 <code>-profile</code>（或者 <code>-P</code>）标志，该​​标志将创建带有指定名称的群集。请注意，同一台计算机上可以有多个群集。</p>
+<p>要查看当前群集的列表，请运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube profile list</span><br></pre></td></tr></table></figure>
+<p>minikube 配置文件应与自己的设置和驱动程序相互隔离。如果要创建具有多个节点的单个群集，请尝试使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/tutorials/multi_node/">多节点功能 - https://minikube.sigs.k8s.io/docs/tutorials/multi_node/</a>。</p>
+<h2 id="我可以将-minikube-替代-Docker-桌面吗？">我可以将 minikube 替代 Docker 桌面吗？</h2>
+<p>是的！遵循我们的教程，<a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/tutorials/docker_desktop_replacement/">使用 Minikube 替代 Docker 桌面 - https://minikube.sigs.k8s.io/docs/tutorials/docker_desktop_replacement/</a>。</p>
+<h2 id="我可以在不运行-Kubernetes-的情况下启动-minikube-吗？">我可以在不运行 Kubernetes 的情况下启动 minikube 吗？</h2>
+<p>是的！如果您只想在不启动 Kubernetes 本身的情况下使用 minikube 替代 Docker 桌面，请尝试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --container-runtime=docker --no-kubernetes</span><br></pre></td></tr></table></figure>
+<p>另外，如果您想暂时关闭 Kubernetes，则可以暂停，然后再解开 Kubernetes。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube pause</span><br></pre></td></tr></table></figure>
+<p>minikube 还具有一个附加组件，会在一定程度的不活动中自动暂停 Kubernetes：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons enable auto-pause </span><br></pre></td></tr></table></figure>
+<h2 id="Docker-驱动程序：如何设置-minikube-的-cgroup-manager？">Docker 驱动程序：如何设置 minikube 的 cgroup manager？</h2>
+<p>默认情况下，minikube 使用 Kubernetes 群集使用 <code>cgroupfs </code> cgroup manager。如果您正在使用 <code>systemd </code> cgroup manager 的系统，这可能会导致冲突。要使用 <code>systemd </code> cgroup manager，请运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --force-systemd=true</span><br></pre></td></tr></table></figure>
+<h2 id="如果我有一个带有VM驱动程序的现有群集，我该如何与Docker驱动程序一起运行-minikube？">如果我有一个带有VM驱动程序的现有群集，我该如何与Docker驱动程序一起运行 minikube？</h2>
+<p>首先，请确保您的Docker服务正在运行。然后，您都需要：</p>
+<p>（a）删除现有群集并创建一个新群集</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">minikube delete</span><br><span class="line">minikube start --driver=docker</span><br></pre></td></tr></table></figure>
+<p>或者，（b）创建一个带有不同配置文件名称的第二个集群：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start -p p1 --driver=docker </span><br></pre></td></tr></table></figure>
+<h2 id="minikube支持IPv6吗？">minikube支持IPv6吗？</h2>
+<p>Minikube目前不支持IPv6。但是，它在路线图上。您也可以参考开放问题。</p>
+<h2 id="如何防止Linux上的密码提示？">如何防止Linux上的密码提示？</h2>
+<p>最简单的方法是使用Docker驱动程序，因为后端服务始终以 <code>root</code> 运行。</p>
+<p>没有用户可能想尝试 <code>change_minikube_none_user = true</code>，在没有 <code>sudo</code> 的情况下，kubectl等将有效。有关更多详细信息，请参见<a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/handbook/config/#environment-variables">环境变量 - https://minikube.sigs.k8s.io/docs/handbook/config/#environment-variables</a>。</p>
+<p>另外，您可以将 <code>sudo</code> 配置为切勿提示 minikube 发出的命令。</p>
+<h2 id="我如何忽略系统验证？">我如何忽略系统验证？</h2>
+<p>minikube 的引导程序 kubeadm 在安装Kubernetes之前验证了主机系统上的功能列表。如果您遇到了错误，并且尽管您的系统限制仍然想尝试 minikube，则可以通过使用此额外选项启动 minikube 来跳过验证：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --extra-config kubeadm.ignore-preflight-errors=SystemVerification</span><br></pre></td></tr></table></figure>
+<h2 id="使用-minikube-进行-Knative-设置所需的最低资源分配是什么？">使用 minikube 进行 Knative 设置所需的最低资源分配是什么？</h2>
+<p>请使用 minikube 分配足够的资源用于 Knative 设置，尤其是在本地机器上运行 minikube 群集时。我们建议至少分配6个CPU和8G内存：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --cpus 6 --memory 8000</span><br></pre></td></tr></table></figure>
+<h2 id="我需要在本地安装kubectl吗？">我需要在本地安装kubectl吗？</h2>
+<p>不，minikube 带有内置的kubectl安装。请参阅 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/handbook/kubectl/">minikube 的Kubectl文档 - https://minikube.sigs.k8s.io/docs/handbook/kubectl/</a>。</p>
+<h2 id="如何选择进入Beta发布通知？">如何选择进入Beta发布通知？</h2>
+<p>只需运行以下命令即可注册到Beta通知：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube config set WantBetaUpdateNotification true</span><br></pre></td></tr></table></figure>
+<h2 id="我可以摆脱-minikube-输出中的表情符号吗？">我可以摆脱 minikube 输出中的表情符号吗？</h2>
+<p>是的！如果您希望在 minikube 输出😔中没有表情符号，只需将 <code>MINIKUBE_IN_STYLE</code> 环境变量设置为 <code>0</code> 或<code>false</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MINIKUBE_IN_STYLE=0 minikube start</span><br></pre></td></tr></table></figure>
+<h2 id="如何从远程网络访问-minikube-群集？">如何从远程网络访问 minikube 群集？</h2>
+<p>minikube 的主要目标是快速建立本地的 Kubernetes 群集，因此我们强烈不鼓励使用 minikube 在生产或监听远程流量。根据设计，minikube 的目的是仅在本地网络上监听。</p>
+<p>但是，可以配置 minikube 在远程网络上监听。这将使您的网络向外界打开，不建议您使用。如果您不完全了解安全含义，请避免使用此安全性。</p>
+<p>对于Docker和Podman驱动程序，请使用 <code>--listen-address</code> 标志：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --listen-address=0.0.0.0</span><br></pre></td></tr></table></figure>
+<h2 id="如何将最大资源分配给-minikube？">如何将最大资源分配给 minikube？</h2>
+<p>在开始命令上设置内存和 CPU 标志将使用最大可用资源：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --memory=max --cpus=max</span><br></pre></td></tr></table></figure>
+<h2 id="如何在其他硬盘驱动器上运行-minikube？">如何在其他硬盘驱动器上运行 minikube？</h2>
+<p>将 <code>MINIKUBE_HOME </code> env设置为要运行 minikube 的驱动器上的路径，然后运行 <code>minikube start</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Unix</span></span><br><span class="line">export MINIKUBE_HOME=/otherdrive/.minikube</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Windows</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash"><span class="built_in">env</span>:MINIKUBE_HOME = <span class="string">&quot;D:\.minikube&quot;</span></span></span><br><span class="line"></span><br><span class="line">minikube start</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="原文链接-7">原文链接</h2>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://minikube.sigs.k8s.io/docs/faq/">FAQ | minikube - https://minikube.sigs.k8s.io/docs/faq/</a></p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>CloudoLife
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/FAQ/" title="[minikube 文档中文翻译] 常见问题解答">https://cloudolife.cn/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/FAQ/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/CloudoLife/CloudoLife-WeChat-Officai-Account-QRCode-200x260.png">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Cloud-Native/" rel="tag"><i class="fa fa-tag"></i> Cloud Native</a>
+              <a href="/tags/Docs/" rel="tag"><i class="fa fa-tag"></i> Docs</a>
+              <a href="/tags/K8S/" rel="tag"><i class="fa fa-tag"></i> K8S</a>
+              <a href="/tags/Kubernetes/" rel="tag"><i class="fa fa-tag"></i> Kubernetes</a>
+              <a href="/tags/Kubernetes-K8S/" rel="tag"><i class="fa fa-tag"></i> Kubernetes (K8S)</a>
+              <a href="/tags/Infrastructure/" rel="tag"><i class="fa fa-tag"></i> Infrastructure</a>
+              <a href="/tags/IaC/" rel="tag"><i class="fa fa-tag"></i> IaC</a>
+              <a href="/tags/Infrastructure-as-Code/" rel="tag"><i class="fa fa-tag"></i> Infrastructure as Code</a>
+              <a href="/tags/Infrastructure-as-Code-IaC/" rel="tag"><i class="fa fa-tag"></i> Infrastructure as Code (IaC)</a>
+              <a href="/tags/CNCF/" rel="tag"><i class="fa fa-tag"></i> CNCF</a>
+              <a href="/tags/Cloud-Native-Computing-Foundation/" rel="tag"><i class="fa fa-tag"></i> Cloud Native Computing Foundation</a>
+              <a href="/tags/Cloud-Native-Computing-Foundation-CNCF/" rel="tag"><i class="fa fa-tag"></i> Cloud Native Computing Foundation (CNCF)</a>
+              <a href="/tags/FAQs/" rel="tag"><i class="fa fa-tag"></i> FAQs</a>
+              <a href="/tags/Frequently-Asked-Questions/" rel="tag"><i class="fa fa-tag"></i> Frequently Asked Questions</a>
+              <a href="/tags/Frequently-Asked-Questions-FAQs/" rel="tag"><i class="fa fa-tag"></i> Frequently Asked Questions (FAQs)</a>
+              <a href="/tags/minikube/" rel="tag"><i class="fa fa-tag"></i> minikube</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Get-Started/" rel="prev" title="[minikube 文档中文翻译] 开始 minikube">
+                  <i class="fa fa-chevron-left"></i> [minikube 文档中文翻译] 开始 minikube
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/01/Awosome-Software/Logseq/Blog/Welcome/" rel="next" title="[Awosome Software - Logseq] Logseqers 之家！">
+                  [Awosome Software - Logseq] Logseqers 之家！ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudoLife</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener external nofollow noreferrer" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cloudolife.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="为什么 Crossplane 如此令人兴奋 发表于 2021 年 7 月 7 日，星期三 作者 | Matthias Luebken 译者 | Blogbin 我刚刚以产品经理的身份加入 Upbound，能成为这一旅程的一部分，我感到无比兴奋。我真的相信 Crossplane 提供了一些独特的功能，可以通过利用云服务使团队更具创新性和生产力。对于 Crossplane 专家来说，这不是新闻。对于刚">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="[Infrastructure as Code (IaC)] 为什么 Crossplane 如此令人兴奋">
+<meta property="og:url" content="https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/index.html">
+<meta property="og:site_name" content="CloudoLife">
+<meta property="og:description" content="为什么 Crossplane 如此令人兴奋 发表于 2021 年 7 月 7 日，星期三 作者 | Matthias Luebken 译者 | Blogbin 我刚刚以产品经理的身份加入 Upbound，能成为这一旅程的一部分，我感到无比兴奋。我真的相信 Crossplane 提供了一些独特的功能，可以通过利用云服务使团队更具创新性和生产力。对于 Crossplane 专家来说，这不是新闻。对于刚">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-02T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-09T01:37:01.756Z">
+<meta property="article:author" content="CloudoLife">
+<meta property="article:tag" content="K8S">
+<meta property="article:tag" content="Kubernetes">
+<meta property="article:tag" content="Kubernetes (K8S)">
+<meta property="article:tag" content="Upbound">
+<meta property="article:tag" content="Infrastructure">
+<meta property="article:tag" content="IaC">
+<meta property="article:tag" content="Infrastructure as Code">
+<meta property="article:tag" content="Infrastructure as Code (IaC)">
+<meta property="article:tag" content="CNCF">
+<meta property="article:tag" content="Cloud Native Computing Foundation">
+<meta property="article:tag" content="Cloud Native Computing Foundation (CNCF)">
+<meta property="article:tag" content="Crossplane">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/","path":"2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/","title":"[Infrastructure as Code (IaC)] 为什么 Crossplane 如此令人兴奋"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Infrastructure as Code (IaC)] 为什么 Crossplane 如此令人兴奋 | CloudoLife</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6C9MN35QG"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-H6C9MN35QG","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="CloudoLife" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CloudoLife</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">面向云生活 - 云技术改变生活</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">24</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a></li><li class="menu-item menu-item-crossplane"><a href="/tags/Crossplane/" rel="section"><i class="fa fa-book fa-fw"></i>Crossplane</a></li><li class="menu-item menu-item-infrastructure-as-code-(iac)"><a href="/tags/Infrastructure-as-Code-IaC/" rel="section"><i class="fa fa-book fa-fw"></i>Infrastructure as Code (IaC)</a></li><li class="menu-item menu-item-knative"><a href="/tags/Knative/" rel="section"><i class="fa fa-book fa-fw"></i>Knative</a></li><li class="menu-item menu-item-kubernetes-(k8s)"><a href="/tags/Kubernetes-K8S/" rel="section"><i class="fa fa-book fa-fw"></i>Kubernetes (K8S)</a></li><li class="menu-item menu-item-minikube-文档中文翻译"><a href="/2022/04/16/Cloud-Native/Kubernetes-K8S/minikube/Docs/Index/" rel="section"><i class="fa fa-book fa-fw"></i>minikube 文档中文翻译</a></li><li class="menu-item menu-item-pulumi"><a href="/tags/Pulumi/" rel="section"><i class="fa fa-book fa-fw"></i>Pulumi</a></li><li class="menu-item menu-item-about"><a href="/about-us/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">为什么 Crossplane 如此令人兴奋</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%80%85%E5%B9%B3%E5%8F%B0%E5%BA%94%E8%AF%A5%E8%BF%99%E6%A0%B7%E5%81%9A"><span class="nav-number">1.1.</span> <span class="nav-text">开发者平台应该这样做</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AF%B9%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E5%8F%8B%E5%A5%BD%E7%9A%84-API"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 对开发人员友好的 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%9A%E5%BC%BA%E5%A4%A7%E8%80%8C%E7%81%B5%E6%B4%BB%E7%9A%84%E7%BB%84%E5%90%88"><span class="nav-number">1.1.2.</span> <span class="nav-text">2：强大而灵活的组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%BC%9A%E5%9C%A8-K8s-%E7%9A%84%E5%B8%AE%E5%8A%A9%E4%B8%8B%E7%94%9F%E4%BA%A7%E5%B0%B1%E7%BB%AA"><span class="nav-number">1.1.3.</span> <span class="nav-text">3：在 K8s 的帮助下生产就绪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%BC%9A%E5%BC%80%E6%BA%90%E5%92%8C%E5%BC%80%E6%94%BE%E6%B2%BB%E7%90%86"><span class="nav-number">1.1.4.</span> <span class="nav-text">4：开源和开放治理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5-6"><span class="nav-number">1.3.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E6%96%87%E9%93%BE%E6%8E%A5-5"><span class="nav-number">1.4.</span> <span class="nav-text">原文链接</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CloudoLife</p>
+  <div class="site-description" itemprop="description">Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener external nofollow noreferrer" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CloudoLife">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudoLife">
+      <meta itemprop="description" content="Cloud-oriented Life (CloudoLife) 致力于使用云计算（计算、存储、网络）、云原生（高度分布式、不断变化）的云技术改变生活">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Infrastructure as Code (IaC)] 为什么 Crossplane 如此令人兴奋 | CloudoLife">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Infrastructure as Code (IaC)] 为什么 Crossplane 如此令人兴奋
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-02T00:00:00+00:00">2022-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-07-09 01:37:01" itemprop="dateModified" datetime="2022-07-09T01:37:01+00:00">2022-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Infrastructure-as-Code-IaC/" itemprop="url" rel="index"><span itemprop="name">Infrastructure as Code (IaC)</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Infrastructure-as-Code-IaC/Crossplane/" itemprop="url" rel="index"><span itemprop="name">Crossplane</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>为什么 Crossplane 如此令人兴奋</h1>
+<p>发表于 2021 年 7 月 7 日，星期三</p>
+<p>作者 | Matthias Luebken</p>
+<p>译者 | Blogbin</p>
+<p>我刚刚以产品经理的身份加入 Upbound，能成为这一旅程的一部分，我感到无比兴奋。我真的相信 Crossplane 提供了一些独特的功能，可以通过利用云服务使团队更具创新性和生产力。对于 Crossplane 专家来说，这不是新闻。对于刚接触 Crossplane 的人，我希望这篇文章能给您增加一个视角。</p>
+<span id="more"></span>
+<p>如果您现在构建软件，您可以从海量的云服务中进行选择。仅 AWS 每个月就不断为其 200 多项服务添加新服务，其他云提供商也在跟上。如果您想您的软件开发有竞争力，您需要利用这些服务。设置和管理您的消息队列不会为您的产品增加任何价值。选择一个不是最佳工作工具的平庸数据库会使您的团队变慢。 – 您需要确保您的团队能够利用当前云时代提供的优势！</p>
+<p>但是你如何处理这个问题？将云提供商帐户分发给开发人员，并让他们选择他们想要的？虽然这听起来很有趣，但对于几乎所有的软件组织来说都是不现实的，而且由于开发人员会被各种选择淹没，所以这种方案不理想。这一挑战的答案是提供这些服务的一个子集来满足您的特定需求。通常，这是在平台团队中协作完成的，并在开发人员平台中体现出来。</p>
+<h2 id="开发者平台应该这样做">开发者平台应该这样做</h2>
+<p>“开发人员生产力平台越来越被认为是管理工程团队认知负荷和缩短新功能上市时间的一种方式，”Thoughtworks 说。 Crossplane 专为构建平台而设计，与其他方法相比具有一些优势。以下是我认为特别重要且 Crossplane 做对的四件事：</p>
+<h3 id="1-对开发人员友好的-API">1. 对开发人员友好的 API</h3>
+<p>首先要做的是 API。平台构建者需要一种方法来设置护栏并提供开发人员可以轻松使用的 API。由于 Crossplane 基于 Kubernetes 构建，因此开发人员创建资源来请求特定服务也就不足为奇了。例如，要配置一个平台团队定义的 20 GB Postgres 实例，开发人员将执行一个简单的 <code>kubectl apply</code> 命令应用以下 <code>yaml</code> 文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">database.example.org/v1alpha1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">PostgreSQLInstance</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">my-db</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">parameters:</span></span><br><span class="line">    <span class="attr">storageGB:</span> <span class="number">20</span></span><br><span class="line">  <span class="attr">compositionSelector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">provider:</span> <span class="string">aws</span></span><br><span class="line">      <span class="attr">environment:</span> <span class="string">production</span></span><br><span class="line">  <span class="attr">writeConnectionSecretToRef:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">db-conn</span></span><br></pre></td></tr></table></figure>
+<p>对于 Kubernetes 开发人员来说，这很简单。这还有一个额外的好处，那就是我们可以无缝融入庞大的 Kubernetes 工具生态系统。尤其是在当前流行的 GitOps 运动中，这使得非 Kubernetes 开发人员也可以使用它。</p>
+<h3 id="2：强大而灵活的组合">2：强大而灵活的组合</h3>
+<p>此 API 背后的实现可能相当复杂，可能涉及设置正确的云提供商资源，例如权限、网络、VPC 和数据库实例。这让我想到了一个伟大的开发者平台的第二个重要特征：它需要强大并允许灵活的实现。</p>
+<p>Crossplane 中的基本构建块是来自云提供商的托管资源。好消息是 Crossplane 包括对 AWS、Azure、GCP 和阿里巴巴的支持，并且社区正在增加对许多其他提供商的支持。</p>
+<p>这些基本构建块（绿色的托管资源）作为 Crossplane 组合（黄色的组合资源）拼接在一起，并为提供给开发人员的 API 提供实现。该模型在 Crossplane 资源模型 (XRM) 中形式化，扩展了 Kubernetes 资源模型 (KRM)。可以在专门的博客文章中了解更多信息。这里的关键是平台构建者可以为不同的目的构建不同的组合，而开发者可以专注于它请求的服务的属性。顺便说一句：这些组合也可以与遗留或本地服务一起使用，这对于任何处于某种转型路径的团队来说都是至关重要的。</p>
+<h3 id="3：在-K8s-的帮助下生产就绪">3：在 K8s 的帮助下生产就绪</h3>
+<p>一个伟大的开发者平台的第三个特点是它需要被视为一种产品。这包括许多方面，但一个重要的方面是它以高度可用的方式运行。好消息是，这是一个已解决的问题：使用 Kubernetes，我们有一种构建和运行分布式应用程序的方法。 Crossplane 建立在此模型之上。它使用 Kubernetes 控制器和持续协调的概念来运行平台。如果有东西坏了（它会坏的），Crossplane 将检查并修复状态。您最喜欢的 Kubernetes 专家现在会说诸如 Operators 和 Control Planes 之类的东西。是的，这正是我们正在做的事情。 – 听起来像是我的博客中的另一篇待办文章来解释这一切。 🙂</p>
+<h3 id="4：开源和开放治理">4：开源和开放治理</h3>
+<p>最后一个但并非最不重要的特征是平台需要是开源的。 由于开发人员平台将成为您的软件交付的重要组成部分，因此您需要确保您的投资安全。 Crossplane 不仅是开源的（Apache 2.0），而且作为 CNCF 的一部分，它也是公开管理的。</p>
+<h2 id="总结">总结</h2>
+<p>这些是我目前对 Crossplane 的主要特点，在我看来，这使其成为构建开发者平台的令人兴奋的解决方案。 我渴望更深入地了解社区并了解其他观点。 如果您今天使用 Crossplane 并想聊天，请联系我们！</p>
+<hr>
+<p>信息公开：这篇文章的先前版本已发布在我的 LinkedIn 个人资料上。</p>
+<h2 id="参考链接-6">参考链接</h2>
+<p>[1] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.upbound.io/">Why Crossplane Is so Exciting https://www.upbound.io/</a></p>
+<p>[2] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://martinfowler.com/articles/platform-prerequisites.html">Mind the platform execution gap https://martinfowler.com/articles/platform-prerequisites.html</a></p>
+<p>[3] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/crossplane/provider-aws">Why Crossplane Is so Exciting https://github.com/crossplane/provider-aws</a></p>
+<p>[4] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/crossplane/provider-azure">crossplane/provider-azure: Crossplane Azure Provider https://github.com/crossplane/provider-azure</a></p>
+<p>[5] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/crossplane/provider-alibaba">Why Crossplane Is so Exciting https://github.com/crossplane/provider-alibaba</a></p>
+<p>[6] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/crossplane-contrib/">Crossplane Contrib https://github.com/crossplane-contrib/</a></p>
+<p>[7] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/crossplane/provider-gcp">crossplane/provider-gcp: Crossplane GCP provider https://github.com/crossplane/provider-gcp</a></p>
+<p>[8] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/crossplane/crossplane/blob/master/LICENSE">crossplane/LICENSE at master · crossplane/crossplane https://github.com/crossplane/crossplane/blob/master/LICENSE</a></p>
+<p>[9] <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/crossplane/crossplane/blob/master/GOVERNANCE.md">crossplane/GOVERNANCE.md at master · crossplane/crossplane https://github.com/crossplane/crossplane/blob/master/GOVERNANCE.md</a></p>
+<h2 id="原文链接-5">原文链接</h2>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.crossplane.io/why-crossplane-is-so-exciting/">Why Crossplane Is so Exciting https://blog.crossplane.io/why-crossplane-is-so-exciting/</a></p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>CloudoLife
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/" title="[Infrastructure as Code (IaC)] 为什么 Crossplane 如此令人兴奋">https://cloudolife.cn/2022/04/02/Infrastructure-as-Code-IaC/Crossplane/Blog/Why-Crossplane-Is-so-Exciting/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/CloudoLife/CloudoLife-WeChat-Officai-Account-QRCode-200x260.png">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/K8S/" rel="tag"><i class="fa fa-tag"></i> K8S</a>
+              <a href="/tags/Kubernetes/" rel="tag"><i class="fa fa-tag"></i> Kubernetes</a>
+              <a href="/tags/Kubernetes-K8S/" rel="tag"><i class="fa fa-tag"></i> Kubernetes (K8S)</a>
+              <a href="/tags/Upbound/" rel="tag"><i class="fa fa-tag"></i> Upbound</a>
+              <a href="/tags/Infrastructure/" rel="tag"><i class="fa fa-tag"></i> Infrastructure</a>
+              <a href="/tags/IaC/" rel="tag"><i class="fa fa-tag"></i> IaC</a>
+              <a href="/tags/Infrastructure-as-Code/" rel="tag"><i class="fa fa-tag"></i> Infrastructure as Code</a>
+              <a href="/tags/Infrastructure-as-Code-IaC/" rel="tag"><i class="fa fa-tag"></i> Infrastructure as Code (IaC)</a>
+              <a href="/tags/CNCF/" rel="tag"><i class="fa fa-tag"></i> CNCF</a>
+              <a href="/tags/Cloud-Native-Computing-Foundation/" rel="tag"><i class="fa fa-tag"></i> Cloud Native Computing Foundation</a>
+              <a href="/tags/Cloud-Native-Computing-Foundation-CNCF/" rel="tag"><i class="fa fa-tag"></i> Cloud Native Computing Foundation (CNCF)</a>
+              <a href="/tags/Crossplane/" rel="tag"><i class="fa fa-tag"></i> Crossplane</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/02/Infrastructure-as-Code-IaC/Pulumi/Pulumiverse/Introducing-the-Pulumiverse/" rel="prev" title="[Infrastructure as Code (IaC)] 介绍 Pulumiverse">
+                  <i class="fa fa-chevron-left"></i> [Infrastructure as Code (IaC)] 介绍 Pulumiverse
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/09/Cloud-Native/Container/Aliyun-Docker-Images-Acceleration/" rel="next" title="阿里云 Docker 镜像加速">
+                  阿里云 Docker 镜像加速 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudoLife</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener external nofollow noreferrer" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
